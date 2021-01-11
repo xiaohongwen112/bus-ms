@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 47.99 48" enable-background="new 0 0 47.99 48" xml:space="preserve">
+<g>
+	<g>
+		<rect x="7.476" y="7.496" fill="#153B56" width="33" height="33.008"/>
+		<path fill="#1E6BA2" d="M39.976,7.996v32.007h-32V7.996H39.976 M40.976,6.996h-34v34.007h34V6.996L40.976,6.996z"/>
+	</g>
+	<g>
+		<polyline fill="none" stroke="#2BB3EC" stroke-width="2" stroke-miterlimit="10" points="12.976,7.996 7.976,7.996 7.976,13 		"/>
+		<polyline fill="none" stroke="#2BB3EC" stroke-width="2" stroke-miterlimit="10" points="7.976,35 7.976,40.004 12.976,40.004 		
+			"/>
+	</g>
+	<g>
+		<polyline fill="none" stroke="#2BB3EC" stroke-width="2" stroke-miterlimit="10" points="34.976,7.996 39.976,7.996 39.976,13 		
+			"/>
+		<polyline fill="none" stroke="#2BB3EC" stroke-width="2" stroke-miterlimit="10" points="40.026,35 40.026,40.004 35.026,40.004 
+					"/>
+	</g>
+</g>
+<g>
+	<circle fill="#4DBAAD" cx="29.815" cy="14.353" r="2.747"/>
+	<circle fill="#4DBAAD" cx="18.074" cy="23.28" r="4.098"/>
+	<circle fill="#4DBAAD" cx="31.198" cy="33.617" r="2.778"/>
+	<line fill="none" stroke="#4DBAAD" stroke-width="2" stroke-miterlimit="10" x1="18.074" y1="23.28" x2="31.198" y2="33.617"/>
+	<line fill="none" stroke="#4DBAAD" stroke-width="2" stroke-miterlimit="10" x1="18.074" y1="23.591" x2="29.815" y2="14.353"/>
+</g>
+</svg>

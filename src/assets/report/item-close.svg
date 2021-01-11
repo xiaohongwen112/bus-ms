@@ -1,0 +1,10 @@
+<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+        "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="32" class="isShow show">
+    <g class="show-g" transform="rotate(0,16,16)">
+        <path class="bg-circle" fill="#cccccc"
+              d="M15.500,-0.000 C24.060,-0.000 31.000,6.940 31.000,15.500 C31.000,24.060 24.060,31.000 15.500,31.000 C6.940,31.000 -0.000,24.060 -0.000,15.500 C-0.000,6.940 6.940,-0.000 15.500,-0.000 Z"></path>
+        <path fill="#101c23"
+              d="M15.505,20.015 C15.505,20.015 10.002,10.987 10.002,10.987 C10.002,10.987 21.008,10.987 21.008,10.987 C21.008,10.987 15.505,20.015 15.505,20.015 Z"></path>
+    </g>
+</svg>

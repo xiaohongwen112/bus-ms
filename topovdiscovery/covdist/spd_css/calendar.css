@@ -1,0 +1,180 @@
+/* calendar */
+#ui-datepicker-div {
+    z-index:9999!important;
+    font-size:14px;
+}
+
+#ui-datepicker-div * {
+    color: #e0d0d0;
+}
+
+.ui-datepicker{
+    padding:0;
+    width:180px;
+}
+.ui-datepicker .ui-datepicker-header{
+  background: none;
+  background-color:#3F962F;
+  border:none;
+}
+.ui-datepicker .ui-state-default{
+  border:none;
+  background:none;
+}
+.ui-datepicker .ui-state-hover,
+.ui-datepicker .ui-state-active{
+  background: none;
+  background-color:#3F962F;
+  border: none;
+}
+.ui-datepicker-calendar .ui-state-hover{
+  text-decoration:underline;
+  background:none;
+  color:#000;
+}
+.ui-datepicker-calendar .ui-state-active{
+  background-color:#3F962F;
+  color:#fff;
+}
+.ui-datepicker .ui-datepicker-title{
+  color:#fff;
+  font-size:14px;
+  font-family:"Microsoft YaHei";
+}
+.ui-datepicker .ui-datepicker-prev .ui-icon{
+  background-image: url(../spd_img/arrow_left.png);
+  background-position: 5px 3px;
+}
+.ui-datepicker .ui-datepicker-next .ui-icon{
+  background-image: url(../spd_img/arrow_right.png);
+  background-position: 5px 3px;
+}
+
+.ui-datepicker .ui-datepicker-prev .ui-icon.ui-icon-circle-triangle-w{
+    cursor: pointer;
+}
+.ui-datepicker .ui-datepicker-next .ui-icon.ui-icon-circle-triangle-e{
+    cursor: pointer;
+}
+
+.ui-datepicker.ui-corner-all, .ui-datepicker .ui-corner-all, .ui-multiselect.ui-corner-all{ -moz-border-radius-topleft: 0px; -webkit-border-top-left-radius: 0px; -khtml-border-top-left-radius: 0px; border-top-left-radius: 0px; }
+.ui-datepicker.ui-corner-all, .ui-datepicker .ui-corner-all, .ui-multiselect.ui-corner-all{ -moz-border-radius-topright: 0px; -webkit-border-top-right-radius: 0px; -khtml-border-top-right-radius: 0px; border-top-right-radius: 0px; }
+.ui-datepicker.ui-corner-all, .ui-datepicker .ui-corner-all, .ui-multiselect.ui-corner-all{ -moz-border-radius-bottomleft: 0px; -webkit-border-bottom-left-radius: 0px; -khtml-border-bottom-left-radius: 0px; border-bottom-left-radius: 0px; }
+.ui-datepicker.ui-corner-all, .ui-datepicker .ui-corner-all, .ui-multiselect.ui-corner-all{ -moz-border-radius-bottomright: 0px; -webkit-border-bottom-right-radius: 0px; -khtml-border-bottom-right-radius: 0px; border-bottom-right-radius: 0px; }
+#ui-datepicker-div {
+    position: absolute;
+    z-index: 300;
+    top: 20px;
+    left: 0px;
+    border: 1px solid #c9c9c9;
+}
+
+#ui-datepicker-div   .ui-datepicker-header {
+    background-color:#16535e;
+    border-bottom: 1px solid #c9c9c9;
+    padding: 0px 0px 0px 0px;
+}
+
+#ui-datepicker-div   .ui-datepicker-calendar .ui-state-active {
+    background-color: #1c89c9;
+}
+
+#ui-datepicker-div .ui-datepicker-calendar{
+    margin: 0;
+    background: #16535e;
+}
+
+#ui-datepicker-div .ui-datepicker-calendar thead{
+    background: #16535e;
+}
+#ui-datepicker-div   .ui-datepicker-header .ui-datepicker-title {
+    color: #d2c7c7;
+}
+
+#ui-datepicker-div   .ui-datepicker-header .ui-datepicker-prev:hover,
+#ui-datepicker-div   .ui-datepicker-header .ui-datepicker-next:hover {
+    background-color: #16535e;
+}
+
+#ui-datepicker-div   .ui-datepicker-header .ui-datepicker-prev,
+#ui-datepicker-div   .ui-datepicker-header .ui-datepicker-next {
+    top: 7px;
+    height: 18px;
+}
+
+#ui-datepicker-div   .ui-datepicker-header .ui-datepicker-prev .ui-icon {
+    background: url('../spd_img/arrow_left.png') no-repeat;
+    width: 7px;
+    height: 11px;
+}
+
+#ui-datepicker-div   .ui-datepicker-header .ui-datepicker-next .ui-icon {
+    background: url('../spd_img/arrow_right.png') no-repeat;
+    width: 7px;
+    height: 11px;
+}
+.ui-datetime-input{
+    border:1px solid #ccc;
+    clear:left;
+    display:inline-block;
+    margin-top:-3px;
+}
+.ui-datetime-input input{
+}
+.ui-datetime-input div{
+    display:inline-block;
+}
+.ui-time-input div{
+    display:inline-block;
+}
+.ui-datetime-input .ui-time-input{
+    border:none;
+    padding-left:0px;
+    width:53px;
+}
+.ui-datetime-input input.customDate{
+    vertical-align: middle;
+    width:77px;
+}
+.ui-datetime-input input.customDate.hasDatepicker{
+    width:80px !important;
+    border:none !important;
+    padding-top:0px !important;
+    padding-bottom:0px !important;
+    height:22px !important;
+}
+.ui-datetime-input.focus {
+    border: 1px solid #1c89c9;
+}
+.ui-time-input {
+    width:119px;
+    display:inline-block;
+    border:1px solid #ccc;
+    padding-left:5px;
+    padding-right: 5px;
+}
+.ui-time-input.focus {
+    border: 1px solid #1c89c9;
+}
+.ui-time-input .TimeSpinner{
+    border:0;
+    width:53px;
+}
+.ui-time-input .TimeSpinner input.tsInput{
+    height:22px;
+    width:15px;
+    border:0;
+    text-align:left;
+    padding:0;
+    margin:0;
+}
+.ui-time-input .TimeSpinner input.tsInput{
+    vertical-align: middle;
+    outline:none;
+    padding:0px;
+    border:none;
+}
+.ui-time-input .TimeSpinner input.tsInput:focus {
+    border:none;
+    padding:0px;
+}

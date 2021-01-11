@@ -1,0 +1,263 @@
+.edit_icon_server path {
+    transform: rotate(0deg);
+}
+.edit_icon path {
+    transform: rotate(0deg);
+}
+
+.edit_icon.drop_ready path {
+    animation: drop_ready 0.3s infinite linear;
+}
+.edit_icon_server.drop_ready path {
+    animation: drop_ready 0.3s infinite linear;
+}
+
+@keyframes drop_ready {
+
+    25% {
+        transform: rotate(4deg);
+        stroke: #424242;
+        stroke-width: 2.5;
+    }
+    75% {
+        transform: rotate(-5deg);
+        stroke: #b0b0b0;
+        stroke-width: 2.5;
+
+    }
+}
+
+@keyframes dotActive {
+    0% {
+        fill: black;
+        stroke: white;
+        stroke-width: 1.5;
+    }
+    50% {
+        fill: #7797c8;
+        stroke: white;
+        stroke-width: 5;
+    }
+    100% {
+        fill: black;
+        stroke: white;
+        stroke-width: 1.5;
+    }
+}
+
+.close_hidden {
+    display: none;
+}
+
+/*svg {*/
+/*cursor: default;*/
+/*-webkit-user-select: none;*/
+/*-moz-user-select: none;*/
+/*-ms-user-select: none;*/
+/*-o-user-select: none;*/
+/*user-select: none;*/
+/*}*/
+
+/*svg:not(.active):not(.ctrl) {*/
+/*cursor: crosshair;*/
+/*}*/
+.cls-1 {
+    filter: url(#outer_glow);
+}
+
+.cls-2 {
+    fill: #152b39;
+}
+
+.cls-2, .cls-3 {
+    stroke: #2b5774;
+    stroke-linejoin: round;
+    stroke-width: 1px;
+}
+
+.cls-3 {
+    fill: #234972;
+    filter: url(#inner_shadow);
+    fill-rule: evenodd;
+}
+
+.level {
+    cursor: move;
+}
+
+.box_close {
+    cursor: pointer;
+    stroke-width: 0;
+    fill: #D5D4D8
+}
+
+.path_close {
+    fill: red
+}
+
+.trade_name {
+    position: absolute;
+    width: 158px;
+    text-align: center;
+    color: white;
+    /*background: none !important;*/
+    border: none !important;
+    /*pointer-events: none;*/
+}
+
+.intf {
+    text-align: right;
+    position: absolute;
+    padding-right: 7px;
+    width: 80px;
+    border-radius: 4px !important;
+    color: white;
+    background: none !important;
+    border: 1px solid #4c4c4c !important;
+}
+
+.intf:hover {
+    box-shadow: 0 0 20px 1px rgba(184, 188, 226, 0.88) inset;
+}
+
+path.link {
+    fill: none;
+    stroke: #224872;
+    stroke-width: 4px;
+    cursor: default;
+}
+
+svg:not(.active):not(.ctrl) path.link {
+    cursor: pointer;
+}
+
+path.link.selected {
+    stroke-dasharray: 10, 2;
+}
+
+path.link.dragline {
+    pointer-events: none;
+}
+
+path.link.hidden {
+    stroke-width: 0;
+}
+
+circle.node {
+    stroke-width: 1.5px;
+    cursor: pointer;
+}
+
+circle.node.reflexive {
+    stroke: #000 !important;
+    stroke-width: 2.5px;
+}
+
+.topo-area rect {
+    /*fill: lightsteelblue;*/
+    stroke-width: 1.5px;
+}
+
+.topo-area rect.dragging {
+    /*fill: red;*/
+    stroke: brown;
+}
+
+.dot {
+    /*fill: red;*/
+    stroke: steelblue;
+    stroke-width: 1.5px;
+}
+
+.dot:hover {
+    cursor: pointer;
+    fill: white;
+}
+
+.dot.sp {
+    stroke: #ffffff;
+    stroke-width: 2;
+    fill: #000000;
+}
+
+.leftdot {
+    /*animation: dotActive 0.5s infinite linear;*/
+}
+
+.dot.disable {
+    pointer-events: none;
+    animation: none;
+    cursor: not-allowed;
+    fill: #632424;
+}
+
+.dot.dot-active {
+    fill: #7797c8;
+    stroke: rgb(255, 255, 255);
+    stroke-width: 4px;;
+}
+
+.node {
+    /*fill: red;*/
+    /*stroke: steelblue;*/
+    /*stroke-width: 1.5px;*/
+}
+
+.axis line {
+    fill: none;
+    stroke: #5F6075;
+    shape-rendering: crispEdges;
+    vector-effect: non-scaling-stroke;
+    stroke-dasharray: 0.5,1;
+}
+
+.labeltext {
+    font-size: 16px;
+    font-family: SimSun;
+    fill: #000000;
+}
+
+.nodetext {
+    font-size: 12px;
+    font-family: SimSun;
+    fill: #000000;
+}
+
+.linetext {
+    font-size: 12px;
+    font-family: SimSun;
+    fill: #0000FF;
+    fill-opacity: 0.0;
+}
+
+.edit-box {
+    /*width: 100%;*/
+}
+
+.edit_icon_server path {
+    cursor: move;
+}
+
+.edit_icon path {
+    cursor: move;
+}
+
+use {
+    cursor: move;
+}
+
+.level path {
+    cursor: move;
+}
+
+.overflow{
+    overflow: hidden;
+    /*height: calc(100% - 220px);*/
+    overflow-y: auto;
+    min-height: 150px;
+    border: 1px solid #2b4055;
+}
+.overflow button{
+    background: transparent;
+    border: none;
+}

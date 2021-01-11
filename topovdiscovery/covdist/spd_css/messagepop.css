@@ -1,0 +1,59 @@
+.message-pop {
+    background-color:#fff;
+    height: 24px;
+    width:100%;
+    padding: 0px 5px 0px 5px;
+    font-size: 12px;
+    position:absolute;
+    z-index: 2000;
+    box-shadow: 0px 0px 3px #c60001;
+    -moz-box-shadow: 0px 0px 3px #c60001;
+    -webkit-box-shadow: 0px 0px 3px #c60001;
+}
+
+#datasource_desc{
+    margin-left: 83px;
+    width: auto;
+}
+
+.message-pop .msg-icon,.message-pop .map-msg-icon{
+    background:url('../spd_img/error.png') no-repeat;
+    height: 13px;
+    width: 13px;
+    display:inline-block;
+    vertical-align:middle;
+    position:absolute;
+    top: 5px;
+}
+
+.message-pop .msg-content{
+    display:inline-block;
+    height:24px;
+    line-height:24px;
+    padding-left: 5px;
+    color: #c60001;
+    position:absolute;
+    left: 23px;
+    margin-left: -4px;
+    width: 100%;
+}
+
+.message-pop .map-msg-content {
+    display:inline-block;
+    height:24px;
+    line-height:24px;
+    padding-left: 5px;
+    color: #c60001;
+    left: 23px;
+    margin-left: 10px;
+    width: 100%;
+}
+
+.message-pop .cal-len {
+    height:1px;
+    width: 400px;
+}
+
+.message-pop .cal-len span {
+    visibility:hidden;
+}

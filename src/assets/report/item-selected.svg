@@ -1,0 +1,8 @@
+<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+        "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="32" class="isChose">
+    <path class="bg-circle" fill="#2aa9d7"
+          d="M15.500,-0.000 C24.060,-0.000 31.000,6.940 31.000,15.500 C31.000,24.060 24.060,31.000 15.500,31.000 C6.940,31.000 -0.000,24.060 -0.000,15.500 C-0.000,6.940 6.940,-0.000 15.500,-0.000 Z"></path>
+    <path class="right" stroke="#fff" stroke-width="2" fill="none"
+          d="M9.000,17.000 C9.000,17.000 15.000,22.000 15.000,22.000 C15.000,22.000 22.000,10.999 22.000,10.999 "></path>
+</svg>

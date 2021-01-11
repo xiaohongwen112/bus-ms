@@ -1,0 +1,362 @@
+/**
+ * ʱ������ʽ
+ * Created by RenGanzhi on 2015-11-15.
+ */
+
+/*time-axis ��*/
+.time-dashboard-bar{
+    position: fixed;
+    bottom: 63px;
+    z-index: 10;
+    width: 100%;
+    padding: 5px 0 0 5px;
+}
+.time-dashboard{
+    position:absolute;
+    right: 40px;
+    left: 160px;
+}
+.hour-box{
+    margin: 0 auto;
+    padding: 0;
+    min-width: 400px;
+    text-align: center;
+    overflow: hidden;
+}
+.h-block{
+    margin: 0 auto;
+    /*padding-left: 1%;*/
+    text-align: left;
+    overflow: hidden;
+}
+
+.p-hour-bar{
+    width: 4.1%;
+    height: 25px;
+    float: left;
+    /*border-top: 1px solid #999;*/
+    border-bottom: 1px solid #4C56A2;
+    background: url(../img/cbms-img/gray-2.png);
+}
+.p-hour-bar.has_located_alert{
+    border-top: 2px solid rgb(212, 58, 50);
+    background: rgba(255, 13, 0, 0.2);
+    box-shadow: inset 0 2px 2px 0px rgba(218, 81, 74, 0.2),inset 0 -2px 0 0px #42271D;
+    -moz-box-shadow: inset 0 2px 2px 0px rgba(218, 81, 74, 0.2),inset 0 -2px 0 0px #42271D;
+    -webkit-box-shadow: inset 0 2px 2px 0px rgba(218, 81, 74, 0.2),inset 0 -2px 0 0px #42271D;
+}
+.p-hour-bar.has_alert{
+    border-top: 2px solid rgb(134, 111, 66);
+    background: rgba(233, 163, 27, 0.2);
+    box-shadow: inset 0 2px 2px 0px rgba(233, 163, 27, 0.2),inset 0 -2px 0 0px #46401E;
+    -moz-box-shadow: inset 0 2px 2px 0px rgba(233, 163, 27, 0.2),inset 0 -2px 0 0px #46401E;
+    -webkit-box-shadow: inset 0 2px 2px 0px rgba(233, 163, 27, 0.2),inset 0 -2px 0 0px #46401E;
+}
+.p-hour-bar.has_data{
+    border-top: 2px solid rgba(132, 173, 237, 0.52);
+    box-shadow: inset 0 2px 2px 0px rgba(233, 163, 27, 0.2),inset 0 -2px 0 0px #46401E;
+    -moz-box-shadow: inset 0 2px 2px 0px rgba(233, 163, 27, 0.2),inset 0 -2px 0 0px #46401E;
+    -webkit-box-shadow: inset 0 2px 2px 0px rgba(28, 120, 199, 0.2),inset 0 -2px 0 0px #293A54;
+}
+.p-minu-bar.has_located_alert{
+    background: rgba(255, 13, 0, 0.2);
+}
+.p-minu-bar.has_alert{
+    background: rgba(233, 163, 27, 0.2);
+}
+.p-hour-text,.p-minu-text{
+    color: #ace6f7;
+    text-shadow: 1px 1px 3px #0d111a;
+}
+/*.p-minu-text span{*/
+    /*font-size: 12px;*/
+/*}*/
+.p-hour-text{
+    /*font-size: 18px;*/
+    font-weight: 700;
+    /*padding-left: 15%;*/
+    text-align: center;
+}
+
+.m-block :nth-child(5n+1)>.p-minu-text{
+    display: block;
+}
+.m-block{
+    margin: 0 auto;
+    /*padding-left: 1%;*/
+    text-align: center;
+    overflow: hidden;
+}
+.p-minu-bar{
+    width: 1.63%;
+    height: 25px;
+    float: left;
+    border-bottom: 1px solid #3B3B3B;
+    border-top: 1px solid rgba(139, 145, 194, 0.45);
+    background: url(../img/cbms-img/gray-2.png);
+}
+/* cr 覆盖时间 jquery ui 时间控件背景颜色 */
+.ui-datepicker.ui-widget.ui-widget-content.ui-helper-clearfix.ui-corner-all {
+    background-color: #373461 !important;
+    background-image: none;
+    border: medium none;
+}
+.ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all {
+    background: none;
+    border: medium none;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+    background: none;
+    border: none;
+    color: #fff;
+    text-align: center;
+
+}
+.ui-widget-header, .ui-widget-content{
+    color: #fff !important;
+}
+.ui-state-focus,.ui-state-hover,.ui-widget-content .ui-state-focus,.ui-widget-content .ui-state-hover,.ui-widget-header .ui-state-focus,.ui-widget-header .ui-state-hover {
+    border-radius: 4px;
+    background-color: #006dcc;
+}
+.ui-state-active,.ui-widget-content .ui-state-active,.ui-widget-header .ui-state-active {
+    background-color: #006dcc;
+    background-image: -moz-linear-gradient(center top , #0088cc, #0044cc);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+}
+/*[class*=" ui-widget"]::after {
+    border-color: #ffffff transparent -moz-use-text-color;
+    border-style: solid solid none;
+    border-width: 6px 6px medium;
+    content: "";
+    display: inline-block;
+    position: absolute;
+}*/
+
+.datepicker-box{
+    height: 90%;
+    overflow: hidden;
+    padding-left: 5px;
+    min-width: 90px;
+    width: 100px;
+    padding-right: 0;
+}
+.datepicker-box>label{
+    color: #ace6f7;
+    text-shadow: 1px 1px 3px #152430;
+    margin-bottom: 1px;
+    text-align:right;
+    font-weight: normal;
+    /*margin-left: 5px;*/
+}
+.datepicker-box>input{
+    color: #ace6f7;
+    text-shadow: 1px 1px 3px #152430;
+    border: none;
+    text-align: right;
+    /*margin-left: 5px;*/
+    height: 25px;
+}
+.datepicker{
+    top: 300px ;
+    /*background:url(../img/cbms-img/gray-4.png);*/
+}
+
+.p-hour-bar:hover{
+    /*background: rgba(143, 153, 177, 0.62);*/
+    border-top: 2px solid rgba(21, 36, 48, 0.76);
+}
+.p-minu-bar:hover{
+    /*background: rgba(143, 153, 177, 0.62);*/
+    border-top: 2px solid rgba(21, 36, 48, 0.76);
+}
+.now_time{
+    /*background: rgba(215, 244, 255, 0.16) !important;*/
+    border-bottom: 1px solid rgba(4, 9, 19, 0.5) !important;
+}
+.p-hour-bar.now_time{
+    border-top-right-radius: 5px;
+}
+.p-mimu-bar.now_time{
+    border-bottom-right-radius: 5px;
+}
+/*.now_time div{*/
+    /*color: #fff;*/
+/*}*/
+.f-time{
+    color: #373B46;
+    text-shadow: none;
+}
+.p-hour-bar,.p-minu-bar{
+    cursor: pointer;
+    transition: all .5s ease-out;
+    -webkit-transition: all .5s ease-out;
+    -moz-transition: all .5s ease-out;
+    -o-transition: all .5s ease-out;
+}
+.p-hour-text:hover,.p-minu-text:hover{
+    color: #fff;
+}
+.time-tip{
+    /*position: absolute;*/
+    /*right: 45px;*/
+    display: block;
+    height: 25px;
+    width: 38px;
+    top: 8px;
+    color: #ace6f7;
+    text-shadow: 1px 1px 3px #152430;
+}
+.time-tip img{
+    margin-left: 5px;
+}
+.tip-m{
+    top: 30px;
+}
+/*modify by LiYiHuan on 2015-11-23 ��*/
+.time-tip-div{
+    position: absolute;
+    height: 60px;
+    width: 20px;
+    left: 130px;
+}
+.toggle-icon{
+    width: 30px;
+    height: 45px;
+    position: absolute;
+    top: 8px;
+    right: 5px;
+    border: 1px outset #60718C;
+    border-radius: 5px;
+}
+.stop-icon{
+    margin: 7px 2px;
+    width: 24px;
+    line-height: 30px;
+    display: inline-block;
+    height: 30px;
+    /*background: rgba(88, 149, 173, 0.4);*/
+}
+.toggle-icon:hover{
+    background: rgb(102, 125, 174);
+    transition: all .5s ease-out;
+    -webkit-transition: all .5s ease-out;
+    -moz-transition: all .5s ease-out;
+    -o-transition: all .5s ease-out;
+}
+.click{
+    background-color: #000;
+    /*background: rgba(255, 247, 244, 0.85) !important;*/
+    /*border-top: 3px solid #000 !important;*/
+    border-left: 1px solid rgba(63, 83, 114, 0.2);
+    border-right: 1px solid #3f5372;
+    border-radius: 5px;
+}
+.click.has_data{
+    border-top: 1px solid rgb(132, 173, 237);
+    background: rgba(56, 74, 101, 0.5);
+}
+.click.has_alert{
+    border-top: 1px solid rgb(233, 163, 27);
+    background: rgba(66, 63, 38, 0.5);
+}
+.click.has_located_alert{
+    border-top: 1px solid rgb(255, 13, 0);
+    background: rgba(171, 11, 2, 0.2);
+}
+
+.p-minu-bar.click{
+    width: 3%;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    box-shadow: inset 2px 0 2px 0px black, inset 0 2px 2px 0px black,inset -2px 0 0 0px #6C747D, inset 0 -2px 0 0px #98A1A9;
+    -moz-box-shadow: inset 2px 0 2px 0px black, inset 0 2px 2px 0px black,inset -2px 0 0 0px #6C747D, inset 0 -2px 0 0px #98A1A9;
+    -webkit-box-shadow: inset 2px 0 2px 0px black, inset 0 2px 2px 0px black,inset -2px 0 0 0px #6C747D, inset 0 -2px 0 0px #98A1A9;
+}
+.p-hour-bar.click{
+    width: 5.46%;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    box-shadow: inset 2px 0 2px 0px black, inset 0 2px 2px 0px black,inset -2px 0 0 0px #6C747D, inset 0 -2px 0 0px #98A1A9;
+    -moz-box-shadow: inset 2px 0 2px 0px black, inset 0 2px 2px 0px black,inset -2px 0 0 0px #6C747D, inset 0 -2px 0 0px #98A1A9;
+    -webkit-box-shadow: inset 2px 0 2px 0px black, inset 0 2px 2px 0px black,inset -2px 0 0 0px #6C747D, inset 0 -2px 0 0px #98A1A9;
+}
+.has_located_alert{
+    /*background-color: rgba(206,67,39,0.5);*/
+    /*background-color: rgba(241, 43, 33, 0.69);*/
+    border-top: 1px solid rgba(255, 13, 0, 0.5);
+    border-bottom:1px solid rgb(54, 54, 130);
+}
+.has_alert{
+    /*background-color: rgba(176,113,40,0.5);*/
+    /*background-color:rgba(255, 210, 157, 0.64);*/
+    border-top: 1px solid rgba(233, 163, 27, 0.1);
+    /*border-bottom:1px solid rgb(54, 54, 130);*/
+    border-bottom: 1px solid rgb(79, 79, 214);
+}
+.has_data{
+    border-top: 1px solid rgba(132, 173, 237,0.3);;
+    background-color: rgba(66, 166, 209, 0.44);
+    border-bottom: 1px solid rgba(52, 93, 111, 1);
+}
+
+/*modify by LiYinHuan on 2012-11-23 ��*/
+/*time-axis ��*/
+
+/* time-period  Edit by ZhongDan on 2015-12-02.��*/
+.timePeriod {
+    position: fixed;
+    bottom: 0;
+    height: 60px;
+    width:100%;
+    color: #b0ecfd;
+    text-shadow: 1px 1px 3px #152430;
+    line-height: 50px;
+    padding-left: 80px;
+    text-align: center;
+}
+.time_form {
+    display: inline-block;
+}
+.time_form input{
+    text-align: center;
+    line-height: 30px;
+}
+.time_sel {
+    width: 300px;
+    margin:auto 50px;
+}
+.time_sel option {
+    background-color: #253144;
+}
+/* time-period ��*/
+
+/* cr 覆盖 日期控件 样式*/
+.ui-state-default,.ui-state-default, .ui-widget-header .ui-state-default {
+    border: none !important;
+    color: #fff !important;
+}
+.ui-state-highlight,.ui-state-highlight, .ui-widget-header .ui-state-highlight,.ui-state-hover,.ui-state-hover,
+.ui-widget-header .ui-state-hover,.ui-state-focus,.ui-state-focus,.ui-widget-header .ui-state-focus,.ui-state-active,.ui-state-active,.ui-widget-header .ui-state-active{
+	background: #006dcc !important;
+}
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active{
+	color: #C00 !important;
+}
+.timeaxis_error{
+    /*background: #E83B1C !important ;*/
+    background-color: #E83B1C !important;
+}
+.p-minu-text>em{
+    display: block;
+    line-height: 10px;
+}
+.p-minu-text{
+    padding-top: 2px;
+    font-size: 12px;
+}

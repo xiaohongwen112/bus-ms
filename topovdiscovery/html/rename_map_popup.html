@@ -1,0 +1,118 @@
+<div id="rename_map_popup" class="popup-modal hide short-edit-popup" tabindex="-1">
+    <div class="modal-header">
+        <h3>重命名</h3>
+    </div>
+
+    <div class="modal-body">
+        <div class="edit">
+            <label class="spd-label">名称</label><input class="spd-input" type="text" name="desc" id="map_desc_input" maxlength="20"/>
+        </div>
+
+        <div class="result">
+            <div class="icon info"></div>
+            <div class="info">
+                <div class="line success">重命名成功</div>
+                <div class="line fail">重命名失败</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-primary confirm blue-button ctl-button">确认</button>
+        <button class="btn btn-primary save blue-button ctl-button">保存</button>
+        <button class="btn btn-second close grey-button ctl-button" data-dismiss="modal" aria-hidden="true">取消</button>
+    </div>
+
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    $(function() {
+        var renameMappopup = $('#rename_map_popup');
+        var descInput = renameMappopup.find('input[name=desc]');
+        var confirmBtn = renameMappopup.find('.btn-primary.confirm');
+        var saveBtn = renameMappopup.find('.btn-primary.save');
+        var closeBtn = renameMappopup.find('.btn-second.close');
+        var resultBlock = renameMappopup.find('.result');
+        var editBlock = renameMappopup.find('.edit');
+
+        var setDefault = function() {
+            confirmBtn.hide();
+            descInput.val('');
+            saveBtn.show();
+            closeBtn.show();
+            editBlock.show();
+            resultBlock.hide();
+        };
+
+        var setSuccess = function() {
+            saveBtn.hide();
+            closeBtn.hide();
+            editBlock.hide();
+            confirmBtn.show();
+            resultBlock.show();
+
+            resultBlock.find('.fail').hide();
+            resultBlock.find('.success').show();
+        };
+
+        var setFail = function() {
+            saveBtn.hide();
+            closeBtn.hide();
+            editBlock.hide();
+            resultBlock.show();
+            confirmBtn.show();
+
+            resultBlock.find('.fail').show();
+            resultBlock.find('.success').hide();
+        };
+
+        renameMappopup.bind('setDefault', function(e, desc) {
+            setDefault();
+            $('.edit input[name=desc]',renameMappopup).val(desc || '').textSelect();
+        });
+
+        confirmBtn.click(function() {
+            renameMappopup.modal('hide');
+        });
+
+        saveBtn.click(function() {
+            var map = renameMappopup.attr('map');
+            var desc = descInput.val();
+
+            if (desc.trim() == '') {
+                $('#map_desc_input').messagepop('show', gettext('名称不能为空'));
+                $('#map_desc_input').addClass('error');
+                return false;
+            }
+
+            $.ajax({
+                url: CBMSFLOW.util.format_i18n_url('/spd/%s/change/desc/', [map]),
+                type: 'POST',
+                data: {'desc': desc},
+                success: function(result) {
+                    if (result.state == 'ok') {
+                        var minimap = $('.minimap[map='+map+']');
+                        minimap.attr('desc', desc);
+                        minimap.find('.minimap-desc .desc').text(desc);
+                        minimap.find('.minimap-desc-detail .desc').text(desc);
+                        setSuccess();
+                    } else {
+                        setFail();
+                    }
+                },
+                error: function() {
+                    setFail();
+                }
+            });
+        });
+
+        closeBtn.click(function() {
+            $('#map_desc_input').messagepop('hide');
+            $('#map_desc_input').removeClass('error');
+        });
+
+
+        $('#map_desc_input').messagepop({'trigger': 'manual', 'zindex': null});
+
+    });
+</script>

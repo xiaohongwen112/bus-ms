@@ -1,0 +1,382 @@
+.custip-title{
+	font-size: 24px;
+	color: #333;
+	font-weight: 400;
+	text-align: center;
+	margin-top: 50px;
+}
+.nhr{
+	height: 0;
+	border: 0;
+	border-bottom: 1px solid #1c89c9;
+	width:80%;
+}
+.ipaddbox{
+	text-align: center;
+	margin:0 auto;
+	padding:0;
+	display: block;
+	width: 80%;	
+}
+.cityform div{
+	float:left;
+}
+.button-group{
+	position: absolute;
+	right: 12%;
+	top: 160px;
+}
+.button-group button{
+	margin-left: 10px;
+	background: #fff;
+	width: 64px;
+	height: 28px;
+	border: 1px outset;
+	cursor: pointer;
+}
+.iplist{
+	margin:0 auto;
+	padding:0;
+	width:80%;
+	background: #C8E5FF;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+.iplist tbody tr td label{
+	cursor: pointer;
+}
+.iplist tbody tr td label:hover{
+	border:1px outset;
+	padding:3px;
+	
+}
+.iplist tbody tr:hover{
+	background:#B5BCCC;
+}
+.iplist .list-header{
+	border-bottom: 2px solid #5B6D85;
+	height: 80px;
+	font-size: 20px;
+	color: #000;
+	padding: 0;
+	background:#f7f7f7;
+}
+.iplist .list-header td{
+	padding: 45px 0 0;
+	text-align: center;
+	border: 0;
+}
+.list-record td{
+	padding: 8px;
+	text-align: center;
+	font-size:13px;
+	font-weight:nomal;
+}
+.list-record{
+	border: 1px solid #A1CEFF;
+}
+
+#setting-menu{
+	/*margin-left: 76%;*/
+	/*margin-top: -38px;*/
+}
+.cityform{
+	background: #F0F0F0;
+	padding: 10px 0px 10px 10px;
+	box-shadow: 0px 1px 2px #A7CDE2;
+	display: inline-block;
+	width: 100%;
+}
+.cityform label{
+	margin-left:10px;
+	margin-right:10px;
+}
+#main {
+	height: 100%;
+	background: url(../spd_img/mapbg6.jpg);
+	background-size: cover !important;
+}
+.anchorBL{
+	display:none;
+}
+/*map style*/
+
+#appname_list{
+	position: fixed;
+	width: 80px;
+	margin-top: 20px;
+	top: 150px;
+	right: 15px;
+	overflow: auto;
+	height: 60%;
+}
+#appname_list li{
+	display: block;
+	border: 1px outset #aaa;
+	text-decoration: none;
+	cursor: pointer;
+	background: -webkit-gradient(linear,0 0,0 100%,from(#304782), color-stop(0.75, #5177DA),to(#7899da));
+	background: -moz-linear-gradient(#304782, #5177DA, #7899da);
+	background: -o-linear-gradient(#304782, #5177DA, #7899da);
+	background: linear-gradient(top center, #304782, #5177DA, #7899da);
+	border-radius: 3px;
+	margin-bottom: 3px;
+	white-space: nowrap;
+	overflow: hidden;
+	font-size: 13px;
+	color: #fff;
+	text-overflow: ellipsis;
+	text-align: center;
+	-ms-text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	-moz-binding: url("ellipsis.xml#ellipsis");
+}
+#appname_list li:hover{
+	background: -webkit-gradient(linear,0 0,0 100%,from(#7899da), color-stop(0.45, #5177DA),to(#5177DA));
+	background: -moz-linear-gradient(#7899da, #5177DA, #5177DA);
+	background: -o-linear-gradient(#7899da, #5177DA, #5177DA);
+	background: linear-gradient(top center, #7899da, #5177DA, #5177DA);
+	color: #fff;
+	white-space: nowrap;
+}
+
+.newip{
+	display: block !important;
+	position: fixed;
+	right: 15px;
+	top: 65px;
+	cursor: pointer;
+	width: 80px;
+	height: 80px;
+	padding: 0 !important;
+	background: url("../spd_img/setip.png") no-repeat;
+	background-size: contain;
+}
+.newip:hover{
+	background: url("../spd_img/setiph.png") no-repeat;
+	background-size: contain;
+}
+.pathdiscovery{
+	position: absolute;
+	top: 4px;
+	right: 15px;
+	background: #425777;
+	background: -webkit-gradient(linear,0 0,0 100%,from(#304782), color-stop(0.75, #425777),to(#7899da));
+	background: -moz-linear-gradient(#304782, #425777, #7899da);
+	background: -o-linear-gradient(#304782, #425777, #7899da);
+	background: linear-gradient(top center, #304782, #425777, #7899da);
+	border:1px outset #777;
+	display: block;
+	font-size:16px;
+	width: 80px;
+	height: 32px;
+	border-radius: 3px;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 28px;
+}
+.pathdiscovery:hover{
+	background: -webkit-gradient(linear,0 0,0 100%,from(#7899da), color-stop(0.45, #5177DA),to(#5177DA));
+	background: -moz-linear-gradient(#7899da, #5177DA, #5177DA);
+	background: -o-linear-gradient(#7899da, #5177DA, #5177DA);
+	background: linear-gradient(top center, #7899da, #5177DA, #5177DA);
+}
+.topovd{
+	display: block !important;
+	text-decoration: none;
+	font-size: 14px !important;
+}
+.flow-top5{
+	position: absolute;
+	/*width: 200px;*/
+	bottom: 200px;
+	color: #DADADA;
+	left: 5px;
+	z-index: 99;
+	display: none;
+}
+.comment{
+	/*background: -webkit-gradient(linear,0 0,0 100%,from(#7899da), color-stop(0.45, #5177DA),to(#5177DA));*/
+	/*background: -moz-linear-gradient(#7899da, #5177DA, #5177DA);*/
+	/*background: -o-linear-gradient(#7899da, #5177DA, #5177DA);*/
+	/*background: linear-gradient(top center, #7899da, #5177DA, #5177DA);*/
+	background: -webkit-gradient(linear,0 0,0 100%,from(rgba(203, 213, 233, 0.48)), color-stop(0.95, rgba(176, 186, 212, 0.5)),to(rgba(81, 119, 218, 1)));
+	background: -moz-linear-gradient(rgba(203, 213, 233, 0.48), rgba(176, 186, 212, 0.5), rgba(81, 119, 218, 1));
+	background: -o-linear-gradient(rgba(203, 213, 233, 0.48), rgba(176, 186, 212, 0.5), rgba(81, 119, 218, 1));
+	background: linear-gradient(top center, #cbd5e9, #b0bad4, #5177da);
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	padding: 2px 5px 3px 5px;
+}
+
+.contitle{
+	margin-top: 5px;
+	color: #E9E9E9;
+}
+#flowsendtext .comment,#flowreceivetext .comment,#unknown .comment{
+	font-size: 13px;
+}
+#flowsendtext .comment:nth-child(5),#flowreceivetext .comment:nth-child(5){
+	margin-bottom:20px;
+}
+#flowsendtext,#flowreceivetext{
+	max-height: 120px;
+	overflow: hidden;
+}
+.side-right{
+	position: fixed;
+	z-index: 100;
+	width: 113px;
+	height: 100%;
+	right: 0;
+	background: rgba(46, 92, 150, 0.63);
+	border-left: 1px solid #91BDFF;
+	display: none;
+}
+.entrybar{
+	position: fixed;
+	bottom: 89px;
+	left: 35%;
+	text-align: center;
+	display:none;
+}
+.entrybar div{
+	float: left;
+	height: 80px;
+	width: 80px;
+	line-height: 80px;
+	border-radius: 300px;
+	margin: 0 15px 0 15px;
+	background: -webkit-gradient(linear,0 0,0 100%,from(rgba(31, 105, 255, 0.7)), color-stop(0.95, rgba(176, 186, 212, 0.7)),to(rgba(81, 119, 218, 1)));
+	background: -moz-linear-gradient(rgba(203, 213, 233, 0.7), rgba(176, 186, 212, 0.7), rgba(81, 119, 218, 1));
+	background: -o-linear-gradient(rgba(203, 213, 233, 0.7), rgba(176, 186, 212, 0.7), rgba(81, 119, 218, 1));
+	background: linear-gradient(top center, #cbd5e9, #b0bad4, #5177da);
+}
+.entrybar div a{
+	transition: all .5s ease-out;
+	-webkit-transition: all .5s ease-out;
+	-moz-transition: all .5s ease-out;
+	-o-transition: all .5s ease-out;
+}
+.entrybar div:hover{
+	background: -webkit-gradient(linear,0 0,0 100%,from(rgb(252, 250, 255)), color-stop(0.95, rgba(176, 186, 212, 0.5)),to(rgba(81, 119, 218, 1)));
+	background: -moz-linear-gradient(rgba(203, 213, 233, 0.48), rgba(176, 186, 212, 0.5), rgba(81, 119, 218, 1));
+	background: -o-linear-gradient(rgba(203, 213, 233, 0.48), rgba(176, 186, 212, 0.5), rgba(81, 119, 218, 1));
+	background: linear-gradient(top center, #cbd5e9, #b0bad4, #5177da);
+}
+.entrybar div a{
+	color: #fff;
+	font-weight: 700;
+}
+.entrybar div a:hover{
+	color:#777;
+}
+#loading{
+	display: block;
+	color: #fff;
+	height: 250px;
+	filter: Alpha(opacity=50);
+	position: absolute;
+	width: 100%;
+	top: 20%;
+	z-index: 999;
+}
+.maplogo{
+	width: 780px;
+	height: 260px;
+	background: url(../spd_img/maplogo.png) no-repeat;
+	margin: 0 auto;
+	position: absolute;
+	left: 50%;
+	top: 45%;
+	margin-left: -390px;
+	margin-top: -140px;
+}
+.ipbg{
+	width: 920px;
+	height: 60px;
+	background: url(../spd_img/setipmainbg.png) no-repeat;
+	background-size: contain;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 220px;
+}
+.ipbutton{
+	padding: 5px;
+	background: -webkit-gradient(linear,0 0,0 100%,from(#BBC7E7), color-stop(0.75, #518DE9),to(#7899da));
+	background: -moz-linear-gradient(#304782, #425777, #7899da);
+	background: -o-linear-gradient(#304782, #425777, #7899da);
+	background: linear-gradient(top center, #304782, #425777, #7899da);
+	color: #fff;
+	font-size: 16px;
+	width: 80px;
+	height: 32px;
+	border-radius: 3px;
+	text-decoration: none;
+	text-align: center;
+	vertical-align: middle;
+	margin-left: 50px;
+	line-height: 58px;
+	transition: all .5s ease-out;
+	-webkit-transition: all .5s ease-out;
+	-moz-transition: all .5s ease-out;
+	-o-transition: all .5s ease-out;
+}
+.ipbutton:hover{
+	background: #5177DA
+}
+.entrymain{
+	/*width: 980px;*/
+	width: 780px;
+	margin: 0 auto;
+	/*position: absolute;*/
+	/*left: 50%;*/
+	/*top: 60%;*/
+	/*margin-left: -450px;*/
+	/*margin-top: 140px;*/
+}
+.entrymain div{
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+.entrymain div a{
+	float:left;
+	height: 80px;
+	width: 80px;
+	line-height: 80px;
+	border-radius: 300px;
+	margin: 0 15px 0 15px;
+	background: -webkit-gradient(linear,0 0,0 100%,from(rgba(31, 105, 255, 0.7)), color-stop(0.95, rgba(176, 186, 212, 0.7)),to(rgba(81, 119, 218, 1)));
+	background: -moz-linear-gradient(rgba(203, 213, 233, 0.7), rgba(176, 186, 212, 0.7), rgba(81, 119, 218, 1));
+	background: -o-linear-gradient(rgba(203, 213, 233, 0.7), rgba(176, 186, 212, 0.7), rgba(81, 119, 218, 1));
+	background: linear-gradient(top center, #cbd5e9, #b0bad4, #5177da);
+	color: #fff;
+	font-weight: 700;
+	transition: all .5s ease-out;
+	-webkit-transition: all .5s ease-out;
+	-moz-transition: all .5s ease-out;
+	-o-transition: all .5s ease-out;
+}
+.entrymain div a:hover{
+	background: -webkit-gradient(linear,0 0,0 100%,from(rgb(252, 250, 255)), color-stop(0.95, rgba(176, 186, 212, 0.5)),to(rgba(81, 119, 218, 1)));
+	background: -moz-linear-gradient(rgba(203, 213, 233, 0.48), rgba(176, 186, 212, 0.5), rgba(81, 119, 218, 1));
+	background: -o-linear-gradient(rgba(203, 213, 233, 0.48), rgba(176, 186, 212, 0.5), rgba(81, 119, 218, 1));
+	background: linear-gradient(top center, #cbd5e9, #b0bad4, #5177da);
+	color:#777;
+	transition: all .5s ease-out;
+	-webkit-transition: all .5s ease-out;
+	-moz-transition: all .5s ease-out;
+	-o-transition: all .5s ease-out;
+}
+.entrytext{
+	width:320px;
+	height: 80px;
+	border-radius: 3px;
+	font-size:14px;
+	text-align: left;
+	color: #eee;
+	background:#6799ee;
+	background: rgba(103, 153, 238, 0.41);
+}
+/*map style end*/

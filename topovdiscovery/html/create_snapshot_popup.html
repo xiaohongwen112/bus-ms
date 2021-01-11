@@ -1,0 +1,146 @@
+<div id="create_snapshot_popup" class="popup-modal hide short-edit-popup" tabindex="-1">
+    <div class="modal-header">
+        <h3>创建新快照</h3>
+    </div>
+
+    <div class="modal-body">
+        <label class="spd-label">名称</label><input class="spd-input" name="desc" type="text" id="snapshot_desc_input"/>
+
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-primary create blue-button ctl-button">创建</button>
+        <button class="btn btn-second close grey-button ctl-button" data-dismiss="modal" aria-hidden="true">取消</button>
+    </div>
+
+</div>
+<div id="none_snapshot_popup" class="popup-modal hide" tabindex="-1">
+    <div class="modal-header">
+        <h3>&nbsp;</h3>
+    </div>
+
+    <div class="modal-body">
+
+        <div class="icon info"></div>
+        <div class="info">
+            <div class="line prompt" style="padding-top:15px;">无效的快照</div>
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-primary ok blue-button ctl-button">确定</button>
+    </div>
+
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    $(function() {
+        //none snapshot popup
+        var noneSnapshotpopup = $('#none_snapshot_popup');
+        $('#none_snapshot_popup .modal-footer .ok').click(function() {
+            noneSnapshotpopup.modal('hide');
+        });
+        //create snapshot popup
+        var createSnapshotpopup = $('#create_snapshot_popup');
+        var descInput = createSnapshotpopup.find('input[name=desc]');
+        var saveBtn = createSnapshotpopup.find('.btn-primary.create');
+        var closeBtn = createSnapshotpopup.find('.btn-second.close');
+
+        createSnapshotpopup.bind('setDefault', function() {
+            $.ajax({
+                type: 'POST',
+                url: CBMSFLOW.util.make_spd_i18n_url('newname/snapshot/'),
+                async: false,
+                success: function(result) {
+                    descInput.val(result.data.new_name).textSelect();
+                }
+            });
+        });
+
+        saveBtn.click(function() {
+            var desc = descInput.val().trim(),
+                reg = new RegExp("^[A-Za-z0-9\u4e00-\u9fa5]+$");
+            if (desc == '') {
+                descInput.messagepop('show', '名称不能为空');
+                descInput.addClass('error');
+                return false;
+            } else if(desc.length > 12){
+                descInput.messagepop('show', '名称不能超过12字符');
+                descInput.addClass('error');
+                return false;
+            } else if(!reg.test(desc)){
+                descInput.messagepop('show', '快照名称不能包含除数字、英文字母、汉字外的其他字符');
+                descInput.addClass('error');
+                return false;
+            }
+            // save map data
+            var map_name = CBMSFLOW.environment('map_name');
+            var map = CBMSFLOW.environment('topovmap_preview');
+            var map_data = map.getSaveData();
+            map_data['snapshot_name'] = desc;
+            console.log(map_data);
+            var dataNodes = map_data.nodes,
+                dataNodesLen = dataNodes.length,
+                dataEdges = map_data.edges,
+                dataEdgesLen = dataEdges.length,
+                dataNodesId = "",
+                newNodesArr = [],
+                newEdgesArr = dataEdges,
+                newEdgesArrLen = newEdgesArr.length;
+            for(var i=0;i<dataNodesLen;i++){
+                if(dataNodes[i].visible){
+                    newNodesArr.push(dataNodes[i]);
+                } 
+                else{
+                    dataNodesId = dataNodes[i].id;
+                }
+                for(var j=0;j<newEdgesArrLen;j++){
+                    if(dataEdges[j].nodeA == dataNodesId || dataEdges[j].nodeB == dataNodesId){
+                        newEdgesArr.splice(j,1);
+                        newEdgesArrLen = newEdgesArr.length;
+                    }
+                }
+            }
+            map_data.nodes = newNodesArr;
+            map_data.edges = newEdgesArr;
+            console.log(map_data);
+            var map_png = map.genPng(265, 141);
+
+            $('#snapshot-saving img').show();
+            $('#snapshot-saving span').text('正在创建快照...');
+            $('#snapshot-saving').slideDown('slow');
+
+            $.ajax({
+                url: CBMSFLOW.util.make_spd_i18n_url(map_name + '/createsnapshot/'),
+                type: 'POST',
+                data: appendCsrfToken({"map": JSON.stringify(map_data), 'map_png':map_png}),
+                success: function(result) {
+                    if (result.code == 0) {
+                        setTimeout(function(){
+                            $('#snapshot-saving img').hide();
+                            $('#snapshot-saving span').text('创建完成');
+                            setTimeout(function() {
+                                $('#snapshot-saving').slideUp('slow');
+                            }, 1000);
+                        }, 1000);
+                        createSnapshotpopup.modal('hide');
+                    } else if(result.state != 0){
+                        $('#snapshot-saving').slideUp('slow');
+                        descInput.messagepop('show',result.msg);
+                    } else {
+                        $('#snapshot-saving').slideUp('slow');
+                        alert('error');
+                    }
+                }
+            });
+        });
+
+        closeBtn.click(function() {
+            descInput.messagepop('hide');
+            descInput.removeClass('error');
+        });
+
+        descInput.messagepop({'trigger': 'manual', 'zindex': null});
+    });
+</script>

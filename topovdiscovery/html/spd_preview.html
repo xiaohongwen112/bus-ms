@@ -1,0 +1,315 @@
+<div id="snapshot-saving" class="spd-loading hide"><div class="spd-loading-inner"><img src="../../static/spd_img/loading.gif"/><span>正在创建快照...</span></div></div>
+<div class="nav-block">
+</div>
+<div id="topovmap-preview" class="map-block">
+    <div class="zoom-ctrl">
+        <ul>
+            <li><i class="zoom-fit"></i></li>
+            <li><i class="zoom-in"></i></li>
+            <li><i class="zoom-out"></i></li>
+        </ul>
+    </div>
+    <div id="create_snapshot_popup" class="popup-modal hide short-edit-popup" tabindex="-1">
+        <div class="modal-header">
+            <h3>创建新快照</h3>
+        </div>
+
+        <div class="modal-body">
+            <label class="spd-label">名称</label><input class="spd-input" name="desc" type="text" id="snapshot_desc_input"/>
+
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary create blue-button ctl-button">创建</button>
+            <button class="btn btn-second close grey-button ctl-button" data-dismiss="modal" aria-hidden="true">取消</button>
+        </div>
+
+    </div>
+    <div id="none_snapshot_popup" class="popup-modal hide" tabindex="-1">
+        <div class="modal-header">
+            <h3>&nbsp;</h3>
+        </div>
+
+        <div class="modal-body">
+
+            <div class="icon info"></div>
+            <div class="info">
+                <div class="line prompt" style="padding-top:15px;">无效的快照</div>
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary ok blue-button ctl-button">确定</button>
+        </div>
+
+    </div>
+    <div id="preview-popup-node" class="popup-modal preview-map-popup preview-map-popup-node hide" style="width:auto;">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 class="data" data_name="title"></h3>
+        </div>
+
+        <div class="modal-body" style="display:none;">
+        <div class="preview-popup-data node-data grey-scrollbar" style="max-height:400px;">
+            <div class="data" data_name="servers"></div>
+        </div>
+        </div>
+    </div>
+    <div id="preview-popup-edge" class="popup-modal preview-map-popup preview-map-popup-edge hide" style="width:auto;">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 class="data" data_name="title"></h3>
+        </div>
+
+        <div class="modal-body">
+        <div class="preview-popup-data flow-data grey-scrollbar" style="max-height:400px;">
+            <div class="flow-data-row" style="padding-bottom:20px;background:none;">
+            <div class="data flow-data-node-block flow-data-node-title" data_name="node_name1" style="width:280px;"></div>
+            <div class="flow-data-arrow-block">&nbsp;</div>
+            <div class="data flow-data-node-block flow-data-node-title" data_name="node_name2"></div>
+            </div>
+            <div class="data" data_name="link">
+            </div>
+        </div>
+        </div>
+    </div>
+    <div id="export-pcap-popup" class="popup-modal hide">
+        <div class="modal-header">
+            <h3>提取数据包</h3>
+        </div>
+        <div class="modal-body">
+            <div class="range-select-tip-block">
+                <span class="inline grey">
+                    （可选时段: 
+                    <span class="start grey">0000-00-00 00:00:00</span> 
+                    － 
+                    <span class="end grey">0000-00-00 00:00:00</span>）
+                </span>
+            </div>
+            <div class="export-pcap-time-range">
+                <span class="inline">
+                    <label class="inline spd-label">开始时间</label><input type="text" class="start-time" id="export-pcap-start-time-input"/>
+                </span>
+                <span class="inline" style="margin-left:20px;">
+                    <label class="inline spd-label">持续时间</label><input type="text" class="duration" id='export-pcap-duration-input'/>
+                </span>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary save blue-button ctl-button">提取</button>
+            <button class="btn btn-second close grey-button ctl-button" data-dismiss="modal" aria-hidden="true">取消</button>
+        </div>
+    </div>
+    <div id="extracting-pcap-popup" class="popup-modal hide">
+        <div class="modal-header">
+            <h3>&nbsp;</h3>
+        </div>
+        <div class="modal-body">
+            <div style="position:relative;height:30px;">
+                <div style="position:absolute;bottom:0px;left:0px;font-size:13px;">正在提取数据包文件。</div>
+                <div style="position:absolute;bottom:0px;right:0px;">
+                    <span class="current-count" style="font-size:28px;color:#6db52d;"></span>
+                    <span class="count-spliter" style="margin:0;padding:0;font-size:28px;color:#6db52d;">/</span>
+                    <span class="total-count" style="font-size:28px;color:#6db52d;"></span>
+                </div>
+            </div>
+            <div class="extracting-progress" style="margin-top:15px;"></div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-second close grey-button" data-dismiss="modal" aria-hidden="true">取消</button>
+        </div>
+    </div>
+    <div id="export-pcap-no-datasource-popup" class="popup-modal hide" tabindex="-1">
+        <div class="modal-header">
+            <h3>&nbsp;</h3>
+        </div>
+        <div class="modal-body">
+            <div class="icon info"></div>
+            <div class="info">
+                <div class="line prompt desc" style="margin-top:12px;">当前没有加载数据源</div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary close blue-button ctl-button">确定</button>
+        </div>
+    </div>
+    <div id="export-pcap-no-packet-popup" class="popup-modal hide" tabindex="-1">
+        <div class="modal-header">
+            <h3>&nbsp;</h3>
+        </div>
+        <div class="modal-body">
+            <div class="icon info"></div>
+            <div class="info">
+                <div class="line prompt desc" style="margin-top:12px;">当前时间段没有数据</div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary close blue-button ctl-button">确定</button>
+        </div>
+    </div>
+    <div id="spdmap-toolbar">
+        <button data-toggle="tooltip" data-original-title="返回编辑" name="back"><i class="toolbar-icon back"></i></button>
+        <button data-toggle="tooltip" data-original-title="导出" name="export"><i class="toolbar-icon export"></i></button>
+        <button data-toggle="tooltip" data-original-title="快照" name="snapshot"><i class="toolbar-icon snapshot"></i></button>
+    </div>
+</div>
+
+<script type="text/javascript"> 
+    $(function() {
+        var mapNameCH = window.localStorage.getItem('mapNameCH');
+        $(".program-name").text(mapNameCH);
+        /**var exportBnt = '<button data-toggle="tooltip" data-original-title="导出" name="export"><i class="toolbar-icon export"></i></button>';
+        var snapshotBnt = '<button data-toggle="tooltip" data-original-title="快照" name="snapshot"><i class="toolbar-icon snapshot"></i></button>';
+        var spdmapTool = $("#spdmap-toolbar");
+        spdmapTool.append(exportBnt);
+        spdmapTool.append(snapshotBnt);**/
+        //if(request.role.permissions.spd_pcap_export) spdmapTool.append(exportBnt);
+        //else spdmapTool.append(snapshotBnt);
+        SpdMap.Blender.fixWindowSize($('#topovmap-preview'));
+        var map = new SpdMap.PreviewMap($('#topovmap-preview'));
+        CBMSFLOW.environment('topovmap_preview', map);
+
+        //return to overview
+        $('#spdmap-toolbar button[name=back]').click(function(){
+            FrameDispatchInstance = CBMSFLOW.environment('frameDispatch');
+            FrameDispatchInstance.toggle('map');
+
+        });
+        //snapshot
+        var createSnapshotPopup = $('#create_snapshot_popup');
+        var noneSnapshotPopup = $('#none_snapshot_popup');
+        $('#spdmap-toolbar button[name=snapshot]').click(function(){
+            //check svg has at least one line or one node
+            if(map.nodes.length==0){
+                noneSnapshotPopup.modal({'keyboard': false, 'backdrop': 'static', 'show': true});
+                noneSnapshotPopup.trigger('setDefault');
+                $('.modal-backdrop.in').css('opacity', 0.5);
+            }else{
+                //popup
+                createSnapshotPopup.modal({'keyboard': false, 'backdrop': 'static', 'show': true});
+                createSnapshotPopup.trigger('setDefault');
+                $('.modal-backdrop.in').css('opacity', 0.5);
+            }
+        });
+
+        //export
+        CBMSFLOW.environment('pcapExporter', new SpdMap.PcapExporter());
+
+        $('#spdmap-toolbar button').tooltip();
+    });
+    $(function() {
+        //none snapshot popup
+        var noneSnapshotpopup = $('#none_snapshot_popup');
+        $('#none_snapshot_popup .modal-footer .ok').click(function() {
+            noneSnapshotpopup.modal('hide');
+        });
+        //create snapshot popup
+        var createSnapshotpopup = $('#create_snapshot_popup');
+        var descInput = createSnapshotpopup.find('input[name=desc]');
+        var saveBtn = createSnapshotpopup.find('.btn-primary.create');
+        var closeBtn = createSnapshotpopup.find('.btn-second.close');
+
+        createSnapshotpopup.bind('setDefault', function() {
+            $.ajax({
+                type: 'POST',
+                url: CBMSFLOW.util.make_spd_i18n_url('newname/snapshot/'),
+                async: false,
+                success: function(result) {
+                    descInput.val(result.data.new_name).textSelect();
+                }
+            });
+        });
+
+        saveBtn.click(function() {
+            var desc = descInput.val().trim(),
+                reg = new RegExp("^[A-Za-z0-9\u4e00-\u9fa5]+$");
+            if (desc == '') {
+                descInput.messagepop('show', '名称不能为空');
+                descInput.addClass('error');
+                return false;
+            } else if(desc.length > 12){
+                descInput.messagepop('show', '名称不能超过12字符');
+                descInput.addClass('error');
+                return false;
+            } else if(!reg.test(desc)){
+                descInput.messagepop('show', '快照名称不能包含除数字、英文字母、汉字外的其他字符');
+                descInput.addClass('error');
+                return false;
+            }
+            // save map data
+            var map_name = CBMSFLOW.environment('map_name');
+            var map = CBMSFLOW.environment('topovmap_preview');
+            var map_data = map.getSaveData();
+            map_data['snapshot_name'] = desc;
+            console.log(map_data);
+            var dataNodes = map_data.nodes,
+                dataNodesLen = dataNodes.length,
+                dataEdges = map_data.edges,
+                dataEdgesLen = dataEdges.length,
+                dataNodesId = "",
+                newNodesArr = [],
+                newEdgesArr = dataEdges,
+                newEdgesArrLen = newEdgesArr.length;
+            for(var i=0;i<dataNodesLen;i++){
+                if(dataNodes[i].visible){
+                    newNodesArr.push(dataNodes[i]);
+                } 
+                else{
+                    dataNodesId = dataNodes[i].id;
+                }
+                for(var j=0;j<newEdgesArrLen;j++){
+                    if(dataEdges[j].nodeA == dataNodesId || dataEdges[j].nodeB == dataNodesId){
+                        newEdgesArr.splice(j,1);
+                        newEdgesArrLen = newEdgesArr.length;
+                    }
+                }
+            }
+            map_data.nodes = newNodesArr;
+            map_data.edges = newEdgesArr;
+            console.log(map_data);
+            var map_png = map.genPng(265, 141);
+
+            $('#snapshot-saving img').show();
+            $('#snapshot-saving span').text('正在创建快照...');
+            $('#snapshot-saving').slideDown('slow');
+
+            $.ajax({
+                url: CBMSFLOW.util.make_spd_i18n_url(map_name + '/createsnapshot/'),
+                type: 'POST',
+                data: appendCsrfToken({"map": JSON.stringify(map_data), 'map_png':map_png}),
+                success: function(result) {
+                    if (result.code == 0) {
+                        setTimeout(function(){
+                            $('#snapshot-saving img').hide();
+                            $('#snapshot-saving span').text('创建完成');
+                            setTimeout(function() {
+                                $('#snapshot-saving').slideUp('slow');
+                            }, 1000);
+                        }, 1000);
+                        createSnapshotpopup.modal('hide');
+                    } else if(result.state != 0){
+                        $('#snapshot-saving').slideUp('slow');
+                        descInput.messagepop('show',result.msg);
+                    } else {
+                        $('#snapshot-saving').slideUp('slow');
+                        alert('error');
+                    }
+                }
+            });
+        });
+
+        closeBtn.click(function() {
+            descInput.messagepop('hide');
+            descInput.removeClass('error');
+        });
+
+        descInput.messagepop({'trigger': 'manual', 'zindex': null});
+        var evdata = CBMSFLOW.environment('permissionData');
+        var permissionData = evdata === undefined ? JSON.parse(window.localStorage.getItem('permissionData')) : evdata;
+        var ifSpdDataExport = permissionData.spd_data_export; // 导出
+        if(!ifSpdDataExport){
+            $('#topovmap-preview #spdmap-toolbar').find('button[name="export"]').hide();
+        }
+    });
+</script>

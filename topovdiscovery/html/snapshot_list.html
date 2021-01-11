@@ -1,0 +1,254 @@
+<div id="snapshot_list_resize">
+    <div class="snapshot_list_head"></div>
+    <div id="snapshot_list" class="grey-scrollbar">
+        {% for snapshot in snapshot_list %}
+        <div class="snapshot-png {% if forloop.first %}snapshot-png-active{% endif %}" s_id="{{snapshot.id}}" desc="{{snapshot.name}}">
+            <div class="snapshot-png-pic"> <img src="{{snapshot.png}}" /></div>
+            <div class="snapshot-desc">
+                <div class="desc text-ellipsis">{{snapshot.name}}</div>
+            </div>
+            <div class="{% if snapshot.is_to_app %}topoBtn{% endif %}"></div>
+            <div class="snapshot-desc-detail">
+                <p class="desc text-ellipsis text-tip">{{snapshot.name}}</p>
+                <p class="datetime">{{snapshot.ts}}</p>
+            </div>
+            <div class="snapshot-shadow"></div>
+            <div class="snapshot-shadow-hover"></div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="snapshot_list_bottom"></div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $.ajax({
+            type:"POST",
+            url:"/accounts/currentuser/",
+            data:{"csrfmiddlewaretoken":csrf_token},
+            dataType:"json",
+            success:function(result) {
+                if(result.data.role_name != "运维操作员"){
+                    var topoBtn =  $(".topoBtn");
+                    for(var i=0;i<topoBtn.length;i++){
+                        $(topoBtn[i]).addClass("toTopo");
+                    }
+                }
+            },
+            error:function(){
+                console.log("获取当前用户信息失败！");
+            }
+        });
+        //scrollbar
+        $('#snapshot_list').mCustomScrollbar();
+
+        //resize
+        var temp_snaplist_resize_height = 212;
+        var temp_snaplist_height = 174;
+        var temp_head = 24;
+        $('#snapshot_list_resize').resizable({
+            handles: "n",
+            minHeight: 0,
+            start: function(e, ui){
+                //拖动最大高度
+                var snapshotPng = $(".snapshot-png"),
+                    winWidth = $(window).width(),
+                    snapshotPngLen = snapshotPng.length,
+                    gargHeight = Math.ceil(snapshotPngLen /  Math.ceil(winWidth / 368))*220;
+                $('#snapshot_list_resize').resizable("option", "maxHeight", gargHeight);
+            },
+            resize: function(e, ui){
+                $(this).css('top', '0px');
+                var height = ui.size.height;
+                if(height<=0){
+                    $('.snapshot_list_head').height(0);
+                    $('#snapshot_list').height(0);
+                }
+                else if(height<=temp_head){
+                    $('.snapshot_list_head').height(height = temp_head);
+                    $('#snapshot_list').height(0);
+                }
+                else if (height>temp_head){
+                    $('.snapshot_list_head').height(temp_head);
+                    $('#snapshot_list').height(height-temp_head);
+                }
+
+            },
+            stop: function(e, ui){
+                var height = $('#snapshot_list').height();
+                if(height<=5){
+                    $('#snapshot_list_resize').height(2);
+                    $('#snapshot_list').height(0);
+                    height = 2;
+                }
+                if(height > 2){
+                    $('.resizable-span').removeClass('min');
+                }
+                else {
+                    $('.resizable-span').addClass('min');
+                }
+                $('#topovmap-snapshot').trigger('resize');
+                $('#snapshot_list').mCustomScrollbar('update');
+            }
+        });
+        //$('#snapshot_list_resize .ui-resizable-handle').append('<span class="resizable-span"></span>')
+        var adj_left = ($(window).width()-90)/2;
+        $('#snapshot_list_resize .resizable-span').css('left', adj_left);
+        $('#snapshot_list_resize .resizable-span').bind('click', function(){
+            var self = $(this);
+            if(self.hasClass('min')){
+                self.removeClass('min');
+                $('#snapshot_list_resize').height(temp_snaplist_resize_height);
+                $('#snapshot_list').height(temp_snaplist_height);
+                $('.snapshot_list_head').height(temp_head);
+            }
+            else{
+                temp_snaplist_resize_height = $('#snapshot_list_resize').height();
+                temp_snaplist_height = $('#snapshot_list').height();
+                temp_head = $('.snapshot_list_head').height();
+                self.addClass('min');
+                $('#snapshot_list_resize').height(2);
+                $('#snapshot_list').height(0);
+                $('.snapshot_list_head').height(0);
+            }
+            $('#topovmap-snapshot').trigger('resize');
+            $('#snapshot_list').mCustomScrollbar('update');
+        });
+
+        $('#snapshot_list_resize .resizable-span').bind('mousedown', function(e){
+            $(this).parent().addClass('noactive');
+        });
+        $('#snapshot_list_resize .resizable-span').bind('mouseup', function(e){
+            $(this).parent().removeClass('noactive');
+        });
+
+        $('#snapshot_list_resize .resizable-span').hover(
+            function(){
+                //IN
+                $('#snapshot_list_resize').resizable( "option", "disabled", true );
+            },
+            function(){
+                //OUT
+                $('#snapshot_list_resize').resizable( "option", "disabled", false );
+            }
+        );
+
+
+        // snapshot click
+        $('#snapshot_list').on('click','.snapshot-png', function(e){
+            selectSnapshot($(this));
+        });
+        //页面跳转
+        $('#snapshot_list').on('click','.toTopo', function(e){
+            e.stopPropagation();
+            var s_id = $(this).parent().attr('s_id');
+            $.ajax({
+                // type:"GET",
+                url:"/zh-cn/spd/snapshot/"+ s_id +"/toapp",
+                dataType: 'json',
+                success: function(result) {
+                    console.log(result);
+                    if(result.code == 0 && result.data.datapath.name){
+                        app_name = result.data.datapath.name;
+                        window.open("/zh-cn/"+app_name+"/datapath/edit/",'_self');
+                    }else {
+                        if(result.status == 0 && result.detail){
+                            alertWindow(result.detail.disp_name[0],false);
+                        }else{
+                            alertWindow(result.msg.disp_name[0],false);
+                        }
+                    }
+                },
+                error:function () {
+
+                }
+            });
+        });
+        var selectSnapshot = function(item) {
+            var aurl = '{% url get-snapshot "__name__" %}';
+            $('.snapshot-png').removeClass('snapshot-png-active') ;
+            item.addClass('snapshot-png-active');
+            var s_id = item.attr('s_id')
+            $.ajax({
+                url: aurl.replace("__name__", s_id),
+                dataType: 'json',
+                success: function(result) {
+                    if (result.code === 0) {
+                        var map = CBMSFLOW.environment('snapshot_map');
+                        var map_data = result.data.snapshot.map_data;
+                        if(map_data['nodes']){
+                            map.load(map_data);
+                            map.zoomCtrl.zoomFitOrg();
+                            $('.snapshot-name .s-name').text(result.data.snapshot.snapshot_name);
+                            CBMSFLOW.environment('snapshot_id', result.data.snapshot._id);
+                            CBMSFLOW.environment('snapshot_name', result.data.snapshot.snapshot_name);
+                            map.snapshot_map_data = map_data;
+                            CBMSFLOW.environment('snapshot_map', map);
+                            $('#rename_snapshot_popup').attr('s_name', result.data.snapshot.snapshot_name);
+                            map.clearClick();
+                        }
+                    } else {
+                    }
+                },
+                error:function(){}
+            });
+        }
+        /**
+         * 弹出框函数
+         * @param alert_content -- 提示语
+         * @param flag -- 如果为true，则生成可操作弹出框，否则生成不可操作弹出框
+         */
+        window.alertWindow = function alertWindow(alert_content,flag){
+            d3.select(".alert-back-div").remove();
+
+            var alert_back_div = d3.select("body").append("div")
+                .attr("class","alert-back-div");
+            var alert_div = alert_back_div.append("div")
+                .attr("class","alert-div");
+            //提示框的title
+            var alert_title_div = alert_div.append("div")
+                .attr("class","alert-title-div");
+            alert_title_div.append("span")
+                .attr("class","alert-title-span")
+                .text("提示");
+            //提示的主体部分
+            alert_div.append("div")
+                .attr("class","alert-body-div")
+                .html(alert_content);
+            //是否有操作的弹窗
+            if(flag){
+                //提示的尾部
+                var alert_foot_div = alert_div.append("div")
+                    .attr("class","alert-foot-div");
+                alert_foot_div.append("button")
+                    .attr({
+                        "class":"determine-btn alert-btn"
+                    })
+                    .text("确定");
+                alert_foot_div.append("button")
+                    .attr({
+                        "class":"cancle-btn alert-btn"
+                    })
+                    .text("取消");
+            }else{
+                //title部分的关闭按钮
+                alert_title_div.append("span")
+                    .attr({
+                        "class":"alert-title-img alert-btn"
+                    })
+                    .text("x");
+            }
+            d3.selectAll(".alert-btn").each(function(){
+                this.addEventListener("click",function(){
+                    closeAlertWindow(this);
+                },false);
+            });
+        }
+        /**
+         * 关闭弹窗
+         */
+        function closeAlertWindow(this_btn){
+            d3.select(".alert-back-div").remove();
+            return (d3.select(this_btn).text() == "确定");
+        }
+    });
+</script>

@@ -1,0 +1,586 @@
+#collect_datasource_popup {
+    /* TODO height should be 295*/
+    height: 301px;
+    width: 650px;
+    overflow: visible;
+}
+
+#collect_datasource_popup .modal-body {
+    height: 100%;
+}
+
+#collect_datasource_popup .modal-footer {
+    position:absolute;
+    bottom:0;
+    right: 0;
+    width: 100%;
+    padding:0;
+}
+
+#collect_datasource_popup .modal-footer .modal-footer-inner {
+    padding: 9px 20px 9px 20px;
+    background-color: #24272C;
+    /*border-top: 1px solid #EFEFEF;*/
+}
+
+#collect_datasource_popup .btn.btn-second.close {
+    margin-left:15px;
+}
+
+#collect_datasource_popup input[type=text],
+#collect_datasource_popup select,
+#collect_datasource_popup select,
+#collect_datasource_popup select {
+    width: 131px;
+}
+
+#collect_datasource_popup .source,
+#collect_datasource_popup .intf,
+#collect_datasource_popup .host {
+    width: 119px;
+    height: 22px;
+    border:1px solid #495259;
+}
+#collect_datasource_popup .host .dropdownlist-option {
+    width: 138px;
+}
+
+#collect_datasource_popup .source.error,
+#collect_datasource_popup .intf.error,
+#collect_datasource_popup .host.error {
+    border:1px solid #c60001;
+}
+
+#collect_datasource_popup .source:hover,
+#collect_datasource_popup .intf:hover,
+#collect_datasource_popup .host:hover {
+    border:1px solid #1c89c9;
+}
+
+#collect_datasource_popup .source.error:hover,
+#collect_datasource_popup .intf.error:hover,
+#collect_datasource_popup .host.error:hover {
+    border:1px solid #c60001;
+}
+
+#collect_datasource_popup label {
+    /*height: 24px;*/
+    /*line-height:24px;*/
+}
+
+/* datasource collect all block height 24*/
+#collect_datasource_popup .desc-block,
+#collect_datasource_popup .select-block,
+#collect_datasource_popup .collect-now-block,
+#collect_datasource_popup .collect-hist-block,
+#collect_datasource_popup .range-select-tip-block {
+    height: 24px;
+}
+
+/* desc-block */
+#collect_datasource_popup .desc-block input,
+#collect_datasource_popup .desc-block label {
+    float:left;
+}
+
+#collect_datasource_popup .desc-block input.desc {
+    width: 341px;
+}
+#collect_datasource_popup .desc-block label {
+    /*width: 40px;*/
+    /*padding:0px;*/
+}
+
+/* select-block */
+#collect_datasource_popup .select-block {
+    padding-top: 2px;
+}
+
+#collect_datasource_popup .select-block > span {
+    float:left;
+}
+#collect_datasource_popup .select-block > span:nth-child(2) > div {
+    width: 128px;
+}
+
+#collect_datasource_popup .select-block > span:nth-child(3) {
+    float:right;
+}
+
+#collect_datasource_popup .select-block .datasource-block {
+    width: 226px;
+}
+
+#collect_datasource_popup .select-block .host-block label,
+#collect_datasource_popup .select-block .intf-block label {
+    /*padding-right: 9px;*/
+}
+/*
+#collect_datasource_popup .select-block .datasource-block label {
+    width: 40px;
+    padding:0px;
+}
+*/
+#collect_datasource_popup .select-block .datasource-block > div {
+    /*margin-left: 5px;*/
+}
+
+/* collect-now-block */
+#collect_datasource_popup .collect-now-block > span {
+    float:left;
+}
+
+#collect_datasource_popup .collect-now-block > span input[type=radio] {
+    margin:0px 5px 4px 0px;
+    vertical-align:middle;
+}
+
+#collect_datasource_popup .collect-now-block > span:nth-child(2) > * {
+    float:left;
+}
+
+/*
+#collect_datasource_popup .collect-now-block > span:nth-child(2) {
+    margin-left:8px;
+}
+*/
+
+#collect_datasource_popup .collect-now-block > span:nth-child(2) > div {
+    /*margin-left: 4px;*/
+}
+
+#collect_datasource_popup .collect-now-block .TimeSpinner > * {
+    height: 22px;
+    line-height: 2px;
+}
+
+#collect_datasource_popup .collect-now-block {
+    padding-top: 22px;
+}
+
+#collect_datasource_popup .collect-now-block span.now,
+#collect_datasource_popup .collect-hist-block span.hist {
+    width: 189px;
+}
+
+/* collect-hist-block */
+#collect_datasource_popup .collect-hist-block > span {
+    float:left;
+}
+
+#collect_datasource_popup .collect-hist-block > span input[type=radio] {
+    margin:0px 5px 4px 0px;
+    vertical-align:middle;
+}
+#collect_datasource_popup .collect-hist-block > span:nth-child(2) > * {
+    float:left;
+    clear:none;
+}
+
+#collect_datasource_popup .collect-hist-block > span:nth-child(2) > .ui-datetime-input{
+    margin:0px 0px 0px 0px;
+}
+
+#collect_datasource_popup .collect-hist-block > span:nth-child(2) > .ui-datetime-input > *{
+    float:left;
+}
+
+#collect_datasource_popup .collect-hist-block > span:nth-child(2) > div .TimeSpinner > *{
+    height:22px;
+    line-height:2px;
+}
+
+#collect_datasource_popup .collect-hist-block > span:nth-child(3) > * {
+    float:left;
+}
+/*
+#collect_datasource_popup .collect-hist-block > span:nth-child(3) > label {
+    padding-right: 9px;
+}
+*/
+#collect_datasource_popup .collect-hist-block > span:nth-child(3) > div .TimeSpinner > *{
+    height:22px;
+    line-height:2px;
+}
+
+#collect_datasource_popup .collect-hist-block > span:nth-child(3) {
+    float:right;
+}
+
+#collect_datasource_popup .collect-hist-block {
+    padding-top: 2px;
+}
+
+#collect_datasource_popup .range-select-tip-block {
+    padding-top: 6px;
+    padding-right: 73px;
+}
+
+#collect_datasource_popup .range-select-tip-block > span {
+    margin-right: 7px;
+}
+
+#collect_datasource_popup .inline {
+    display:inline-block;
+}
+
+#collect_datasource_popup .right {
+    float:right;
+}
+
+#collect_datasource_popup .left {
+    float:left;
+}
+
+#collect_datasource_popup label {
+    /*padding-right: 5px;*/
+}
+
+#collect_datasource_popup span.hist,
+#collect_datasource_popup span.now {
+    width: 150px;
+}
+
+#collect_datasource_popup .grey {
+    color: #999;
+}
+
+
+#collect_datasource_popup .customDate.hasDatepicker {
+    width: 80px;
+    border: none;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    height: 22px;
+}
+
+#collect_datasource_popup .ui-datetime-input {
+    height: 22px;
+    border:1px solid #dcdcdc;
+}
+
+#collect_datasource_popup .ui-time-input {
+    height: 24px;
+}
+
+#collect_datasource_popup .ui-time-input input {
+    vertical-align:middle;
+}
+
+#collect_datasource_popup .tsInput {
+    outline: none;
+    padding: 0px;
+}
+
+#collect_datasource_popup .tsInput:focus {
+    border: none;
+}
+
+#collect_datasource_popup .ui-time-input {
+    display:inline-block;
+}
+
+#collect_datasource_popup .collect-now-block .ui-time-input {
+    border:1px solid #dcdcdc;
+    width: 128px;
+    height: 22px;
+    padding: 0px 5px 0px 5px;
+}
+
+#collect_datasource_popup .collect-hist-block span.duration .ui-time-input {
+    border:1px solid #dcdcdc;
+    width: 119px;
+    height: 22px;
+    padding: 0px 5px 0px 5px;
+}
+
+#collect_datasource_popup .collect-hist-block .TimeSpinner {
+    padding-right:5px;
+}
+
+#collect_datasource_popup .collect-now-block .ui-time-input .TimeSpinner input{
+    vertical-align:middle;
+}
+
+#collect_datasource_popup .ui-time-input.focus,
+#collect_datasource_popup .ui-datetime-input.focus,
+#collect_datasource_popup .collect-hist-block span.duration .ui-time-input.focus {
+    border:1px solid #1c89c9;
+}
+
+#collect_datasource_popup .collect-now-block .ui-time-input.disabled *,
+#collect_datasource_popup .collect-hist-block .ui-datetime-input.disabled *,
+#collect_datasource_popup .collect-hist-block .ui-time-input.disabled * {
+    color:#999;
+}
+
+#collect_datasource_popup .ui-time-input.focus.disabled,
+#collect_datasource_popup .ui-datetime-input.focus.disabled,
+#collect_datasource_popup .collect-hist-block span.duration .ui-time-input.focus.disabled {
+    border:1px solid #dcdcdc;
+}
+
+#collect_datasource_popup input.duration.hist + .error,
+#collect_datasource_popup input.duration.now + .error,
+#collect_datasource_popup input.startTimeHist + .error {
+    border:1px solid #c60001;
+}
+#spd-datasource-frame #collect-datasource-btn {
+    width: 26px;
+    height: 26px;
+    border: 2px solid #0fc0e4;
+    color: #0fc0e4;
+    padding: 0;
+    float: left;
+    margin-top: 10px;
+    margin-left: 60px;
+    font-size: 13px;
+    text-align: center;
+    border-radius: 30px;
+}
+
+#spd-datasource-frame .collect-datasource-btn-icon {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    margin: 4px 0 0 5px;
+    float: left;
+    font-size: 20px;
+    line-height: 16px;
+    font-weight: 600;
+}
+#spd-datasource-frame .collect-datasource-btn-text {
+    height: 24px;
+    font-size: 13px;
+    line-height: 24px;
+    color: #12bfe7;
+    display: inline;
+    float: left;
+    margin-top: 17px;
+    padding: 0 10px;
+}
+
+#spd-datasource-frame #collect-datasource-btn:hover { 
+    cursor: pointer;
+    background: rgba(61,217,196,0.8);
+    color: #eee;
+    /*border:1px solid #AA7A13;*/
+}
+
+#spd-datasource-frame #collect-datasource-btn:active {
+    background: rgba(61,217,196,0.8);
+    color: #eee;
+}
+
+#spd-datasource-frame .data-change{
+    float: right;
+    font-size: 12px;
+    width: 70px;
+    border: 1px solid #3dd9c4;
+    color: #ccc;
+    padding: 0px 8px 0px 8px;
+    font-size: 13px;
+    text-align: center;
+    border-radius: 30px;
+    height: 24px;
+    line-height: 24px;
+    margin: 10px 10px 0 0;
+}
+
+#spd-datasource-frame .data-change a{
+    color: #ccc;
+}
+
+#spd-datasource-frame .data-change:hover {
+    cursor: pointer;
+    background: rgba(61,217,196,0.8);
+    color: #eee;
+}
+#spd-datasource-frame .data-change a:hover {
+    color: #eee;
+}
+#spd-datasource-frame a{
+    color: #3dd9c4;
+}
+#spd-datasource-frame a:hover{
+    color: #eee;
+}
+
+/* #spd-datasource-frame #compare-btn.disabled {
+    background-color: #24272C;
+    border: 1px solid #546464;
+    color: #BECACA;
+} */
+
+div#spd-datasource-list{
+    clear:both;
+    margin-left:-30px;
+}
+#spd-datasource-list:after{
+    content:"";
+    display:table;
+    clear:both;
+}
+#spd-datasource-list ul{
+    list-style:none;
+    margin:0;
+    padding:0 30px;
+}
+#spd-datasource-list #spd-datasource-list-ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow-x:hidden;
+    overflow-y: auto; 
+}
+#spd-datasource-list-ul::-webkit-scrollbar {
+    width: 5px;/*竖向滚动条的宽度*/
+    height: 5px;/*横向滚动条的高度*/
+}
+/*滚动条轨道的样式*/
+#spd-datasource-list-ul::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+/*滚动条轨道内滑块的样式*/
+#spd-datasource-list-ul::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #85cfdc;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+/*当焦点不在当前区域滑块的状态（具体为什么要加这句有点忘了，记得是跟刷新时有关）*/
+#spd-datasource-list-ul::-webkit-scrollbar-thumb:window-inactive {
+    background: #85cfdc;
+}
+#spd-datasource-list ul:after{
+    content:"";
+    display:table;
+    clear:both;
+}
+#spd-datasource-list > ul > li{
+    float:left;
+    width:293px;
+    margin-left:30px;
+    margin-top:15px;
+}
+#spd-datasource-list .spd-datasource-info{
+    border: 1px solid rgba(0,0,0,0);
+    position: relative;
+    color: #D7D8D9;
+    background-color: #041726;
+}
+#spd-datasource-list .spd-datasource-info ul{
+    margin-top:10px;
+    padding:0px 3px 7px 3px;
+}
+#spd-datasource-list .spd-datasource-info ul li{
+    margin-bottom:0px;
+    line-height:13px;
+    height:16px;
+    margin-bottom:7px;
+    display:block;
+}
+#spd-datasource-list .spd-datasource-info ul li.fatal{
+    color:#c60001;
+}
+#spd-datasource-list .spd-datasource-item .spd-datasource-info-desc{
+    font-size:13px;
+    color:#11B5DB;
+    text-align:center;
+    height:29px;
+    line-height:29px;
+    width:165px;
+    margin:0px auto;
+}
+#spd-datasource-list .spd-datasource-item .spd-datasource-title{
+    /*padding:3px 3px 0px 3px;*/
+    border-bottom:1px solid #133B58;
+    /*background: #2f2f2f;*/
+}
+#spd-datasource-list .spd-datasource-item .spd-datasource-title:hover{
+    background: #08111a;
+}
+#spd-datasource-list .spd-datasource-item .spd-datasource-info-label{
+    display:inline-block;
+    font-size:12px;
+    width:89px;
+    text-align:right;
+    margin-right:22px;
+    line-height:16px;
+}
+#spd-datasource-list .spd-datasource-item .spd-datasource-info-value{
+    display:inline-block;
+    font-size:12px;
+    line-height:16px;
+}
+
+#spd-datasource-list .spd-datasource-info-border{
+    padding:6px 4px 9px 6px;
+    position:relative;
+}
+
+#spd-datasource-list .spd-datasource-item.hover .spd-datasource-info{
+    color:#333333;
+}
+#spd-datasource-list .spd-datasource-item.active .spd-datasource-info-title{
+    padding:0px;
+}
+#spd-datasource-list .spd-datasource-item.active .spd-datasource-info ul{
+    padding:0px 0px 7px 0px;
+    cursor:pointer;
+}
+#spd-datasource-list .spd-datasource-item.hover .spd-datasource-info{
+    border: 1px solid #104269;
+}
+
+#spd-datasource-list .spd-datasource-title{
+    position:relative;
+}
+
+#spd-datasource-list .spd-datasource-select {
+    position:absolute;
+    top:4px;
+    left:8px;
+    line-height: 23px;
+}
+
+#spd-datasource-list .spd-datasource-select i {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+
+#spd-datasource-list .spd-datasource-select i.selected {
+    background-image:url("../spd_img/icon/spd-source-select.png");
+}
+
+#spd-datasource-list .spd-datasource-ctl{
+    display:none;
+    position:absolute;
+    top:7px;
+    right:8px;
+    line-height: 23px;
+}
+#spd-datasource-list .spd-datasource-ctl i{
+    cursor:pointer;
+}
+#spd-datasource-list .spd-datasource-item.hover .spd-datasource-ctl{
+    display:block;
+}
+#spd-datasource-list .spd-datasource-ctl.running .spd-datasource-ctl-delete,
+#spd-datasource-list .spd-datasource-ctl .spd-datasource-ctl-stop{
+    display:none;
+}
+#spd-datasource-list .spd-datasource-ctl.running .spd-datasource-ctl-stop{
+    display:inline-block;
+}
+
+#collect_datasource_popup .desc-block input[type=text].desc.error {
+    border-color: #c60001;
+}
+
+.spd-datasource-item ul {
+    cursor: pointer;
+}

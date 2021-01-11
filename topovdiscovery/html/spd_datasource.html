@@ -1,0 +1,978 @@
+<div id="collect_datasource_popup" class="popup-modal hide" tabindex="-1">
+    <div class="modal-header">
+        <h3>提取新数据</h3>
+    </div>
+    <div class="modal-body">
+        <div class="desc-block">
+            <label class="inline desc spd-label">名&nbsp;&nbsp;&nbsp;称</label><input type="text" class="desc spd-input" maxlength="12"/>
+        </div>
+        <div class="select-block">
+            <span class="inline datasource-block" style="display:none">
+                <label class="inline left spd-label">数据源</label><div id="source" class="source inline left"></div>
+            </span>
+            <span class="inline host-block">
+                <label class="inline left spd-label">IP</label><div id="host" class="host inline left"></div>
+            </span>
+
+            <span class="inline intf-block right">
+                <label class="inline left spd-label">接口</label><div id="intf" class="intf inline left"></div>
+            </span>
+        </div>
+        <div class="collect-now-block">
+            <span class="inline now">
+                <input type="radio" class="now" name="collect" value="now"/><label class="inline spd-label">立即提取</label>
+            </span>
+            <span class="inline">
+                <label class="inline spd-label">持续时间</label><input type="text" class="duration now spd-input" id="duration-now"/>
+            </span>
+        </div>
+        <div class="collect-hist-block">
+            <span class="inline hist">
+                <input type="radio" class="hist" name="collect" value="hist"/><label class="inline spd-label">从历史数据中提取</label>
+            </span>
+            <span class="inline">
+                <label class="inline spd-label">开始时间</label><input type="text" class="startTimeHist spd-input" id="startTimeHist"/>
+            </span>
+
+            <span class="inline right duration">
+                <label class="inline spd-label">持续时间</label><input type="text" class="duration hist spd-input" id='duration-hist'/>
+            </span>
+        </div>
+        <div class="range-select-tip-block">
+            <span class="inline right grey">
+                （可选时段: 
+                <span class="start grey">0000-00-00 00:00:00</span> 
+                － 
+                <span class="end grey">0000-00-00 00:00:00</span>）
+            </span>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <div class="modal-footer-inner">
+        <button class="btn btn-primary save blue-button ctl-button">提取</button>
+        <button class="btn btn-second close grey-button ctl-button" data-dismiss="modal" aria-hidden="true">取消</button>
+      </div>
+    </div>
+</div>
+<div id="delete_datasource_popup" class="popup-modal hide" tabindex="-1">
+    <div class="modal-header">
+        <h3>&nbsp;</h3>
+    </div>
+    <div class="modal-body">
+        <div class="icon info"></div>
+        <div class="info">
+            <div class="line prompt">您确定要删除<div style="max-width:200px;display:inline-block;" class="desc text-ellipsis text-tip"></div>吗?</div>
+            <div class="line prompt">数据删除后不可恢复</div>
+            <div class="line working">正在删除中</div>
+            <div class="line success">删除成功</div>
+            <div class="line fail">删除失败</div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary blue-button ctl-button">确定</button>
+        <button class="btn btn-second close grey-button ctl-button" data-dismiss="modal" aria-hidden="true">取消</button>
+        <button class="btn btn-primary close blue-button ctl-button">确定</button>
+    </div>
+</div>
+<div id="export-datasource-popup" class="popup-modal hide export-popup" tabindex="-1">
+    <div class="modal-header">
+        <h3>数据源导出</h3>
+    </div>
+    <div class="modal-body">
+        <div class="desc-block prompt">
+            <label class="inline spd-label">文&nbsp;件&nbsp;名</label><input type="text" class="desc spd-input" name="desc" id="datasource-export-input" maxlength="20" placeholder="请输入导出文件名"/>
+            <div id="body-second">
+                <label class="inline spd-label">端&nbsp;&nbsp;&nbsp;&nbsp;口</label>
+                <input type="text"  id="export-port-input"  maxlength="15" placeholder="使用-选择区间">
+                <span id="export-port-opa"></span>
+                <div id="Compress">
+                    <b><input type="checkbox"class="input_check" name="ifCompress" id="ifCompress"><label for="ifCompress"></label></b><span>压缩</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <span id="port-error" class="hidden-error">端口仅支持8个</span>
+        <button class="btn btn-primary close blue-button ctl-button" id="export-datasource-download">下载</button>
+        <button class="btn btn-second close grey-button ctl-button" id="export-datasource-cancel" data-dismiss="modal" aria-hidden="true">取消</button>
+    </div>
+</div>
+<div id="rename_datasource_popup" class="popup-modal hide short-edit-popup" tabindex="-1">
+    <div class="modal-header">
+        <h3>重命名</h3>
+    </div>
+    <div class="modal-body">
+        <div class="desc-block prompt">
+            <label class="inline spd-label">名称</label><input type="text" class="desc spd-input" name="desc" id="datasource_desc_input" maxlength="20"/>
+        </div>
+
+        <div class="result">
+            <div class="icon info"></div>
+            <div class="info">
+                <div class="line success">重命名成功</div>
+                <div class="line fail">重命名失败</div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary blue-button">保存</button>
+        <button class="btn btn-second close grey-button ctl-button" data-dismiss="modal" aria-hidden="true">取消</button>
+        <button class="btn btn-primary close blue-button ctl-button">确定</button>
+    </div>
+
+</div>
+<div id="stop_datasource_popup" class="popup-modal hide" tabindex="-1">
+    <div class="modal-header">
+        <h3>&nbsp;</h3>
+    </div>
+    <div class="modal-body">
+        <div class="icon info"></div>
+        <div class="info">
+            <div class="line prompt"></div>
+            <div class="line prompt">终止提取后不可恢复</div>
+            <div class="line working">正在停止中...</div>
+            <div class="line success">停止成功</div>
+            <div class="line fail">停止失败</div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary blue-button ctl-button">确定</button>
+        <button class="btn btn-second close grey-button ctl-button" data-dismiss="modal" aria-hidden="true">取消</button>
+        <button class="btn btn-primary close blue-button ctl-button">确定</button>
+    </div>
+
+</div>
+<div id="load_datasource_popup" class="popup-modal hide" tabindex="-1">
+    <div class="modal-header">
+        <h3>&nbsp;</h3>
+    </div>
+
+    <div class="modal-body">
+
+        <div class="icon info"></div>
+        <div class="info">
+            <div class="line prompt">
+                <span class="datasource"></span>
+                <span>正在提取中，不可加载。</span>
+            </div>
+            <div class="line prompt">加载前，请先终止提取</div>
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-primary close blue-button ctl-button">确定</button>
+    </div>
+
+</div>
+<div id="spd-datasource-frame">
+    {% comment %} <div class="spd-datasource-buttons">
+        <a class="front">
+            <img src="" /> 
+        </a> 
+        <a  class="behind">
+            <img src=""> 
+        </a> 
+        <a class=""> 项目-01</a>
+        <a class="active">  项目-02</a>
+    </div> {% endcomment %}
+    <div id="collect-datasource-btn">
+        <span class="collect-datasource-btn-icon">+</span>
+    </div>
+    <div class="collect-datasource-btn-text">提取新数据</div>    
+    <div id="spd-datasource-free-space">可用磁盘空间：<span></span></div>
+    <div id="compare-btn-popup" class="data-change">对比</div>
+    <div id="snapshot-btn" class="data-change">快照</div>
+  
+  <div id="spd-datasource-list">
+    <ul id="spd-datasource-list-ul">
+    </ul>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+    $(function() {
+        var mapNameCH = window.localStorage.getItem('mapNameCH');
+        $(".program-name").text(mapNameCH);
+        var delete_popup = $('#delete_datasource_popup');
+        var de_icon = delete_popup.find('.icon');
+        var de_mapName = CBMSFLOW.environment('map_name');
+        var de_prompt = delete_popup.find('.prompt');
+        var de_working = delete_popup.find('.working');
+        var de_success = delete_popup.find('.success');
+        var de_fail = delete_popup.find('.fail');
+        var de_confirmBtn = delete_popup.find('.btn-primary');
+        var de_cancelBtn = delete_popup.find('.btn-second');
+        var de_closeBtn = delete_popup.find('.btn-primary.close');
+
+        var deletesetPrompt = function() {
+            de_icon.addClass('info').removeClass('fail success handling');
+            de_prompt.show();
+            de_confirmBtn.show();
+            de_cancelBtn.show();
+
+            de_working.hide();
+            de_success.hide();
+            de_fail.hide();
+            de_closeBtn.hide();
+            
+        };
+
+        var deletesetWorking = function() {
+            de_icon.addClass('handling');
+            de_working.show();
+            de_prompt.hide();
+            de_success.hide();
+            de_fail.hide();
+            de_confirmBtn.hide();
+            de_cancelBtn.hide();
+        };
+
+        var deletesetSuccess = function() {
+            de_icon.addClass('success');
+            de_success.show();
+            de_prompt.hide();
+            de_working.hide();
+            de_fail.hide();
+            de_confirmBtn.hide();
+            de_cancelBtn.hide();
+            de_closeBtn.show();
+        };
+
+        var deletesetFail = function() {
+            de_icon.addClass('fail');
+            de_fail.show();
+            de_prompt.hide();
+            de_working.hide();
+            de_success.hide();
+            de_confirmBtn.hide();
+            de_cancelBtn.hide();
+
+            de_closeBtn.show();
+        };
+
+        $('#delete_datasource_popup').bind('setDefault', function(e, desc) {
+            deletesetPrompt();
+            $(".info .desc", delete_popup).html(desc);
+            return $(this);
+        });
+
+        $('#delete_datasource_popup .modal-footer .btn-primary').click(function() {
+            var dataSourceName = delete_popup.attr('datasource');
+            deletesetWorking();
+            $.ajax({
+                url: CBMSFLOW.util.make_spd_i18n_url(mapName+'/datasource/delete/'+dataSourceName+'/'),
+                type: 'POST',
+                success: function(result) {
+                    if (result.code === 0) {
+                        deletesetSuccess();
+                    } else {
+                        deletesetFail();
+                    }
+                    var frameDispatch = CBMSFLOW.environment('frameDispatch');
+                    var lastDataSourceName = CBMSFLOW.environment('datasource_name');
+                    if(dataSourceName == lastDataSourceName){
+                        CBMSFLOW.environment('datasource_name', null);
+                        frameDispatch.removeFrame('map'); 
+                    }
+                }
+            });
+        });
+
+        $('#delete_datasource_popup .modal-footer .btn-primary.close').click(function() {
+            delete_popup.modal('hide');
+        });
+
+        var port_list = [];
+        var csrf_token = $.cookie("csrftoken");
+        var export_select = [];
+        var reg_num = /^\d{1,5}\-{0,1}\d{0,5}$/;
+        var reg_name = new RegExp("^[A-Za-z0-9\u4e00-\u9fa5]+$");
+        var reg_space=/\s+/;
+        var export_popup = $('#export-datasource-popup');
+        var mapName = CBMSFLOW.environment('map_name');
+        $("#datasource-export-input").on("keydown",function(){
+            clearError(this);
+        })
+        $("#export-port-input").on("keydown",function(){
+            clearError(this);
+        })
+        $("#export-datasource-cancel").on('click',function(){
+            port_list = [];
+            $("#datasource-export-input")[0].value="";
+            $("#export-port-input")[0].value="";
+            $(".per-port-div").remove();
+            clearError("#datasource-export-input");
+            clearError("#export-port-input");
+        });
+        $("#export-datasource-download").on('click',function(){
+            if($("form").length>0) $("form").remove();
+            clearError("#export-port-input");
+            var dataSourceName = export_popup.attr('datasource'),
+                name = $("#datasource-export-input")[0].value,
+                portName = $("#export-port-input")[0].value;
+            if (name == "" || reg_space.test(name)||!reg_name.test(name)) {
+                $("#datasource-export-input").addClass("export—error");
+                return;
+            }
+            if (portName>65535 || reg_space.test(portName) ) {
+                $("#export-port-input").addClass("export—error");
+                return;
+            }
+            if($(".per-port-div").length==0 && portName == ""){
+                port_list.push("0-65535");
+            }
+            else{
+                if(portName > 65535 || reg_space.test(portName) || !reg_num.test(portName)){
+                    if($(".per-port-div").length == 0){
+                        $("#export-port-input").addClass("export—error");
+                        return;
+                    }
+                }
+                else{
+                    port_list.push(portName);
+                }
+                var a ="0-65535";
+                if($.inArray(a,port_list)==0){
+                    port_list.splice($.inArray(a,port_list),1); 
+                }
+            }
+            $.unique(port_list);
+            var ifCompress = $("#ifCompress").is(":checked");
+            var url = CBMSFLOW.util.make_spd_i18n_url(mapName+'/datasource/download/'+dataSourceName+'/');
+            var form=$("<form>");//定义一个form表单
+            form.attr("style","display:none");
+            form.attr("target","");
+            form.attr("method","post");//请求类型
+            form.attr("action",url);//请求地址
+            $("body").append(form);//将表单放置在web中
+        
+            var input1=$("<input>");
+            input1.attr("type","hidden");
+            input1.attr("name","name");
+            input1.attr("value",name);
+            form.append(input1);
+        
+            var input2=$("<input>");
+            input2.attr("type","hidden");
+            input2.attr("name","compress");
+            input2.attr("value",ifCompress);
+            form.append(input2);
+            
+            var input3=$("<input>");
+            input3.attr("type","hidden");
+            input3.attr("name","port_list");
+            input3.attr("value",port_list);
+            form.append(input3);
+            
+            var input4=$("<input>");
+            input4.attr("type","hidden");
+            input4.attr("name","csrfmiddlewaretoken");
+            input4.attr("value",csrf_token);
+            form.append(input4);
+            form.submit();//表单提交
+            $("#datasource-export-input")[0].value=""; 
+            port_list = [];
+            $(".per-port-div").remove();
+            $("#export-port-input")[0].value="";
+        });
+        $("#export-port-opa").on('click',function(){
+            var port_data = $("#export-port-input")[0].value;
+            var port_data_two = port_data.indexOf("-")
+            if(port_data_two!=-1){
+                var pre_port_data=port_data.split('-');
+                for(var i=0;i<pre_port_data.length;i++){
+                    var port_data_arr_num = parseInt(pre_port_data[i]);
+                    if(port_data_arr_num>65535){
+                        $("#export-port-input").addClass("export—error");
+                        return;
+                    }
+                }
+            }
+            if (port_data == "" || port_data>65535 ||reg_space.test(port_data) || !reg_num.test(port_data)) {
+                $("#export-port-input").addClass("export—error");
+                return;
+            }
+            if($("#new-port-div").length==0){
+                var new_port_div = $("<div></div>").attr({id : "new-port-div"});
+                $("#export-datasource-popup .modal-body").after(new_port_div);
+            }
+            if($(".per-port-div").length>7){
+                $("#port-error").addClass("show-error").removeClass("hidden—error");
+                $("#export-port-input").addClass("export—error");
+                return;
+            }
+            else{
+                $("#port-error").addClass("hidden-error").removeClass("show-error");
+            }
+            if(!(port_list.indexOf(port_data)==-1)){
+                $("#export-port-input").addClass("export—error");
+                return;
+            }
+            port_list.push(port_data); 
+            var per_port_div = $("<div></div>").attr({class : "per-port-div"}).html(port_data);
+            var per_port_delete = $("<span></span>").attr({class : "per-port-delete"});
+            $("#new-port-div").append(per_port_div);
+            $(".per-port-div").append(per_port_delete);
+            $("#export-port-input")[0].value=""; 
+            $(".per-port-delete").on("click",function(){
+                $("#export-port-input")[0].value="";
+                clearError("#export-port-input");
+                var delete_value = $(this).parents(".per-port-div")[0].innerText;
+                port_list.splice($.inArray(delete_value,port_list),1);
+                $(this).parents(".per-port-div").remove();
+                $("#port-error").addClass("hidden-error").removeClass("show-error");
+            });
+        });
+        function clearError(ele){
+            if($(ele).hasClass("export—error")){
+                $(ele).removeClass("export—error");
+            }
+        }
+        var rename_popup = $('#rename_datasource_popup');
+        var re_icon = rename_popup.find('.icon');
+        var re_mapName = CBMSFLOW.environment('map_name');
+        var re_prompt = rename_popup.find('.prompt');
+        var re_success = rename_popup.find('.success');
+        var re_fail = rename_popup.find('.fail');
+        var re_confirmBtn = rename_popup.find('.btn-primary');
+        var re_cancelBtn = rename_popup.find('.btn-second');
+        var re_closeBtn = rename_popup.find('.btn-primary.close');
+        var re_resultBlock = rename_popup.find('.result');
+        var re_descInput = rename_popup.find('input[name=desc]');
+
+        var setPrompt = function() {
+            re_icon.addClass('info').removeClass('fail success handling');
+            re_prompt.show();
+            re_prompt.find("input").val(rename_popup.attr('desc')).textSelect();
+            re_confirmBtn.show();
+            re_cancelBtn.show();
+
+            re_success.hide();
+            re_fail.hide();
+            re_closeBtn.hide();
+            re_resultBlock.hide();
+        };
+
+        var setSuccess = function() {
+            re_icon.addClass('success');
+            re_success.show();
+            re_prompt.hide();
+            re_fail.hide();
+            re_confirmBtn.hide();
+            re_cancelBtn.hide();
+            re_closeBtn.show();
+            re_resultBlock.show();
+        };
+
+        var setFail = function(msg) {
+            re_icon.addClass('fail');
+            re_fail.show();
+            re_prompt.hide();
+            re_success.hide();
+            re_confirmBtn.hide();
+            re_cancelBtn.hide();
+            re_closeBtn.show();
+            re_resultBlock.show();
+            re_fail.html(msg);
+        };
+
+        $('#rename_datasource_popup').bind('setDefault', function() {
+            setPrompt();
+            return $(this);
+        });
+
+        $('#rename_datasource_popup .modal-footer .btn-primary').click(function() {
+            var dataSourceName = rename_popup.attr('datasource');
+            var dataSourceDesc = rename_popup.attr('desc');
+            var desc = $("#datasource_desc_input").val(),
+                reg = new RegExp("^[A-Za-z0-9\u4e00-\u9fa5-]+$");
+            if(!$.trim(desc)){
+                re_descInput.messagepop('show', '名称不能为空');
+                re_descInput.addClass('error');
+                return false;
+            } else if(desc.length > 12){
+                re_descInput.messagepop('show', '名称不能超过12字符"');
+                re_descInput.addClass('error');
+                return false;
+            } else if(!reg.test(desc)){
+                re_descInput.messagepop('show', '名称不能出现除-以外的特殊字符"');
+                re_descInput.addClass('error');
+                return false;
+            }
+            var resp_data = encodeHtml(desc);
+            $.ajax({
+                url: CBMSFLOW.util.make_spd_i18n_url(mapName+'/datasource/rename/'+dataSourceName+'/'),
+                type: 'POST',
+                data: {'desc':resp_data},
+                dataType: 'json',
+                success: function(result) {
+                    if (result.code === 0) {
+                        setSuccess();
+                    } else {
+                        setFail(result.msg);
+                    }
+                },
+                error:function(){setFail();}
+            });
+        });
+
+        $('#rename_datasource_popup .modal-footer .btn-primary.close').click(function() {
+            rename_popup.modal('hide');
+            prompt.find("input").val("");
+            rename_popup.removeAttr('datasource').removeAttr('desc');
+        });
+
+        re_descInput.messagepop({'trigger': 'manual', 'zindex': null});
+
+        re_cancelBtn.click(function() {
+            re_descInput.messagepop('hide');
+            re_descInput.removeClass('error');
+        });
+
+        function encodeHtml (s){
+            s = (s != undefined) ? s : this.toString();
+            var REGX_HTML_ENCODE = /"|&|'|<|>|[\x00-\x20]|[\x7F-\xFF]|[\u0100-\u2700]/g;
+            return (typeof s != "string") ? s :
+                    s.replace(REGX_HTML_ENCODE,
+                            function($0){
+                                var c = $0.charCodeAt(0), r = ["&#"];
+                                c = (c == 0x20) ? 0xA0 : c;
+                                r.push(c); r.push(";");
+                                return r.join("");
+                            });
+        }
+
+        var stop_popup = $('#stop_datasource_popup');
+        var icon = stop_popup.find('.icon');
+        var mapName = CBMSFLOW.environment('map_name');
+        var prompt = stop_popup.find('.prompt');
+        var working = stop_popup.find('.working');
+        var success = stop_popup.find('.success');
+        var fail = stop_popup.find('.fail');
+        var confirmBtn = stop_popup.find('.btn-primary');
+        var cancelBtn = stop_popup.find('.btn-second');
+        var closeBtn = stop_popup.find('.btn-primary.close');
+
+        var stopSetPrompt = function() {
+            icon.addClass('info').removeClass('fail success handling');
+            prompt.show();
+            confirmBtn.show();
+            cancelBtn.show();
+
+            working.hide();
+            success.hide();
+            fail.hide();
+            closeBtn.hide();
+
+        };
+
+        var stopSetWorking = function() {
+            icon.addClass('handling');
+            working.show();
+            prompt.hide();
+            success.hide();
+            fail.hide();
+            confirmBtn.hide();
+            cancelBtn.hide();
+        };
+
+        var stopSetSuccess = function() {
+            icon.addClass('success');
+            success.show();
+            prompt.hide();
+            working.hide();
+            fail.hide();
+            confirmBtn.hide();
+            cancelBtn.hide();
+            closeBtn.show();
+        };
+
+        var stopSetFail = function() {
+            icon.addClass('fail');
+            fail.show();
+            prompt.hide();
+            working.hide();
+            success.hide();
+            confirmBtn.hide();
+            cancelBtn.hide();
+
+            closeBtn.show();
+        };
+        $('#stop_datasource_popup').bind('setDefault', function(e, desc) {
+            stop_popup.find('.prompt').eq(0).text(CBMSFLOW.util.formatString('您确认要终止提取%s吗?', [desc]));
+            stopSetPrompt();
+            return $(this);
+        });
+        $('#stop_datasource_popup .modal-footer .btn-primary').click(function() {
+            var dataSourceName = stop_popup.attr('datasource');
+            stopSetWorking();
+            $.ajax({
+                url: CBMSFLOW.util.format_i18n_url('/spd/'+mapName+'/datasource/stop/'+dataSourceName+'/'),
+                type: 'POST',
+                success: function(result) {
+                    if (result.state == 'ok') {
+                        stopSetSuccess();
+                    } else {
+                        stopSetFail();
+                    }
+                }
+            });
+        });
+        $('#stop_datasource_popup .modal-footer .btn-primary.close').click(function() {
+            stop_popup.modal('hide');
+        });
+        var load_popup = $('#load_datasource_popup');
+        $('#load_datasource_popup .modal-footer .btn-primary.close').click(function() {
+            load_popup.modal('hide');
+        });
+        var widowHeight =  $(window).height(),
+            ulHeight = widowHeight - 150;
+        $("#spd-datasource-list-ul").css({height: ulHeight+"px"});
+        $("#menu-snapshot").css({display : "none"});
+        var patnName = window.location.pathname;
+        var nowPatnName = patnName.match(/(map\d+)/g);
+        window.localStorage.setItem("mapName",nowPatnName[0]);
+        $.ajax({ // 获取权限
+            type:"POST",
+            url:"/zh-cn/accounts/currentuser/",
+            data:{"csrfmiddlewaretoken":csrf_token},
+            dataType:"json",
+            success:function(result) {
+                if(result.code === 0){
+                    var permissionData = result.data.permission;
+                    CBMSFLOW.environment('permissionData', permissionData);
+                    window.localStorage.setItem('permissionData',JSON.stringify(permissionData));
+                    var ifsnapDetail = permissionData.spd_snapshoot_detail, // 查看网路侦测快照
+                        ifContrast = permissionData.spd_contrast, // 网路侦测对比功能
+                        menuSnapshot = $('#snapshot-btn'),
+                        compareD = $('#compare-btn-popup');
+                    if(ifsnapDetail) menuSnapshot.show();
+                    else menuSnapshot.hide();
+                    if(ifContrast) compareD.show();
+                    else compareD.hide();
+                }
+            },
+            error:function(){
+                console.log("获取当前用户信息失败！");
+            }
+        });
+        $.ajax({
+            url:"/zh-cn/spd/"+ nowPatnName[0] +"/overview/datasourcedata/",
+            type: 'POST',
+            success: function(res) {
+                var data = res.data;
+                $("#spd-datasource-free-space span").text(data.free_space);
+                $('#collect-datasource-btn').DataSourcePopup({'ds_devices': data.ds_devices, 'duration_limit': data.duration_limit});
+                //
+                var dataList = data.datasource_list,
+                    dataListLen = dataList.length;
+                for(var i=0;i<dataListLen;i++){
+                    var aa =    
+                    "<li name="+dataList[i].name+" class='spd-datasource-item' index="+dataList[i].index+" state="+dataList[i].state+">"+
+                    "<div class='spd-datasource-info-border'>"+
+                    "<div class='spd-datasource-info'>"+
+                    "<div class='spd-datasource-title'>"+
+                    "<div class='spd-datasource-info-desc info-value text-ellipsis text-tip' name='desc'>"+dataList[i].desc+"</div>"+
+                    "<div class='spd-datasource-select'>"+
+                    "</div>"+
+                    "<div class='spd-datasource-ctl'>"+
+                        "<i class='spd-datasource-ctl-export spd-icon'></i>"+
+                        "<i class='spd-datasource-ctl-rename spd-icon spd-icon-rename'></i>"+
+                        "<i class='spd-datasource-ctl-delete spd-icon spd-icon-delete'></i>"+
+                        "<i class='spd-datasource-ctl-stop spd-icon spd-icon-stop'></i>"+
+                    "</div>"+
+                    "</div>"+
+                    "<ul>"+
+                    "<li>"+
+                        "<div class='spd-datasource-info-label'>起始时间：</div>"+
+                        "<div class='spd-datasource-info-value' name=start_time'>"+dataList[i].start_time+"</div>"+
+                    "</li>"+
+                    "<li>"+
+                    "<div class='spd-datasource-info-label'>持续时间：</div>"+
+                        "<div class='spd-datasource-info-value' name='duration'>"+dataList[i].duration+"</div>"+
+                    "</li>"+
+                    "<li>"+
+                        "<div class='spd-datasource-info-label'>数据源：</div>"+
+                        "<div class='spd-datasource-info-value' name='type'>"+dataList[i].type+"</div>"+
+                    "</li>"+
+                    "<li>"+
+                        "<div class='spd-datasource-info-label'>IP 地址：</div>"+
+                        "<div class='spd-datasource-info-value' name='host'>"+dataList[i].host+"</div>"+
+                    "</li>"+
+                    "<li>"+
+                        "<div class='spd-datasource-info-label'>接口：</div>"+
+                        "<div class='spd-datasource-info-value' name='intf'>"+dataList[i].intf+"</div>"+
+                    "</li>"+
+                    "<li>"+
+                        "<div class='spd-datasource-info-label'> IP 数量：</div>"+
+                        "<div class='spd-datasource-info-value' name='ip_count'>"+dataList[i].ip_count+"</div>"+
+                    "</li>"+
+                    "<li>"+
+                        "<div class='spd-datasource-info-label'>会话数</div>"+
+                        "<div class='spd-datasource-info-value' name='convs_count'>"+dataList[i].convs_count+"</div>"+
+                    "</li>"+
+                    "<li>"+
+                        "<div class='spd-datasource-info-label'>空间占用：</div>"+
+                        "<div class='spd-datasource-info-value' name='disk_space'>"+dataList[i].disk_space+"</div>"+
+                    "</li>"+
+                    "<li class='fatal'>"+
+                        "<div class='spd-datasource-info-label'>状态：</div>"+
+                        "<div class='spd-datasource-info-value' name='state_desc'>"+dataList[i].state_desc+"</div>"+
+                    "</li>"+
+                    "</ul>"+
+                "</div>"+
+                "<div class='spd-datasource-box-shadow'></div>"+
+                "</div>"+
+                "</li>";
+                console.log(aa);
+                $("#spd-datasource-list>ul").append(aa);
+                if(dataList[i].active){
+                    $(".spd-datasource-item").addClass("active");
+                };
+                if(dataList[i].state === "running"){
+                    $("div.spd-datasource-ctl").addClass("running");
+                }
+                if(dataList[i].state === "done"){
+                    $(".spd-datasource-ctl i:first-child").addClass("spd-icon-export");
+                }
+                if(dataList[i].state === "fatal"){
+                    $("li:last-child").addClass("fatal");
+                }
+            }
+                var mapName = window.localStorage.getItem('mapName');
+                var datasource_info = new CBMSFLOW.spd.DataSourceInfo($("#spd-datasource-list>ul"),"/zh-cn/spd/"+ mapName +"/overview/datasource/info/", data.datasource_list);
+                if(data.active_datasource) CBMSFLOW.environment('datasource_name', data.active_datasource);
+                var permissionData = CBMSFLOW.environment('permissionData');
+                if(!permissionData.spd_data_export){
+                    $('.spd-datasource-ctl-export').hide();
+                }
+            }
+        });
+        var spd_datasource_frame = $('#spd-datasource-frame'),  
+            spd_datasource_div =  $('<div></div>').attr({ class : 'spd-datasource-div'}),
+            spd_datasource_buttons =  $('<div></div>').attr({ class : 'spd-datasource-buttons'}),
+            buttons_front = $('<a></a>').attr({ class : 'front'}),
+            buttons_behind = $('<a></a>').attr({ class : 'behind'}),
+            create_map_btn = $('<a></a>').attr({ id : 'create-map-btn'}),
+            create_map_btn_img = $('<img />').attr({ src : '../../static/spd_img/map-add.png'});
+        spd_datasource_div.append(spd_datasource_buttons);
+        spd_datasource_buttons.prepend(create_map_btn);
+        create_map_btn.append(create_map_btn_img);
+        spd_datasource_frame.prepend(spd_datasource_div);
+        var createMapPopup = $('#create_map_popup');
+        create_map_btn.click(function(e){
+            createMapPopup.modal({'keyboard': false, 'backdrop': 'static', 'show': true});
+            getPreMapName();
+            $('.modal-backdrop.in').css('opacity', 0.5);
+        });
+        getAllMap();
+        //数据源分类展示：
+        function getAllMap(ifDelete){
+            $.ajax({
+                url: '/zh-cn/spd/allmap/get/',
+                type: 'get',
+                success: function(result) {
+                    if (result.code === 0) {
+                        var mapData = result.data;
+                        addPreMap(mapData,ifDelete)
+                    }else {
+                        alertPopup(result.msg);
+                    }
+                }
+            }); 
+        }
+        //创建map
+        function addPreMap(allDesc,ifDelete){
+            allDesc = allDesc.reverse();
+            var descLen = allDesc.length;
+            for (var i = 0 ; i< descLen;i++) {
+                if(i === (allDesc.length -1)){
+                    if(ifDelete){
+                        window.localStorage.setItem("mapName",allDesc[i].name);
+                        if(allDesc[i].name === nowPatnName[0])window.location.reload();
+                        else location.replace('/zh-cn/spd/'+allDesc[i].name+'/overview/#datasource');
+                    }
+                }
+                var mapName = window.localStorage.getItem("mapName");
+                if(mapName === allDesc[i].name)  window.localStorage.setItem("mapNameCH", allDesc[i].desc);
+                var prePro =  $('<a></a>').attr({href : '/zh-cn/spd/'+allDesc[i].name+'/overview/#datasource', class : 'pre-map-name', id : 'mapName'+ allDesc[i].name , "data-id" : allDesc[i].name}),
+                    preProName = $('<span></span>').attr({class : 'pre-map-name', onclick : "return false;"}).html(allDesc[i].desc);
+                    predelete = $('<span></span>').attr({class : 'pre-map-delete', id : allDesc[i].name, onclick : "return false;"});
+                prePro.prepend(preProName);
+                prePro.prepend(predelete);
+                spd_datasource_buttons.prepend(prePro);
+                prePro.on("mouseenter",function(){
+                    $(this).find(".pre-map-delete").css("display","block");
+                    $(this).find(".pre-map-delete").off("click").on("click",function(e){
+                        var delete_map_id = this.id;
+                        alertPopup("是否删除该项目", delete_map_id);
+                    });
+                });
+                prePro.on("mouseleave",function(){
+                    $(this).find(".pre-map-delete").css("display","none");
+                });
+                //点击名称 进行重命名
+                preProName.on("click",function(){
+                    var dataPreInput = $(this).text();
+                    var thisSpan =  $(this);
+                    $(this).text('');
+                    if($(".pre-map-input").length>0) $(".pre-map-input").remove();
+                    console.log(1);
+                    var thisP = $(this).parent(),
+                        thisID = thisP.attr("data-id"),
+                        preProNameInputDiv =  $('<div></div>').attr({type : "text",class : 'pre-map-input-div'}),
+                        preProNameInput = $('<input/>').attr({type : "text",class : 'pre-map-input',onclick : "return false;"}).val(dataPreInput);
+                    preProNameInputDiv.append(preProNameInput);
+                    thisP.append(preProNameInputDiv);
+                    preProNameInput.on("blur",function(){
+                        var edit_map_url = '/zh-cn/spd/'+ thisID +'/change/desc/',
+                            reg = new RegExp("^[A-Za-z0-9\u4e00-\u9fa5-]+$"),
+                            newNanme = $(this).val(),
+                            postData = {
+                                desc : newNanme,
+                                old_desc : dataPreInput
+                            };
+                        if(newNanme.length >12 ){
+                            thisSpan.text('dataPreInput');
+                            alertPopup("名称不超过12个字符");
+                            return
+                        } else if(!reg.test(newNanme)){
+                            thisSpan.text('dataPreInput');
+                            alertPopup("不能出现除 - 以外的特殊字符");
+                            return
+                        }
+                        $.ajax({
+                            url: edit_map_url,
+                            type: 'post',
+                            data: postData,
+                            success: function(result) {
+                                if (result.code === 0) {
+                                    alertPopup("修改成功");
+                                    thisSpan.text(newNanme);
+                                    $(".pre-map-name").remove();
+                                    getAllMap();
+                                }else {
+                                    alertPopup(result.msg);
+                                }
+                            }
+                        });
+                    });
+                });
+            };
+            var mapName = window.localStorage.getItem("mapName");
+            $("#mapName"+mapName).addClass("nowMap");
+            $(window).resize(function(){
+                var addClickLeft = $("#create-map-btn").offset().left,
+                    widowWidth =  $(window).width(),
+                    widowHeight =  $(window).height(),
+                    preCardWidth = widowWidth*20/100,
+                    ulHeight = widowHeight - 150;
+                $("#spd-datasource-list-ul").css({height: ulHeight+"px"});
+            });
+            var addClickLeft = $("#create-map-btn").offset().left,
+                widowWidth =  $(window).width(),
+                preCardWidth = widowWidth*20/100;
+            if($(".nowMap").length > 0) {
+                var leftP = $(".nowMap").position().left;
+                if(leftP > preCardWidth*3.01)  $(".spd-datasource-buttons").css({left:preCardWidth*3.01 - leftP});  
+            }
+            if(addClickLeft+preCardWidth>widowWidth){
+                $("#create-map-btn").css({position: "fixed",height: "43px",right: 0 ,top: "44px","border-left": "1px #08111a solid"});
+                var buttons_front = $('<a></a>').attr({ class : 'front'}),
+                    buttons_behind = $('<a></a>').attr({ class : 'behind'}).css({right:0 }),
+                    nowLeft = spd_datasource_buttons.css('left'),
+                    nowLeftNum  = parseInt(nowLeft.substr(0,nowLeft.length-2))*1;
+                //if(nowLeftNum <= 0) buttons_front.css({display : "none"});
+                if(nowLeftNum >= (-preCardWidth) + 20) buttons_front.css({display : "none"});
+                else buttons_front.css({display : "block"});
+                var lastLeft = $(".pre-map-name:last").offset().left;
+                if(lastLeft <= widowWidth - preCardWidth*2 + 200) buttons_behind.css({display : "none"});
+                else buttons_behind.css({display : "block"});
+                spd_datasource_buttons.prepend(buttons_front);
+                spd_datasource_buttons.prepend(buttons_behind);
+                buttons_front.on("click",function(){
+                    buttons_behind.css({display : "block"});
+                    var nowLeft = spd_datasource_buttons.css('left'),
+                        nowLeftNum  = (nowLeft.substr(0,nowLeft.length-2))*1;
+                    if(nowLeftNum + 10 >= (-preCardWidth)) buttons_front.css({display : "none"});
+                    spd_datasource_buttons.css({left : (nowLeftNum + preCardWidth) + "px"});
+                });
+                buttons_behind.on("click",function(){
+                    buttons_front.css({display : "block"});
+                    var nowLeft = spd_datasource_buttons.css('left'),
+                        nowLeftNum  = (nowLeft.substr(0,nowLeft.length-2))*1,
+                        lastLeft = $(".pre-map-name:last").offset().left;
+                    if(lastLeft <= widowWidth-preCardWidth/2 + 20) buttons_behind.css({display : "none"});
+                    spd_datasource_buttons.css({left: (nowLeftNum - preCardWidth) + "px"});
+                });
+            }
+        }
+        //弹框效果
+       function alertPopup(msg,delete_map_id){
+        if($("#alert-popup")) $("#alert-popup").remove();
+        var alert = 
+        '<div id="alert-popup">'+
+                '<div class="alert-popup-main">'+
+                    '<div class="alert-popup-title">'+
+                        '<h3>提示</h3>'+
+                        '<div class="alert-popup-close"></div>'+
+                    '</div>'+
+                    '<span>'+ msg +'</span>'+
+                '</div>'+
+            '</div>';
+            $("body").append(alert);
+            $(".alert-popup-close").on("click",function(){
+                $("#alert-popup").remove();
+            });
+            if(delete_map_id) {
+                var opar = 
+                    '<div class="alert-footer">'+
+                        '<div id="sure-bnt">确定</div>'+
+                        '<div id="cancle-bnt">取消</div>'+
+                    '</div>';
+                $(".alert-popup-main").append(opar);
+                $("#cancle-bnt").on("click",function(){
+                    $("#alert-popup").remove();
+                });
+                $("#sure-bnt").on("click",function(){
+                    deleteMap(delete_map_id);
+                });
+            }
+        }
+        //删除map
+        function deleteMap(deleteId){
+            var delete_map_url = '/zh-cn/spd/'+deleteId+'/delete/';
+            $.ajax({
+                url: delete_map_url,
+                type: 'post',
+                data: [],
+                success: function(result) {
+                    if (result.code === 0) {
+                        alertPopup("删除成功");
+                        getAllMap(true);
+                    }else {
+                        alertPopup(result.msg);
+                    }
+                }
+            }); 
+        }
+        //获取每个map
+        function getPreMapName(){
+            $.ajax({
+                url: '/zh-cn/spd/newmapdesc/get/',
+                type: 'get',
+                success: function(result) {
+                    if (result.code === 0) {
+                        $("#getNewMapName").val(result.data.desc);
+                    }else {
+                        alertPopup(result.msg);
+                    }
+                }
+            }); 
+        }
+    });
+
+</script>

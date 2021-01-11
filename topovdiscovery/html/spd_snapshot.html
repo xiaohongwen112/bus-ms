@@ -1,0 +1,832 @@
+<div class="nav-block">
+</div>
+<div class="snapshot-name">
+  <span class="s-name"></span>
+</div>
+<div id="topovmap-snapshot" class="map-block">
+    <div class="zoom-ctrl">
+        <ul>
+            <li><i class="zoom-fit"></i></li>
+            <li><i class="zoom-in"></i></li>
+            <li><i class="zoom-out"></i></li>
+        </ul>
+    </div>
+    <div id="snapshot-popup-node" class="popup-modal snapshot-map-popup snapshot-map-popup-node hide" style="width:auto;">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 class="data" data_name="title"></h3>
+        </div>
+
+        <div class="modal-body">
+            <div class="node-type-options">
+                <span>节点类型</span>
+                <label>
+                <input type="radio" value="client" name="client-type">
+                <span>客户端</span>
+                </label>
+                <label>
+                <input type="radio" value="server" name="client-type">
+                <span>服务器</span>
+                </label>
+
+                <button id="save-type">保存</button>
+            </div>
+            <div class="warning"> 警告:请正确设置节点类型，不能存在客户端连接客户端！</div>
+        <div class="modal-body">
+        <div class="snapshot-popup-data node-data grey-scrollbar" style="display:none; max-height:400px;">
+            <div class="data" data_name="servers"></div>
+        </div>
+        </div>
+    </div>
+    <div id="snapshot-popup-edge" class="popup-modal snapshot-map-popup snapshot-map-popup-edge hide" style="width:auto;">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 class="data" data_name="title"></h3>
+        </div>
+        <div class="snapshot-popup-data flow-data grey-scrollbar" style="max-height:400px;">
+            <div class="flow-data-row" style="padding-bottom:20px;background:none;">
+            <div class="data flow-data-node-block flow-data-node-title" data_name="node_name1" style="width:280px;"></div>
+            <div class="flow-data-arrow-block">&nbsp;</div>
+            <div class="data flow-data-node-block flow-data-node-title" data_name="node_name2"></div>
+            </div>
+            <div class="data" data_name="link">
+            </div>
+        </div>
+        </div>
+    </div>
+    <div id="spdmap-toolbar">
+        <button data-toggle="tooltip" data-original-title="重命名快照" name="edit"><i class="toolbar-icon edit"></i></button>
+        <button data-toggle="tooltip" data-original-title="删除快照" name="remove"><i class="toolbar-icon remove"></i></button>
+        <button data-toggle="tooltip" data-original-title="加载" name="load"><i class="toolbar-icon load"></i></button>
+    </div>
+</div>
+<div id="no-snapshot">
+  <div class="icon-info"></div>
+  <span>您还未创建快照</span>
+</div>
+<div id="snapshot_list_block">
+    <div id="snapshot_list_resize">
+        <div class="snapshot_list_head"></div>
+        <div id="snapshot_list" class="grey-scrollbar">
+        </div>
+        <div class="snapshot_list_bottom"></div>
+    </div>
+</div>
+<div id="rename_snapshot_popup" class="popup-modal hide short-edit-popup" tabindex="-1">
+    <div class="modal-header">
+        <h3>重命名</h3>
+    </div>
+    <div class="modal-body">
+        <div class="desc-block prompt">
+            <label class="inline spd-label">名称</label><input type="text" class="desc spd-input" id="snapshot_desc_input" maxlength="20"/>
+        </div>
+        <div class="result">
+            <div class="icon info"></div>
+            <div class="info">
+                <div class="line success">重命名成功</div>
+                <div class="line fail">重命名失败</div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary blue-button ctl-button">保存</button>
+        <button class="btn btn-second close grey-button ctl-button" data-dismiss="modal" aria-hidden="true">取消</button>
+        <button class="btn btn-primary close blue-button ctl-button">确定</button>
+    </div>
+</div>
+<div id="delete_snapshot_popup" class="popup-modal hide" tabindex="-1">
+    <div class="modal-header">
+        <h3>&nbsp;</h3>
+    </div>
+    <div class="modal-body">
+        <div class="icon info"></div>
+        <div class="info">
+            <div class="line prompt">您确定要删除<div style="display:inline-block;max-width:200px;" class="desc text-tip text-ellipsis"></div>吗?</div>
+            <div class="line prompt">快照删除后不可恢复</div>
+            <div class="line working">正在删除中...</div>
+            <div class="line success">删除成功</div>
+            <div class="line fail">删除失败</div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary confirm blue-button ctl-button">确定</button>
+        <button class="btn btn-second close grey-button ctl-button" data-dismiss="modal" aria-hidden="true">取消</button>
+        <button class="btn btn-primary close blue-button ctl-button">确定</button>
+    </div>
+</div>
+<script type="text/javascript"> 
+    $(function() {
+        var mapNameCH = window.localStorage.getItem('mapNameCH');
+        $(".program-name").text(mapNameCH);
+        $('#save-type').click(function () {
+            var type = $('.node-type-options input:radio:checked').val();
+            var id = $('.node-type-options').data('id');
+            var edges = $('.node-type-options').data('edges');
+
+            if (type === 'client'){
+            var wrongType = edges.some(function (edge) {
+                if (edge.nodeA.id === id && edge.nodeB && edge.nodeB.type && edge.nodeB.type === 'client'){
+                return true;
+                } else if (edge.nodeB.id === id && edge.nodeA && edge.nodeA.type && edge.nodeA.type === 'client') {
+                return true;
+                }
+                return false;
+            });
+
+            if (wrongType) {
+                // alert('WRONG');
+                // $('.modal-body .warning').show();
+                $('.modal-body .warning').addClass('bold');
+                return;
+            }
+            }
+
+            $.ajax({
+            url: '/zh-cn/spd/snapshot/'+ CBMSFLOW.environment('snapshot_id') +'/save_type',
+            type: 'POST',
+            data: {
+                component_id: id,
+                component_type: type,
+            },
+            success: function(result) {
+                if (result.state === 'error') {
+                console.error(result);
+                window.alertWindow('保存失败' + result.msg, false);
+                } else {
+                $('div#snapshot-popup-node').hide();
+                var nodes = CBMSFLOW.environment('snapshot_map').nodes;
+                var node = _.find(nodes, (node) => node.id === id);
+                node.type = type;
+                if (type === 'server') {
+                    node.pointCenter.attr({'fill': '#3dd9c4'});
+                } else {
+                    node.pointCenter.attr({ 'fill': '#3f9b2f'});
+                }
+                }
+            },
+            });
+
+        });
+        /*window.onpopstate = function (event) {
+        var nowPatnName = window.location.hash;
+        var isRef = window.localStorage.getItem("isRef");
+            if (event.state == null && nowPatnName !== "#snapshot" && isRef === "true") {
+                var mapNameCH = window.localStorage.getItem('mapNameCH');
+                $(".program-name").text(mapNameCH);
+                window.location.reload();
+            }
+        }*/
+        $("#menu-snapshot").css({display : "none"});
+        $("#compareD").parent().css({display : "block"});
+        var breadcrumbs = $("#spd-header-breadcrumbs"),
+            liseg = $("<li></li>").attr({class : "breadcrumbs-segment"}).html(">"),
+            liname = $("<li></li>").attr({class : "breadcrumbs-name"}).html("快照");
+        if(!breadcrumbs.hasClass("hasCrumbs")) {
+        breadcrumbs.append(liseg);
+        breadcrumbs.append(liname);
+        breadcrumbs.addClass("hasCrumbs");
+        } else {
+            $(".breadcrumbs-name").html("快照");
+        }
+        var mapName = window.localStorage.getItem("mapName");
+        var snapshotData = '/zh-cn/spd/'+ mapName+'/overview/snapshotdata/'
+        $.ajax({
+            type:"GET",
+            url:snapshotData,
+            dataType:"json",
+            success:function(result) {
+                if(result.code ===0){
+                    var evdata = CBMSFLOW.environment('permissionData');
+                    var permissionData = evdata === undefined ? JSON.parse(window.localStorage.getItem('permissionData')) : evdata;
+                    var ifSpdSnapshootEdit = permissionData.spd_snapshoot_edit; // 编辑网路侦测快照
+                    if(!ifSpdSnapshootEdit){
+                        $('#topovmap-snapshot #spdmap-toolbar').hide();
+                    }
+                    var topov_map = result.data.last_snapshot;
+                    if(topov_map.map_data){
+                        //set snapshot name
+                        $('.snapshot-name .s-name').text(topov_map.snapshot_name);
+
+                        var nodes = topov_map.map_data.nodes;
+                        var edges = topov_map.map_data.edges;
+                        SpdMap.Blender.fixWindowSize($('#topovmap-snapshot'));
+
+                        var resizeTimeOut = null;
+                        window.addEventListener("resize", function () {
+                            clearTimeout(resizeTimeOut);
+                            resizeTimeOut = setTimeout(function () {
+                                SpdMap.Blender.fixWindowSize($('#topovmap-snapshot'));
+
+                                var adj_left = ($(window).width() - 90) / 2;
+                                $('#snapshot_list_block .resizable-span').css('left', adj_left);
+                            },600);
+                        });
+                        $("#menu-snapshot").css({display : "none"});
+                        var map = new SpdMap.SnapshotMap($('#topovmap-snapshot'), nodes, edges);
+                        map.draw();
+                        map.zoomCtrl.zoomFitOrg();
+                        CBMSFLOW.environment('snapshot_map', map);
+                        CBMSFLOW.environment('snapshot_id', topov_map._id);
+                        CBMSFLOW.environment('snapshot_name', topov_map.snapshot_name);
+
+                    }else{
+                    //show no-snapshot-msg-page
+                    $('.snapshot-name').css('display', 'none');
+                    $('#topovmap-snapshot').css('display', 'none');
+                    $('#snapshot_list_block').css('display', 'none');
+                    $('#spdmap-toolbar li[name="edit"] a').addClass('disabled');
+                    $('#spdmap-toolbar li[name="remove"] a').addClass('disabled');
+                    $('#spdmap-toolbar li[name="load"] a').addClass('disabled');
+                    $('#no-snapshot').show();
+                    }
+
+                    var deleteBtn = $('#spdmap-toolbar button[name=remove]');
+                    var renameBtn = $('#spdmap-toolbar button[name=edit]');
+                    var loadBtn = $('#spdmap-toolbar button[name=load]');
+                    var deleteSnapshotPopup = $('#delete_snapshot_popup');
+                    var renameSnapshotPopup = $('#rename_snapshot_popup');
+                    renameBtn.click(function(e) {
+                        if($(this).hasClass('disabled')){
+                            return false;
+                        }
+                        e.stopPropagation();
+                        renameSnapshotPopup.attr('s_id', CBMSFLOW.environment('snapshot_id') || undefined);
+                        if(renameSnapshotPopup.attr('s_name') == undefined){
+                            renameSnapshotPopup.attr('s_name', CBMSFLOW.environment('snapshot_name') || undefined);
+                        }
+                        renameSnapshotPopup.modal({'keyboard': false, 'backdrop': 'static', 'show': true});
+                        renameSnapshotPopup.trigger('setDefault');
+                        $('.modal-backdrop.in').css('opacity', 0.5);
+                    });
+                    deleteBtn.click(function(e) {
+                        if($(this).hasClass('disabled')){
+                            return false;
+                        }
+                        e.stopPropagation();
+                        var s_id = CBMSFLOW.environment('snapshot_id') || undefined;
+                        var desc = $("#snapshot_list .snapshot-png[s_id='"+s_id+"']").attr("desc");
+                        deleteSnapshotPopup.attr('s_id', s_id);
+                        deleteSnapshotPopup.trigger('setDefault', [desc]);
+                        deleteSnapshotPopup.modal({'keyboard': false, 'backdrop': 'static', 'show': true});
+                        $('.modal-backdrop.in').css('opacity', 0.5);
+
+                    });
+                    loadBtn.click(function(e) {
+                        var isRef = "false";
+                        window.localStorage.setItem("isRef",isRef);
+                        FrameDispatchInstance = CBMSFLOW.environment('frameDispatch');
+                        //FrameDispatchInstance.frameChange('map', CBMSFLOW.environment('snapshot_map')||undefined);
+                        CBMSFLOW.environment('loadSnapshot', true);
+                        FrameDispatchInstance.toggle('map', true);
+                    });
+
+                    $('#spdmap-toolbar button').tooltip();
+                    var snapshot_list = result.data.snapshot_list,
+                        snapshot_listLen = snapshot_list.length;
+                    if(snapshot_listLen > 0){
+                        for(var i=0;i<snapshot_listLen;i++){
+                            var snapshotPngActive = result.data.last_snapshot._id === snapshot_list[i].id ? 'snapshot-png-active' : '',
+                                isToApp = result.data.snapshot_list[i].is_to_app ? 'topoBtn' : '',
+                                listTemp = 
+                                    '<div class="snapshot-png '+ snapshotPngActive +'" s_id="'+snapshot_list[i].id+'" desc="'+snapshot_list[i].name+'">'+
+                                        '<div class="snapshot-png-pic"> <img src="'+snapshot_list[i].png+'" /></div>' +
+                                        '<div class="snapshot-desc">' +
+                                            '<div class="desc text-ellipsis">'+ snapshot_list[i].name +'</div>' +
+                                        '</div>' +
+                                        '<div class="'+isToApp+'"></div>' +
+                                        '<div class="snapshot-desc-detail">' +
+                                            '<p class="desc text-ellipsis text-tip">'+ snapshot_list[i].name +'</p>' +
+                                            '<p class="datetime">'+ snapshot_list[i].ts +'</p>' +
+                                        '</div>' +
+                                        '<div class="snapshot-shadow"></div>' +
+                                        '<div class="snapshot-shadow-hover"></div>' +
+                                    '</div>';
+                            $('#snapshot_list').children().append(listTemp);
+                        }
+                    }
+                    $.ajax({
+                        type:"POST",
+                        url:"/zh-cn/accounts/currentuser/",
+                        data:{"csrfmiddlewaretoken":csrf_token},
+                        dataType:"json",
+                        success:function(result) {
+                            if(result.code === 0){
+                                var compareD = $('#compareD').parent(),
+                                    ifContrast = result.data.permission.spd_contrast; // 网路侦测对比功能
+                                if(ifContrast) compareD.show();
+                                else compareD.hide();
+                                var topoBtn =  $(".topoBtn");
+                                if(result.data.permission.spd_snapshoot_to_topov){
+                                    for(var i=0;i<topoBtn.length;i++){
+                                        $(topoBtn[i]).addClass("toTopo");
+                                    }   
+                                } else {
+                                    for(var i=0;i<topoBtn.length;i++){
+                                        $(topoBtn[i]).removeClass("toTopo");
+                                    }
+                                }
+                            }
+                        },
+                        error:function(){
+                            console.log("获取当前用户信息失败！");
+                        }
+                    });
+                }
+            },
+            error:function(){
+                console.log("获取当前用户信息失败！");
+            }
+        });
+        breadcrumbs.css({ display : "block"});
+    });
+    $(function() {
+        var rename_popup = $('#rename_snapshot_popup');
+        var icon = rename_popup.find('.icon');
+        var mapName = CBMSFLOW.environment('map_name');
+        var prompt = rename_popup.find('.prompt');
+        var success = rename_popup.find('.success');
+        var fail = rename_popup.find('.fail');
+        var confirmBtn = rename_popup.find('.btn-primary');
+        var cancelBtn = rename_popup.find('.btn-second');
+        var closeBtn = rename_popup.find('.btn-primary.close');
+        var resultBlock = rename_popup.find('.result');
+        var descInput = rename_popup.find("input[type=text]");
+
+        var reFreshSnapshotList = function(desc){
+            var map_desc = $('.snapshot-name .m-name').text();
+            $('.snapshot-png.snapshot-png-active').attr('desc', desc);
+            $('.snapshot-png.snapshot-png-active').find('.snapshot-desc .desc').text(desc);
+            $('.snapshot-png.snapshot-png-active').find('.snapshot-desc-detail .desc').text(desc);
+        };
+        var setPrompt = function() {
+            var s_name = rename_popup.attr('s_name');
+            icon.addClass('info').removeClass('fail success handling');
+            prompt.show();
+            prompt.find("input").val(s_name).textSelect();
+            confirmBtn.show();
+            cancelBtn.show();
+
+            success.hide();
+            fail.hide();
+            closeBtn.hide();
+            resultBlock.hide();
+        };
+
+        var setSuccess = function() {
+            icon.addClass('success');
+            success.show();
+            prompt.hide();
+            var s_name = rename_popup.attr('s_name');
+            prompt.find("input").val(s_name);
+            fail.hide();
+            confirmBtn.hide();
+            cancelBtn.hide();
+            closeBtn.show();
+            resultBlock.show();
+        };
+
+        var setFail = function(msg) {
+            icon.addClass('fail');
+            fail.show();
+            prompt.hide();
+            success.hide();
+            confirmBtn.hide();
+            cancelBtn.hide();
+            closeBtn.show();
+            resultBlock.show();
+            if(msg == 'exists'){
+                fail.html('命名已存在！');
+            }
+        };
+
+        $('#rename_snapshot_popup').bind('setDefault', function() {
+            setPrompt();
+            return $(this);
+        });
+
+        $('#rename_snapshot_popup .modal-footer .btn-primary').click(function() {
+            var aurl = '/zh-cn/spd/__name__/renamesnapshot/'; //xiao
+            var s_id = rename_popup.attr('s_id');
+            var desc = prompt.find("input").val(),
+                reg = new RegExp("^[A-Za-z0-9\u4e00-\u9fa5]+$");
+            if(!$.trim(desc)){
+                descInput.messagepop('show', '名称不能为空');
+                descInput.addClass('error');
+                return false;
+            } else if(desc.length > 12){
+                descInput.messagepop('show', '名称不能超过12字符');
+                descInput.addClass('error');
+                return false;
+            } else if(!reg.test(desc)){
+                descInput.messagepop('show', '快照名称不能包含除数字、英文字母、汉字外的其他字符');
+                descInput.addClass('error');
+                return false;
+            }
+            $.ajax({
+                url: aurl.replace('__name__', mapName),
+                type: 'POST',
+                data: {'snapshot_name':desc, 'snapshot_id': s_id},
+                dataType: 'json',
+                success: function(result) {
+                    if (result.code == 0) {
+                        $('.snapshot-name .s-name').text(desc);
+                        rename_popup.attr('s_name', desc);
+                        prompt.find("input").val(desc);
+                        reFreshSnapshotList(desc);
+                        setSuccess();
+                    } else {
+                        setFail(result.msg);
+                    }
+                },
+                error:function(){setFail();}
+            });
+        });
+
+        $('#rename_snapshot_popup .modal-footer .btn-primary.close').click(function() {
+            rename_popup.modal('hide');
+            prompt.find("input").val("");
+        });
+
+        descInput.messagepop({'trigger': 'manual', 'zindex': null});
+
+        cancelBtn.click(function() {
+            descInput.messagepop('hide');
+            descInput.removeClass('error');
+        });
+    });
+    $(function() {
+        var delete_popup = $('#delete_snapshot_popup');
+        var icon = delete_popup.find('.icon');
+        var mapName = CBMSFLOW.environment('map_name');
+        var prompt = delete_popup.find('.prompt');
+        var working = delete_popup.find('.working');
+        var success = delete_popup.find('.success');
+        var fail = delete_popup.find('.fail');
+        var confirmBtn = delete_popup.find('.btn-primary.confirm');
+        var cancelBtn = delete_popup.find('.btn-second');
+        var closeBtn = delete_popup.find('.btn-primary.close');
+        var reFreshMap = function(map_data){
+            var map = CBMSFLOW.environment('snapshot_map', map);
+            if(map_data['nodes']){
+                map.load(map_data);
+                $('.snapshot-name .s-name').text(map_data.snapshot_name);
+                CBMSFLOW.environment('snapshot_id', map_data._id);
+                CBMSFLOW.environment('snapshot_name', map_data.snapshot_name);
+                $('#rename_snapshot_popup').attr('s_name', map_data.snapshot_name);
+            }else{
+                //show no-snapshot-msg-page
+                $('.snapshot-name').css('display', 'none');
+                $('#topovmap-snapshot').css('display', 'none');
+                $('#snapshot_list_block').css('display', 'none');
+                $('#spdmap-toolbar li[name="edit"] a').addClass('disabled');
+                $('#spdmap-toolbar li[name="remove"] a').addClass('disabled');
+                $('#no-snapshot').show();
+            }
+        };
+        var reFreshSnapshotList = function(s_id){
+            $.each($('#snapshot_list .snapshot-png'), function(s_index, sn){
+                var new_s_id = CBMSFLOW.environment('snapshot_id');
+                if($(sn).attr('s_id') == s_id){
+                    $(sn).remove();
+                }
+                if($(sn).attr('s_id') == new_s_id){
+                    $(sn).addClass('snapshot-png-active');
+                }
+            });
+        };
+
+        var setPrompt = function() {
+            icon.addClass('info').removeClass('fail success handling');
+            prompt.show();
+            confirmBtn.show();
+            cancelBtn.show();
+
+            working.hide();
+            success.hide();
+            fail.hide();
+            closeBtn.hide();
+        };
+
+        var setWorking = function() {
+            icon.addClass('handling');
+            working.show();
+            prompt.hide();
+            success.hide();
+            fail.hide();
+            confirmBtn.hide();
+            cancelBtn.hide();
+        };
+
+        var setSuccess = function() {
+            icon.addClass('success');
+            success.show();
+            prompt.hide();
+            working.hide();
+            fail.hide();
+            confirmBtn.hide();
+            cancelBtn.hide();
+            closeBtn.show();
+        };
+
+        var setFail = function() {
+            icon.addClass('fail');
+            fail.show();
+            prompt.hide();
+            working.hide();
+            success.hide();
+            confirmBtn.hide();
+            cancelBtn.hide();
+
+            closeBtn.show();
+        };
+
+        $('#delete_snapshot_popup').bind('setDefault', function(e, desc) {
+            setPrompt();
+            $(".info .desc", delete_popup).html(desc);
+            return $(this);
+        });
+
+        $('#delete_snapshot_popup .modal-footer .btn-primary.confirm').click(function() {
+            var aurl = '/zh-cn/spd/__name__/deletesnapshot/';
+            var s_id = delete_popup.attr('s_id');
+            setWorking();
+            $.ajax({
+                url: aurl.replace("__name__", mapName),
+                type: 'POST',
+                data: {'snapshot_id':s_id},
+                dataType: 'json',
+                success: function(result) {
+                    if (result.code === 0) {
+                        reFreshMap(result.data.map_data);
+                        reFreshSnapshotList(s_id);
+                        setSuccess();
+                    } else {
+                        setFail();
+                    }
+                },
+                error:function(){setFail();}
+            });
+        });
+
+        $('#delete_snapshot_popup .modal-footer .btn-primary.close').click(function() {
+            delete_popup.modal('hide');
+        });
+
+    });
+    $(document).ready(function(){
+        
+
+        //scrollbar
+        $('#snapshot_list').mCustomScrollbar();
+
+        //resize
+        var temp_snaplist_resize_height = 212;
+        var temp_snaplist_height = 174;
+        var temp_head = 24;
+        $('#snapshot_list_resize').resizable({
+            handles: "n",
+            minHeight: 0,
+            start: function(e, ui){
+                //拖动最大高度
+                var snapshotPng = $(".snapshot-png"),
+                    winWidth = $(window).width(),
+                    snapshotPngLen = snapshotPng.length,
+                    gargHeight = Math.ceil(snapshotPngLen /  Math.ceil(winWidth / 368))*220;
+                $('#snapshot_list_resize').resizable("option", "maxHeight", gargHeight);
+            },
+            resize: function(e, ui){
+                $(this).css('top', '0px');
+                var height = ui.size.height;
+                if(height<=0){
+                    $('.snapshot_list_head').height(0);
+                    $('#snapshot_list').height(0);
+                }
+                else if(height<=temp_head){
+                    $('.snapshot_list_head').height(height = temp_head);
+                    $('#snapshot_list').height(0);
+                }
+                else if (height>temp_head){
+                    $('.snapshot_list_head').height(temp_head);
+                    $('#snapshot_list').height(height-temp_head);
+                }
+
+            },
+            stop: function(e, ui){
+                var height = $('#snapshot_list').height();
+                if(height<=5){
+                    $('#snapshot_list_resize').height(2);
+                    $('#snapshot_list').height(0);
+                    height = 2;
+                }
+                if(height > 2){
+                    $('.resizable-span').removeClass('min');
+                }
+                else {
+                    $('.resizable-span').addClass('min');
+                }
+                $('#topovmap-snapshot').trigger('resize');
+                $('#snapshot_list').mCustomScrollbar('update');
+            }
+        });
+        //$('#snapshot_list_resize .ui-resizable-handle').append('<span class="resizable-span"></span>')
+        var adj_left = ($(window).width()-90)/2;
+        $('#snapshot_list_resize .resizable-span').css('left', adj_left);
+        $('#snapshot_list_resize .resizable-span').bind('click', function(){
+            var self = $(this);
+            if(self.hasClass('min')){
+                self.removeClass('min');
+                $('#snapshot_list_resize').height(temp_snaplist_resize_height);
+                $('#snapshot_list').height(temp_snaplist_height);
+                $('.snapshot_list_head').height(temp_head);
+            }
+            else{
+                temp_snaplist_resize_height = $('#snapshot_list_resize').height();
+                temp_snaplist_height = $('#snapshot_list').height();
+                temp_head = $('.snapshot_list_head').height();
+                self.addClass('min');
+                $('#snapshot_list_resize').height(2);
+                $('#snapshot_list').height(0);
+                $('.snapshot_list_head').height(0);
+            }
+            $('#topovmap-snapshot').trigger('resize');
+            $('#snapshot_list').mCustomScrollbar('update');
+        });
+
+        $('#snapshot_list_resize .resizable-span').bind('mousedown', function(e){
+            $(this).parent().addClass('noactive');
+        });
+        $('#snapshot_list_resize .resizable-span').bind('mouseup', function(e){
+            $(this).parent().removeClass('noactive');
+        });
+
+        $('#snapshot_list_resize .resizable-span').hover(
+            function(){
+                //IN
+                $('#snapshot_list_resize').resizable( "option", "disabled", true );
+            },
+            function(){
+                //OUT
+                $('#snapshot_list_resize').resizable( "option", "disabled", false );
+            }
+        );
+
+
+        // snapshot click
+        $('#snapshot_list').on('click','.snapshot-png', function(e){
+            selectSnapshot($(this));
+        });
+
+        //弹框效果
+       function alertPopup(msg,delete_map_id){
+        if($("#alert-popup")) $("#alert-popup").remove();
+        var alert = 
+        '<div id="alert-popup">'+
+                '<div class="alert-popup-main">'+
+                    '<div class="alert-popup-title">'+
+                        '<h3>提示</h3>'+
+                        '<div class="alert-popup-close"></div>'+
+                    '</div>'+
+                    '<span>'+ msg +'</span>'+
+                '</div>'+
+            '</div>';
+            $("body").append(alert);
+            $(".alert-popup-close").on("click",function(){
+                $("#alert-popup").remove();
+            });
+            if(delete_map_id) {
+                var opar = 
+                    '<div class="alert-footer">'+
+                        '<div id="sure-bnt">确定</div>'+
+                        '<div id="cancle-bnt">取消</div>'+
+                    '</div>';
+                $(".alert-popup-main").append(opar);
+                $("#cancle-bnt").on("click",function(){
+                    $("#alert-popup").remove();
+                });
+                $("#sure-bnt").on("click",function(){
+                    deleteMap(delete_map_id);
+                });
+            }
+        }
+        //页面跳转
+        $('#snapshot_list').on('click','.toTopo', function(e){
+            e.stopPropagation();
+            var evdata = CBMSFLOW.environment('permissionData');
+            var permissionData = evdata === undefined ? JSON.parse(window.localStorage.getItem('permissionData')) : evdata;
+            var ifTopovEdit = permissionData.topov_edit; // 可视化服务图
+            if(ifTopovEdit){
+                var s_id = $(this).parent().attr('s_id');
+                $.ajax({
+                    // type:"GET",
+                    url:"/zh-cn/spd/snapshot/"+ s_id +"/toapp",
+                    dataType: 'json',
+                    success: function(result) {
+                        console.log(result);
+                        if(result.code == 0 && result.data.datapath.name){
+                            app_name = result.data.datapath.name;
+                            window.open("/zh-cn/edit/datapath/"+app_name,'_self');
+                        }else {
+                            if(result.status == 0 && result.detail){
+                                alertWindow(result.detail.disp_name[0],false);
+                            }else{
+                                alertWindow(result.msg.disp_name[0],false);
+                            }
+                        }
+                    },
+                    error:function () {
+                    }
+                });
+            } else {
+                alertPopup('转换失败，无拓扑图编辑权限');
+            }
+        });
+        var selectSnapshot = function(item) {
+            var aurl = '/zh-cn/spd/getsnapshot/__name__/';;
+            $('.snapshot-png').removeClass('snapshot-png-active') ;
+            item.addClass('snapshot-png-active');
+            var s_id = item.attr('s_id')
+            $.ajax({
+                url: aurl.replace("__name__", s_id),
+                dataType: 'json',
+                success: function(result) {
+                    if (result.code === 0) {
+                        var map = CBMSFLOW.environment('snapshot_map');
+                        var map_data = result.data.snapshot.map_data;
+                        if(map_data['nodes']){
+                            map.load(map_data);
+                            map.zoomCtrl.zoomFitOrg();
+                            $('.snapshot-name .s-name').text(result.data.snapshot.snapshot_name);
+                            CBMSFLOW.environment('snapshot_id', result.data.snapshot._id);
+                            CBMSFLOW.environment('snapshot_name', result.data.snapshot.snapshot_name);
+                            map.snapshot_map_data = map_data;
+                            CBMSFLOW.environment('snapshot_map', map);
+                            $('#rename_snapshot_popup').attr('s_name', result.data.snapshot.snapshot_name);
+                            map.clearClick();
+                        }
+                    } else {
+                    }
+                },
+                error:function(){}
+            });
+        }
+        /**
+         * 弹出框函数
+         * @param alert_content -- 提示语
+         * @param flag -- 如果为true，则生成可操作弹出框，否则生成不可操作弹出框
+         */
+        window.alertWindow = function alertWindow(alert_content,flag){
+            d3.select(".alert-back-div").remove();
+
+            var alert_back_div = d3.select("body").append("div")
+                .attr("class","alert-back-div");
+            var alert_div = alert_back_div.append("div")
+                .attr("class","alert-div");
+            //提示框的title
+            var alert_title_div = alert_div.append("div")
+                .attr("class","alert-title-div");
+            alert_title_div.append("span")
+                .attr("class","alert-title-span")
+                .text("提示");
+            //提示的主体部分
+            alert_div.append("div")
+                .attr("class","alert-body-div")
+                .html(alert_content);
+            //是否有操作的弹窗
+            if(flag){
+                //提示的尾部
+                var alert_foot_div = alert_div.append("div")
+                    .attr("class","alert-foot-div");
+                alert_foot_div.append("button")
+                    .attr({
+                        "class":"determine-btn alert-btn"
+                    })
+                    .text("确定");
+                alert_foot_div.append("button")
+                    .attr({
+                        "class":"cancle-btn alert-btn"
+                    })
+                    .text("取消");
+            }else{
+                //title部分的关闭按钮
+                alert_title_div.append("span")
+                    .attr({
+                        "class":"alert-title-img alert-btn"
+                    })
+                    .text("x");
+            }
+            d3.selectAll(".alert-btn").each(function(){
+                this.addEventListener("click",function(){
+                    closeAlertWindow(this);
+                },false);
+            });
+        }
+        /**
+         * 关闭弹窗
+         */
+        function closeAlertWindow(this_btn){
+            d3.select(".alert-back-div").remove();
+            return (d3.select(this_btn).text() == "确定");
+        }
+    });
+</script>

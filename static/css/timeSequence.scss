@@ -1,0 +1,314 @@
+
+//  sass .\timeSequence.scss .\timeSequence.css --no-source-map
+
+.time-sequence {
+
+  .beauty {
+    display: inline-block;
+    width: 10px;
+    height: 14px;
+    background: -moz-linear-gradient(left, #22726F, #3AB9B3);
+    background: -webkit-linear-gradient(left, #22726F, #3AB9B3);
+    background: -o-linear-gradient(left, #22726F, #3AB9B3);
+    background: linear-gradient(left, #22726F, #3AB9B3);
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1, startColorstr=#22726F, endColorstr=#3AB9B3);
+    position: relative;
+    top: 2px;
+    right: 10px;
+  }
+
+  .time-sequence-ctrl {
+    border: 1px solid #0c3755;
+    height: 56px;
+    line-height: 56px;
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+
+    &.active {
+      background: #15334a;
+      border-radius: 3px;
+      box-shadow: 0 0 15px #43fbd5;
+      margin: 5px;
+    }
+
+    > div {
+      line-height: 35px;
+    }
+
+    .logic-name {
+      margin-right: 10px;
+      font-size: 16px;
+    }
+
+    .select-app-name {
+      display: inline-block;
+      position: relative;
+      width: 90px;
+      height: 18px;
+
+      select {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 25px;
+        line-height: 25px;
+        color: #C6D0E2;
+        background-color: #0a1f30;
+        font-size: 15px;
+        border: 1px solid #4e6e8c;
+        width: 93px;
+        margin: 0px;
+        padding-left: 5px;
+        border-radius: 3px;
+
+        option {
+          background: #0b3b50!important;
+          color: #bbd6d6!important;
+          font-size: 15px;
+        }
+      }
+    }
+
+    .time-line-name {
+      max-width: 195px;
+      width: calc(55% - 114px);
+    }
+
+    .status-code {
+      max-width: 110px;
+      width: calc(20% - 6px);
+      margin: 0 3px;
+    }
+
+    .select-buffer-name {
+      max-width: 230px;
+      width: calc(64%);
+      margin: 0 3px;
+
+      #buffer-select {
+        width: calc(24%);
+        padding-left: 2px;
+        color: #1ecdb5;
+        margin-right: 6px;
+        border-color: #4e6e8c;
+        border-radius: 3px;
+      }
+    }
+
+    .start-end-name {
+      max-width: 200px;
+      width: calc(64%);
+      margin: 0 3px;
+
+      #start-end-select {
+        width: calc(40%);
+        padding-left: 2px;
+        color: #1ecdb5;
+        border-color: #4e6e8c;
+        border-radius: 3px;
+      }
+    }
+
+    .ctrls-btn {
+      width: 190px;
+      text-align: right;
+      padding-top: 9px;
+
+      a {
+        display: inline-block;
+        width: 50px;
+        height: 30px;
+        line-height: 30px;
+        background: #1ecdb5;
+        color: #192d40;
+        text-align: center;
+        border-radius: 3px;
+        font-size: 14px;
+        padding: 0 10px;
+
+        #create {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+
+  .time-sequence-timelines {  
+    position: absolute;
+    top: 96px;
+    border: 1px solid #0c3755;
+    left: 50px;
+    right: 50px;
+    bottom: 72px;
+    background: #061521;
+    overflow: auto;
+
+    .per-schedule {
+      height: 144px;
+      line-height: 84px;
+      color: #efefef;
+      padding: 30px 1% 30px 5%;
+
+      &.active {
+        background: #15334a;
+        border-radius: 3px;
+        box-shadow: 0 0 15px #43fbd5;
+        margin: 5px;
+
+        .time-div {
+          pointer-events: all !important;
+        }
+      }
+
+      .per-schedule-tit {
+        height: 34px;
+        line-height: 34px;
+        margin-bottom: 10px;
+        font-size: 16px;
+
+        span {
+          display: inline-block;
+        }
+
+        .logic-name {
+          margin-right: 10px;
+          font-size: 16px;
+        }
+
+        .logic-buffer-hidden {
+          margin: 0 0px 0 10px;
+        }
+
+        .schedule-label {
+          margin: 0 5px 0 30px;
+        }
+
+        .schedule-text {
+          margin: 0 20px 0 5px;
+        }
+
+        .logic-buffer-time {
+          margin: 0 30px 0 0px;
+        }
+
+        a.schedule-tit-btn {
+          font-style: italic;
+          color: #38bab3;
+          margin: 0;
+          margin-right: 16px;
+          box-shadow: 0 0 0;
+          background: transparent;
+          border-radius: 0;
+        }
+      }
+
+      .per-schedule-time {
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 40px;
+        line-height: 40px;
+
+        .per-time-name {
+          font-size: 14px;
+          color: #efefef;
+        }
+
+        .time-div {
+          position: absolute;
+          top: -6px;
+          left: 80px;
+          right: 0;
+          height: 79px;
+          line-height: 60px;
+          font-size: 16px;
+          pointer-events: none;
+
+          input.foreignObjectInput {
+            width: 34px !important;
+          }
+        }
+      }
+    }
+  }
+
+  .time-sequence-bindings {
+
+  }
+
+  .time-sequence-weeks {
+    position: absolute;
+    border: 1px solid #0c3755;
+    right: 50px;
+    left: 50px;
+    bottom: 16px;
+    padding-top: 5px;
+    padding-left: 63px;
+    height: 40px;
+
+    div.disabled {
+      .week-btn-group {
+        pointer-events: none;
+
+        .clicked {
+          background: #3f8484;
+          color: #9da2a0;
+        }
+      }
+      .week-update {
+        pointer-events: none;
+        background: #3f8484;
+      }
+    }
+
+    .week-btn-group {
+      display: block;
+      float: left;
+      height: 30px;
+      line-height: 30px;
+      width: 300px;
+
+      a {
+        width: calc(12.5% - 2px);
+        max-width: 36px;
+        text-decoration: none;
+      }
+
+      a.clicked {
+        background: #38bab3;
+        color: #eee;
+      }
+    }
+
+    .week-update {
+      cursor: pointer;
+      margin: 10px;
+      height: 30px;
+      line-height: 30px;
+      background: #1ecdb5;
+      color: #192d40;
+      text-align: center;
+      border-radius: 3px;
+      font-size: 16px;
+      width: auto;
+      padding: 0 10px;
+    }
+  }
+
+  @media screen and (max-width: 1360px), (max-height: 650px) {
+
+    .time-sequence-ctrl {
+      height: 100px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .time-sequence-timelines {
+      top: 140px;
+    }
+  }
+}

@@ -1,0 +1,47 @@
+image: node:8.11
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  untracked: true
+  paths:
+  - node_modules/
+
+stages:
+  - build
+  - test
+  - deploy
+
+
+before_script:
+  - git remote set-url origin https://xieqincen:yeSPPc2BXn8DoPi75f9f@gitlab.uxsino.com/bms/bmsTopo.git
+  - git config --global user.email 'cibot@uxsino.com'
+  - git config --global user.name 'cibot'
+  - git config --global http.sslverify false
+  - cd config
+  - cp devServer.example.js devServer.js
+  - cd ..
+
+lint:
+  script:
+    - echo "Run eslint"
+    - npm install
+    - npm run build:dll
+    - npm run lint
+  stage: test
+  except:
+    - master
+    - release
+
+dev_deploy:
+  script:
+    - echo "Run dev_deploy"
+    - npm install
+    - npm run build:dll
+    - npm run release
+  only:
+    - master
+  stage: deploy
+  artifacts:
+    paths:
+    - dist/
+    expire_in: 1 week

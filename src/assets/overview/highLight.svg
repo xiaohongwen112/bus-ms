@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="536" height="220" viewBox="-10 -10 556 240" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <filter id="filter">
+        <feGaussianBlur stdDeviation="5" edgeMode="duplicate"></feGaussianBlur>
+    </filter>
+    <g filter="url(#filter)">
+        <rect x="100" y="0" width="336" height="220" fill="#3d9bdf " stroke-width="0"></rect>
+        <circle cx="100" cy="110" r="110" fill="#3d9bdf " stroke-width="0"></circle>
+        <circle cx="436" cy="110" r="110" fill="#3d9bdf " stroke-width="0"></circle>
+    </g>
+</svg>

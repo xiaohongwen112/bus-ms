@@ -1,0 +1,149 @@
+<div id="autocombing_popup" class="popup-modal hide" tabindex="-1">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>导入</h3>
+    </div>
+    <form target="_blank" class="download-form" enctype="multipart/form-data" method="POST" action="../../autocombing/download/">
+    </form>
+    <form target="_blank" class="upload-form" enctype="multipart/form-data" method="POST" action="../../autocombing/upload/">
+        <input type="file" name="upload_data" style="height:0px;width:0px;"/>
+    </form>
+    <div class="step-1">
+        <div class="modal-body">
+            <div class="info">请上传组件、IP地址对应关系表，网路侦测将自动根据该表内容对数据进行处理</div>
+            <!-- <div class="viewpic"></div> -->
+            <div class="combining-interpret">  必填字段：序号、地址A  </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary grey-button-long left download">下载CSV样本</button>
+            <button class="btn btn-primary upload blue-button upload ctl-button">上传</button>
+            <button class="btn btn-second grey-button cancel ctl-button">取消</button>
+        </div>
+    </div>
+
+    <div class="step-2">
+        <div class="modal-body">
+            <div>对应关系表:</div>
+            <div class="ip-component-table">
+                <table class="head">
+                    <thead>
+                        <th class="seq">序号</th>
+                        <th class="component"><span>节点A</span></th>
+                        <th class="ipaddr"><span>地址A</span></th>
+                        <th class="equipment"><span>设备A</span></th>
+                        <th class="port"><span>端口A</span></th>
+                        <th class="componentB"><span>节点B</span></th>
+                        <th class="ipaddrB"><span>地址B</span></th>
+                        <th class="equipmentB"><span>设备B</span></th>
+                        <th class="portB"><span>端口B</span></th>
+                        <th class="atob"><span>A-B字节</span></th>
+                        <th class="btoa"><span>B-A字节</span></th>
+                        <th class="allb"><span>总字节</span></th>
+                        <th class="usability"><span>可用性</span></th>
+                        <th class="pattern"><span>模式</span></th>
+                        <th class="zonebit"><span>标志位</span></th>
+                        <th class="proto"><span>协议</span></th>
+                    </thead>
+                </table>
+                <div class="body grey-scrollbar">
+                    <table>
+                        <thead>
+                                <th class="seq"></th>
+                                <th class="component"></th>
+                                <th class="ipaddr"></th>
+                                <th class="equipment"></th>
+                                <th class="port"></th>
+                                <th class="componentB"></th>
+                                <th class="ipaddrB"></th>
+                                <th class="equipmentB"></th>
+                                <th class="portB"></th>
+                                <th class="atob"></th>
+                                <th class="btoa"></th>
+                                <th class="allb"></th>
+                                <th class="usability"></th>
+                                <th class="pattern"></th>
+                                <th class="zonebit"></th>
+                                <th class="proto"></th>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary blue-button-long start ctl-button">启动梳理</button>
+            <button class="btn btn-second grey-button cancel ctl-button">取消</button>
+        </div>
+    
+    </div>
+</div>
+
+
+<div id="before_autocombing_popup" class="popup-modal hide" tabindex="-1">
+    <div class="modal-header">
+        <h3></h3>
+    </div>
+    <div class="modal-body">
+        <div class="icon info"></div>
+        <div class="info">
+            <div class="line prompt desc" style="">您确认要执行自动梳理吗？</div>
+            <div class="line prompt" style="">自动梳理将覆盖当前所有的组件节点</div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-primary ctl-button blue-button confirm">确定</button>
+        <button class="btn btn-second ctl-button grey-button cancel" data-dismiss="modal" aria-hidden="true">取消</button>
+    </div>
+</div>
+
+<div id="reset_popup" class="popup-modal hide" tabindex="-1">
+    <div class="modal-header">
+        <h3>&nbsp;</h3>
+    </div>
+    <div class="modal-body">
+        <div class="icon info"></div>
+        <div class="info">
+            <div class="line prompt desc" style="">您确认要执行重置吗？</div>
+            <div class="line prompt" style="">重置将把所有组件恢复为IP节点</div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-primary ctl-button blue-button confirm">确定</button>
+        <button class="btn btn-second ctl-button grey-button cancel" data-dismiss="modal" aria-hidden="true">取消</button>
+    </div>
+</div>
+
+<div id="autocombing_error_popup" class="popup-modal hide" tabindex="-1">
+    <div class="modal-header">
+        <h3>&nbsp;</h3>
+    </div>
+
+    <div class="modal-body">
+
+        <div class="icon info"></div>
+        <div class="info">
+            <div class="line"></div>
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-primary blue-button ctl-button">确定</button>
+    </div>
+
+</div>
+
+<script type="text/javascript"> 
+  $(document).ready(function () {
+      var downloadForm = $(".download-form"),
+          uploadForm = $(".upload-form"),
+          sysToken = '';
+    sysToken = $.cookie('the_cookie');
+    downloadForm.text(sysToken);
+    uploadForm.text(sysToken);
+  });
+</script>

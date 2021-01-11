@@ -1,0 +1,247 @@
+<div id="close_settings_popup" class="popup-modal hide" tabindex="-1">
+    <div class="modal-header">
+        <h3>&nbsp;</h3>
+    </div>
+    <div class="modal-body">
+
+        <div class="icon info"></div>
+        <div class="info">
+            <div class="line prompt">当前更改未保存，您确定要离开此页吗？</div>
+            <div class="line prompt">离开此页将会丢失未保存信息</div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary ok blue-button ctl-button">确定</button>
+        <button class="btn btn-second cancle grey-button ctl-button">取消</button>
+    </div>
+</div>
+<div id="spd-settings-frame" style="position:relative; overflow:auto; width: 99%;">
+  <div id="spd-settings-saved-tip" class="spd-action-tip" style="position:absolute;left:0;top:25px;display:none;">
+  <div class="spd-action-tip-inner">设置更改已保存，切换回服务路径图后生效</div>
+  </div>
+  <div id="spd-settings-topipflow" style="position:relative;">
+    <div>
+        <div class="title">显示上限：</div>
+      <div class="field" style="margin-top:12px;">
+      <label class="spd-label">在图上显示Top </label><input class="spd-input" name="topip" id="settings-topip" /><span class="spd-add-on"> IP</span>
+      <span class="spd-current-count"> (当前数据源IP总数: <span id="spd-settings-current-ip-count"></span>)</span>
+      </div>
+      <div class="field" style="margin-top:4px;display:none;">
+          <label class="spd-label">在图上显示Top </label><input class="spd-input" name="topflow" id="settings-topflow" /><span class="spd-add-on"> 会话</span>
+      </div>
+    </div>
+    <div style="position:absolute;bottom:0;left:415px;">
+    <button class='btn grey-button long btn-second' id="settings-recovery-default" style="width:80px;">还原默认值</button>
+    </div>
+  </div>
+  <div class="spliter" style="margin-top:20px;"></div>
+  <div id="spd-settings-iptools" style="margin-top:20px;">
+    <div class="field">
+      <span class="upload-field">IP - 设备名映射表：</span>
+      <span>
+      <button class='btn grey-button btn-second' id="settings-upload-ip">上传</button>
+      <button class='btn grey-button btn-second' id="settings-download-ip">下载</button>
+      </span>
+    </div>
+  </div>
+  <div id="spd-settings-iplist">
+
+      <div class="list-block include_ips">
+          <div class="info">
+              <span class="info-text">显示以下IP地址</span>
+              <span class="info-icon spd-icon-24 spd-icon-force-display"></span>
+          </div>
+
+          <div class="detail">
+              <table class="table-header">
+                  <thead>
+                      <th class="ip" columnName="ip">
+                          <span>IP地址</span>
+                          <span class="sort spd-icon-7_9 sort-auto"></span>
+                      </th>
+                      <th class="device" columnName="device">
+                          <span>设备名</span>
+                          <span class="sort spd-icon-7_9 sort-auto"></span>
+                      </th>
+                  </thead>
+              </table>
+              <div class="table-body">
+                  <table class="device-ip-table">
+                      <thead>
+                          <th class="ip"></th>
+                          <th class="device"></th>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                  </table>
+                  <div class="add-new">
+                      <div class="spd-icon-10 spd-icon-add-new "></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="list-block normal_ips">
+          <div class="info">
+              <span class="info-text">IP地址库</span>
+          </div>
+          <div class="detail">
+              <table class="table-header">
+                  <thead>
+                      <th class="ip" columnName="ip">
+                          <span>IP地址</span>
+                          <span class="sort spd-icon-7_9 sort-auto"></span>
+                      </th>
+                      <th class="device" columnName="device">
+                          <span>设备名</span>
+                          <span class="sort spd-icon-7_9 sort-auto"></span>
+                      </th>
+                  </thead>
+              </table>
+              <div class="table-body">
+                  <table class="device-ip-table">
+                      <thead>
+                          <th class="ip"></th>
+                          <th class="device"></th>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                  </table>
+                  <div class="add-new">
+                      <div class="spd-icon-10 spd-icon-add-new "></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="list-block exclude_ips">
+          <div class="info">
+              <span class="info-text">屏蔽以下IP地址</span>
+              <span class="info-icon spd-icon-24 spd-icon-force-shield"></span>
+          </div>
+          <div class="detail">
+              <table class="table-header">
+                  <thead>
+                      <th class="ip" columnName="ip">
+                          <span>IP地址</span>
+                          <span class="sort spd-icon-7_9 sort-auto"></span>
+                      </th>
+                      <th class="device" columnName="device">
+                          <span>设备名</span>
+                          <span class="sort spd-icon-7_9 sort-auto"></span>
+                      </th>
+                  </thead>
+              </table>
+              <div class="table-body">
+                  <table class="device-ip-table">
+                      <thead>
+                          <th class="ip"></th>
+                          <th class="device"></th>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                  </table>
+                  <div class="add-new">
+                      <div class="spd-icon-10 spd-icon-add-new "></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  
+  </div>
+  <div class="spliter" style="margin-top:25px;"></div>
+  <div id="spd-settings-actions">
+      <button class='btn blue-button btn-primary' id="spd-settings-save">保存</button>
+      <button class='btn grey-button btn-second' id="spd-settings-cancle">取消</button>
+  </div>
+</div>
+
+<!--{% load templatetag_handlebars %}
+{% tplhandlebars "spd_settings_iplist_table_record_tpl" %}
+{{#each iplist}}
+<tr class="device-ip-row">
+    <td class="ip">
+        <span>{{ip}}</span>
+        <input type="text" value="{{ip}}"  disabled="disabled" class="unvisible" placeholder="请输入IP"/>
+    </td>
+    <td class="device">
+        <span>{{device}}</span>
+        <input type="text" value="{{device}}" disabled=disabled class="unvisible" placeholder="请输入设备名称"/>
+        <span class="spd-icon spd-icon-trash delete"></span>
+        <span class="spd-icon spd-icon-rename rename"></span>
+    </td>
+</tr>{{/each}}
+{% endtplhandlebars %}-->                                                  
+
+
+<script type="text/javascript">
+
+    $(function() {
+        var mapNameCH = window.localStorage.getItem('mapNameCH');
+        var datasource = window.localStorage.getItem('spdName');
+        var posData = {datasource: datasource};
+        $(".program-name").text(mapNameCH);
+        var urlData = '/zh-cn/spd/map1/overview/settingsdata/';
+        $.ajax({
+            url: urlData,
+            type:'post',
+            data: posData,
+            success:function(result){
+                if(result.code===0){
+                    var reData = result.data; 
+                    var widHeight = $(window).height();
+                    $('#spd-settings-current-ip-count').text(reData.datasource_ip_count);
+                    $("#spd-settings-frame").css({height: widHeight -100 + "px"});
+                    $(window).on('resize', function(){
+                        var widHeight = $(window).height();
+                        $("#spd-settings-frame").css({height: widHeight -100 + "px"});
+                    });
+
+                    window.onpopstate = function (event) {
+                        var nowPatnName = window.location.hash;
+                        if (event.state == null && nowPatnName !== "#map" && nowPatnName !== "#preview" && nowPatnName !== "#settings") {
+                            window.location.reload();
+                        }
+                    }
+                    var TopIpFlowSettings = CBMSFLOW.module("spd.Settings.TopIpFlowSettings");
+                    var topIpFlowSettings = new TopIpFlowSettings(
+                        $("#spd-settings-topipflow"),
+                        {'top_ip': reData.spd_settings.top_ip, 'top_flow': reData.spd_settings.top_flow},
+                        {'top_ip': reData.spd_settings.default_settings.top_ip, 'top_flow': reData.spd_settings.default_settings.top_flow }
+                    );
+
+                    var MapFilterIPTool = CBMSFLOW.module("spd.Settings.MapFilterIPTool");
+                    var MapFilterIPToolInstance = new MapFilterIPTool($("#spd-settings-iptools"));
+                    MapFilterIPToolInstance.options({
+                        'uploadCallback':function(data){
+                            $('#spd-settings-iplist').DeviceIpListEditor('loadData', data);
+                        },
+                        'getData':function(){
+                            return $('#spd-settings-iplist').DeviceIpListEditor('getIplistData');
+                        }
+                    });
+
+                    // exclude_ips, include_ips, normal_ips
+                    var deviceIpsSettings = $('#spd-settings-iplist').DeviceIpListEditor({'iplist': {
+                            'include_ips': reData.spd_settings.include_ip_device_list,
+                            'exclude_ips': reData.spd_settings.exclude_ip_device_list,
+                            'normal_ips':  reData.spd_settings.normal_ip_device_list
+                        }});
+                    var ActionsManager = CBMSFLOW.module("spd.Settings.ActionsManager");
+                    var actionsManager = new ActionsManager($("#spd-settings-actions"), topIpFlowSettings, deviceIpsSettings);
+                    CBMSFLOW.environment('spdSettingsActionsManager', actionsManager);
+                }
+            },
+        });
+    });
+    $(function() {
+        var close_settings_popup = $('#close_settings_popup');
+        $('#close_settings_popup .modal-footer .ok').click(function() {
+            close_settings_popup.modal('hide');
+            var actionsManager = CBMSFLOW.environment('spdSettingsActionsManager');
+            actionsManager.close();
+        });
+        $('#close_settings_popup .modal-footer .cancle').click(function() {
+            close_settings_popup.modal('hide');
+        });
+
+    });
+</script>

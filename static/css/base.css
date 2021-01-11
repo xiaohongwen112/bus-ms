@@ -1,0 +1,8 @@
+body {
+  background: #09131c !important;
+  overflow: hidden;
+}
+
+.error-input {
+  border: 1px solid red !important;
+}

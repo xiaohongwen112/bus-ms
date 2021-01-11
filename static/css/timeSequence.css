@@ -1,0 +1,260 @@
+.time-sequence .beauty {
+  display: inline-block;
+  width: 10px;
+  height: 14px;
+  background: -moz-linear-gradient(left, #22726F, #3AB9B3);
+  background: -webkit-linear-gradient(left, #22726F, #3AB9B3);
+  background: -o-linear-gradient(left, #22726F, #3AB9B3);
+  background: linear-gradient(left, #22726F, #3AB9B3);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1, startColorstr=#22726F, endColorstr=#3AB9B3);
+  position: relative;
+  top: 2px;
+  right: 10px;
+}
+.time-sequence .time-sequence-ctrl {
+  border: 1px solid #0c3755;
+  height: 56px;
+  line-height: 56px;
+  padding: 0 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.time-sequence .time-sequence-ctrl.active {
+  background: #15334a;
+  border-radius: 3px;
+  box-shadow: 0 0 15px #43fbd5;
+  margin: 5px;
+}
+.time-sequence .time-sequence-ctrl > div {
+  line-height: 35px;
+}
+.time-sequence .time-sequence-ctrl .logic-name {
+  margin-right: 10px;
+  font-size: 16px;
+}
+.time-sequence .time-sequence-ctrl .select-app-name {
+  display: inline-block;
+  position: relative;
+  width: 90px;
+  height: 18px;
+}
+.time-sequence .time-sequence-ctrl .select-app-name select {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 25px;
+  line-height: 25px;
+  color: #C6D0E2;
+  background-color: #0a1f30;
+  font-size: 15px;
+  border: 1px solid #4e6e8c;
+  width: 93px;
+  margin: 0px;
+  padding-left: 5px;
+  border-radius: 3px;
+}
+.time-sequence .time-sequence-ctrl .select-app-name select option {
+  background: #0b3b50 !important;
+  color: #bbd6d6 !important;
+  font-size: 15px;
+}
+.time-sequence .time-sequence-ctrl .time-line-name {
+  max-width: 195px;
+  width: calc(55% - 114px);
+}
+.time-sequence .time-sequence-ctrl .status-code {
+  max-width: 110px;
+  width: calc(20% - 6px);
+  margin: 0 3px;
+}
+.time-sequence .time-sequence-ctrl .select-buffer-name {
+  max-width: 230px;
+  width: calc(64%);
+  margin: 0 3px;
+}
+.time-sequence .time-sequence-ctrl .select-buffer-name #buffer-select {
+  width: calc(24%);
+  padding-left: 2px;
+  color: #1ecdb5;
+  margin-right: 6px;
+  border-color: #4e6e8c;
+  border-radius: 3px;
+}
+.time-sequence .time-sequence-ctrl .start-end-name {
+  max-width: 200px;
+  width: calc(64%);
+  margin: 0 3px;
+}
+.time-sequence .time-sequence-ctrl .start-end-name #start-end-select {
+  width: calc(40%);
+  padding-left: 2px;
+  color: #1ecdb5;
+  border-color: #4e6e8c;
+  border-radius: 3px;
+}
+.time-sequence .time-sequence-ctrl .ctrls-btn {
+  width: 190px;
+  text-align: right;
+  padding-top: 9px;
+}
+.time-sequence .time-sequence-ctrl .ctrls-btn a {
+  display: inline-block;
+  width: 50px;
+  height: 30px;
+  line-height: 30px;
+  background: #1ecdb5;
+  color: #192d40;
+  text-align: center;
+  border-radius: 3px;
+  font-size: 14px;
+  padding: 0 10px;
+}
+.time-sequence .time-sequence-ctrl .ctrls-btn a #create {
+  font-size: 24px;
+}
+.time-sequence .time-sequence-timelines {
+  position: absolute;
+  top: 96px;
+  border: 1px solid #0c3755;
+  left: 50px;
+  right: 50px;
+  bottom: 72px;
+  background: #061521;
+  overflow: auto;
+}
+.time-sequence .time-sequence-timelines .per-schedule {
+  height: 144px;
+  line-height: 84px;
+  color: #efefef;
+  padding: 30px 1% 30px 5%;
+}
+.time-sequence .time-sequence-timelines .per-schedule.active {
+  background: #15334a;
+  border-radius: 3px;
+  box-shadow: 0 0 15px #43fbd5;
+  margin: 5px;
+}
+.time-sequence .time-sequence-timelines .per-schedule.active .time-div {
+  pointer-events: all !important;
+}
+.time-sequence .time-sequence-timelines .per-schedule .per-schedule-tit {
+  height: 34px;
+  line-height: 34px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+.time-sequence .time-sequence-timelines .per-schedule .per-schedule-tit span {
+  display: inline-block;
+}
+.time-sequence .time-sequence-timelines .per-schedule .per-schedule-tit .logic-name {
+  margin-right: 10px;
+  font-size: 16px;
+}
+.time-sequence .time-sequence-timelines .per-schedule .per-schedule-tit .logic-buffer-hidden {
+  margin: 0 0px 0 10px;
+}
+.time-sequence .time-sequence-timelines .per-schedule .per-schedule-tit .schedule-label {
+  margin: 0 5px 0 30px;
+}
+.time-sequence .time-sequence-timelines .per-schedule .per-schedule-tit .schedule-text {
+  margin: 0 20px 0 5px;
+}
+.time-sequence .time-sequence-timelines .per-schedule .per-schedule-tit .logic-buffer-time {
+  margin: 0 30px 0 0px;
+}
+.time-sequence .time-sequence-timelines .per-schedule .per-schedule-tit a.schedule-tit-btn {
+  font-style: italic;
+  color: #38bab3;
+  margin: 0;
+  margin-right: 16px;
+  box-shadow: 0 0 0;
+  background: transparent;
+  border-radius: 0;
+}
+.time-sequence .time-sequence-timelines .per-schedule .per-schedule-time {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  line-height: 40px;
+}
+.time-sequence .time-sequence-timelines .per-schedule .per-schedule-time .per-time-name {
+  font-size: 14px;
+  color: #efefef;
+}
+.time-sequence .time-sequence-timelines .per-schedule .per-schedule-time .time-div {
+  position: absolute;
+  top: -6px;
+  left: 80px;
+  right: 0;
+  height: 79px;
+  line-height: 60px;
+  font-size: 16px;
+  pointer-events: none;
+}
+.time-sequence .time-sequence-timelines .per-schedule .per-schedule-time .time-div input.foreignObjectInput {
+  width: 34px !important;
+}
+.time-sequence .time-sequence-weeks {
+  position: absolute;
+  border: 1px solid #0c3755;
+  right: 50px;
+  left: 50px;
+  bottom: 16px;
+  padding-top: 5px;
+  padding-left: 63px;
+  height: 40px;
+}
+.time-sequence .time-sequence-weeks div.disabled .week-btn-group {
+  pointer-events: none;
+}
+.time-sequence .time-sequence-weeks div.disabled .week-btn-group .clicked {
+  background: #3f8484;
+  color: #9da2a0;
+}
+.time-sequence .time-sequence-weeks div.disabled .week-update {
+  pointer-events: none;
+  background: #3f8484;
+}
+.time-sequence .time-sequence-weeks .week-btn-group {
+  display: block;
+  float: left;
+  height: 30px;
+  line-height: 30px;
+  width: 300px;
+}
+.time-sequence .time-sequence-weeks .week-btn-group a {
+  width: calc(12.5% - 2px);
+  max-width: 36px;
+  text-decoration: none;
+}
+.time-sequence .time-sequence-weeks .week-btn-group a.clicked {
+  background: #38bab3;
+  color: #eee;
+}
+.time-sequence .time-sequence-weeks .week-update {
+  cursor: pointer;
+  margin: 10px;
+  height: 30px;
+  line-height: 30px;
+  background: #1ecdb5;
+  color: #192d40;
+  text-align: center;
+  border-radius: 3px;
+  font-size: 16px;
+  width: auto;
+  padding: 0 10px;
+}
+@media screen and (max-width: 1360px), (max-height: 650px) {
+  .time-sequence .time-sequence-ctrl {
+    height: 100px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .time-sequence .time-sequence-timelines {
+    top: 140px;
+  }
+}

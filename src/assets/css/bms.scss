@@ -1,0 +1,83 @@
+body{
+  margin: 0 auto;
+  padding:0px;
+}
+html, body{
+  height: 100%;
+  background: #08141b;
+  font-family: "SourceHanSansCN-Normal";
+}
+ol,ul{
+  margin:0px;
+  padding:0px
+}
+ul li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+  cursor: pointer;
+}
+body{
+  margin: 0 auto;
+}
+div{
+  box-sizing: border-box;
+}
+a, a:link, a:hover, a:visited, a:active{
+  text-decoration: none;
+}
+input, select{
+  height: 32px;
+  // line-height: 27px;
+  font-size: 16px;
+  vertical-align: middle;
+  border: 1px solid #3dd9c4;
+}
+input[type="text"]{
+  width: 140px;
+  background-color: transparent;
+}
+select, option{
+  background-color: rgb(10,31,48);
+}
+select{
+  width: 96px;
+  padding-left: 4px;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background-image: url(../sys-icon/arrow-w.svg);
+  background-repeat: no-repeat;
+  background-position: calc(100% - 5px) 0%;
+  color: #BEE2EB;
+}
+.btn-csv,button{
+    padding: 0 20px;
+    border: 1px solid #3dd9c4;
+    color: #3dd9c4;
+    background-color: transparent;
+    font-size: 16px;
+    height: 32px;
+    line-height: 32px;
+    vertical-align: middle;
+    border-radius: 16px;
+    cursor: pointer;
+}
+.btn-csv{
+    display: inline-block;
+    height: 27px;
+}
+.btn-csv:hover, button:hover{
+  background:  rgba(61,217,196,0.8);
+  color: #eee;
+}
+.btn-csv-disabled{
+  pointer-events: none;
+  border: 1px solid #2e4c61;
+  color: #2e4c61;
+  background: #0A283B;
+}
+button:focus{
+  outline: 0;
+}

@@ -1,0 +1,1373 @@
+<div id="map-loading" class="spd-loading hide"><div class="spd-loading-inner"><img src="../../static/spd_img/loading.gif"/><span>加载中</span></div></div>
+<div id="map-saving" class="spd-loading hide"><div class="spd-loading-inner"><img src="../../static/spd_img/loading.gif"/><span>正在保存中</span></div></div>
+<div id="map-container">
+  <div class="nav-block">
+  </div>
+  <div id="topovmap-edit"  class="map-block">
+    <div id="com-snop"></div>
+    <div id="map-hide-box"></div>
+    <div id="show-all-name"></div>
+    <div id="show-select">
+       <select id="select-com"></select><i></i>
+    </div>
+    <div id="spdmap-toolbar">
+      <button data-toggle="tooltip" data-original-title="自动梳理" name="handing"><i class="toolbar-icon handing"></i></button>
+      <button data-toggle="tooltip" data-original-title="撤销" name="undo"><i class="toolbar-icon undo"></i></button>
+      <button data-toggle="tooltip" data-original-title="重做" name="redo"><i class="toolbar-icon redo"></i></button>
+      <button data-toggle="tooltip" data-original-title="保存" name="save"><i class="toolbar-icon save"></i></button>
+      <button data-toggle="tooltip" data-original-title="设置" name="setting"><i class="toolbar-icon setting"></i></button>
+      <button data-toggle="tooltip" data-original-title="转换" name="convert"><i class="toolbar-icon convert"></i></button>
+      <button data-toggle="tooltip" data-original-title="预览" name="preview"><i class="toolbar-icon view"></i></button>
+      <button data-toggle="tooltip" data-original-title="导入" name="combing"><i class="toolbar-icon combing"></i></button>
+      <button data-toggle="tooltip" data-original-title="重置" name="reset"><i class="toolbar-icon reset"></i></button>
+    </div>
+    <div class="zoom-ctrl">
+        <ul>
+            <li><i class="zoom-fit"></i></li>
+            <li><i class="zoom-in"></i></li>
+            <li><i class="zoom-out"></i></li>
+        </ul>
+    </div>
+    <div class="search-box">
+      <div class="simple-search-box">
+        <span class="search-result-summary">
+            <span class="search-result-desc"><i class="search-color-indicator"></i></span>
+            <a href="javascript:void(0);" class="search-result-clear icon-close"></a>
+        </span>
+        <span class="search-validate-info"></span>
+        <input name="query" type="text" placeholder="IP、端口、设备名" id="map_query" readonly />
+        <input type="button" name="simple-search"/>
+        <i class="search-advanced-icon"></i>
+      </div>
+      <div class="advanced-search-box">
+        <h4>高级搜索</h4>
+        <a href="javascript:void(0);" class="icon-close close-panel"></a>
+        <div class="as-device-row as-ip-row">
+          <label class="spd-label">协议</label><input class="spd-input" type="text" name="prot" id="protInput"/>
+        </div>
+        <div class="as-ip-row">
+          <label class="spd-label">地址 A</label><input class="spd-input" type="text" name="ipa" id="ipa"/> 
+        </div>
+        <div class="as-port-row">
+          <label class="spd-label">端口 A</label><input class="spd-input" type="text" name="porta" id="porta"/> 
+        </div>
+        <div class="as-device-row">
+          <label class="spd-label">设备 A</label><input class="spd-input" type="text" name="devicea" id="devicea"/> 
+        </div>
+        <div class="as-ip-row">
+          <label class="spd-label">地址 B</label><input class="spd-input" type="text" name="ipb" id="ipb"/> 
+        </div>
+        <div class="as-port-row">
+          <label class="spd-label">端口 B</label><input class="spd-input" type="text" name="portb" id="portb"/>
+        </div>
+        <div class="as-device-row">
+          <label class="spd-label">设备 B</label><input class="spd-input" type="text" name="deviceb" id="deviceb"/>
+        </div>
+        <div class="as-validate-info"></div>
+        <div class="as-btn-row">
+          <button name="as-submit" class="btn ctl-button blue-button">搜索</button>
+          <button name="as-cancel" class="btn ctl-button grey-button">取消</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="compare-result">
+      <div class="compare-out-in"></div>
+      <div class="has-in"></div>
+      <div class="compare-title"> 差异节点
+        <div class="search-div"> 
+          <input type="text" placeholder="IP" id="compare-ip"/>
+          <input type="button" name="simple-search"  id="compare-ip-bnt">
+        </div>
+      </div>
+      <div class="compare-head">
+        <div class="compare-index">序号</div>
+      </div>
+      {% comment %} <div class="compare-body">
+        <ul id="sortable"></ul>
+      </div> {% endcomment %}
+      <div class="compare-result-table">
+        <ul>
+          <li>
+            <div></div>
+            <div></div>
+            <div></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="flow-block" class="flows-block">
+    <div id="flow-table-block">
+      <div class="flow-table-nav">
+          <ul>
+              <li class="active" target="flow-table">
+                  <div class="bar"></div>
+                  <div class="text">会&nbsp;&nbsp;&nbsp;&nbsp;话</div>
+              </li>
+              <li target="node-table">
+                  <div class="bar"></div>
+                  <div class="text">节&nbsp;&nbsp;&nbsp;&nbsp;点</div>
+              </li>
+              <li target="node-definition">
+                  <div class="bar"></div>
+                  <div class="text">节&nbsp;&nbsp;&nbsp;&nbsp;点</div>
+              </li>
+              <li target="interface-definition">
+                  <div class="bar"></div>
+                  <div class="text">接&nbsp;&nbsp;&nbsp;&nbsp;口</div>
+              </li>
+              <li target="combing-table">
+                  <div class="bar"></div>
+                  <div class="text">关&nbsp;&nbsp;&nbsp;&nbsp;系</div>
+              </li>
+          </ul>
+      </div>
+      <div id="node-table">
+          <div>
+              <div class="node-table-title-container">
+                  <table id="node-table-title" class="table-title">
+                      <thead>
+                          <tr>
+                              <td class="cell-seqn">
+                                  <span>序号</span>
+                                  <span class="sort-auto sort-icon"></span>
+                              </td>
+                              <td class="cell-name">
+                                  <span>节点</span>
+                                  <span class="sort-auto sort-icon"></span>
+                              </td>
+                              <td></td>
+                          </tr>
+                      </thead>
+                  </table>
+              </div>
+              <div class="node-table-value-container node-table-container cbmsflowScrollbar">
+                  <table id="node-table-value" class="table-value">
+                      <thead>
+                          <tr>
+                              <th class="cell-seqn"></th>
+                              <th class="cell-name"></th>
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+      <div id="node-definition">
+          <div>
+              <div class="node-definition-title-container">
+                  <table id="node-definition-table-title" class="table-title">
+                      <thead>
+                          <tr>
+                              <td class="cell-seq">
+                                  <span>序号</span>
+                                  <span class="sort-auto sort-icon"></span>
+                              </td>
+                              <td class="cell-ip">
+                                  <span>地址</span>
+                                  <span class="sort-auto sort-icon"></span>
+                              </td>
+                              <td class="cell-device">
+                                  <span>设备名</span>
+                                  <span class="sort-auto sort-icon"></span>
+                              </td>
+                              <td class="cell-flowcount">
+                                  <span>会话数</span>
+                                  <span class="sort-auto sort-icon"></span>
+                              </td>
+                              <td class="cell-bytes">
+                                  <span>总字节</span>
+                                  <span class="sort-auto sort-icon"></span>
+                              </td>
+                              <td class="cell-operation"></td>
+                          </tr>
+                      </thead>
+                  </table>
+              </div>
+              <div class="node-definition-value-container node-definition-table-container grey-scrollbar">
+                  <table id="node-definition-table-value" class="table-value">
+                      <thead>
+                          <tr>
+                              <th class="cell-seq"></th>
+                              <th class="cell-ip"></th>
+                              <th class="cell-device"></th>
+                              <th class="cell-flowcount"></th>
+                              <th class="cell-bytes"></th>
+                              <th class="cell-operation"></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+      <div id="flow-table">
+          <div class="flow-table-value-container flow-table-container">
+          </div>
+          <div class="flow-table-foot-container">
+              <table id="flow-table-foot">
+                  <tfoot>
+                      <tr>
+                          <td colspan="14">
+                              <div class="table-controller" name="node">
+                                  <div class="span flowcount">
+                                      <span class="currentCount"></span>/
+                                      <span class="totalCount"></span>
+                                  </div>
+                                  <div class="span exportcsv">
+                                      <a>下载CSV</a>
+                                  </div>
+                              </div>
+                              <div class="table-controller" name="box" style="display:none;">
+                                  <div class="span flowcount">
+                                      <span class="currentCount"></span>/
+                                      <span class="totalCount"></span>
+                                  </div>
+                              </div>
+                          </td>
+                      </tr>
+                  </tfoot>
+              </table>
+          </div>
+      </div>
+      <div id="combing-table">
+          <div class="combing-table-content">
+              <table class="head">
+                  <thead>
+                      <th class="seq">序号</th>
+                      <th class="component">
+                          <span>节点A</span>
+                      </th>
+                      <th class="ipaddr">
+                          <span>地址A</span>
+                      </th>
+                      <th class="equipment">
+                          <span>设备A</span>
+                      </th>
+                      <th class="port">
+                          <span>端口A</span>
+                      </th>
+                      <th class="componentB">
+                          <span>节点B</span>
+                      </th>
+                      <th class="ipaddrB">
+                          <span>地址B</span>
+                      </th>
+                      <th class="equipmentB">
+                          <span>设备B</span>
+                      </th>
+                      <th class="portB">
+                          <span>端口B</span>
+                      </th>
+                      <th class="atob">
+                          <span>A-B字节</span>
+                      </th>
+                      <th class="btoa">
+                          <span>B-A字节</span>
+                      </th>
+                      <th class="allb">
+                          <span>总字节</span>
+                      </th>
+                      <th class="usability">
+                          <span>可用性</span>
+                      </th>
+                      <th class="pattern">
+                          <span>模式</span>
+                      </th>
+                      <th class="zonebit">
+                          <span>标志位</span>
+                      </th>
+                      <th class="proto">
+                          <span>协议</span>
+                      </th>
+                  </thead>
+              </table>
+              <div class="body grey-scrollbar combing-scroll">
+                  <table>
+                      <thead>
+                          <th class="seq"></th>
+                          <th class="component"></th>
+                          <th class="ipaddr"></th>
+                          <th class="equipment"></th>
+                          <th class="port"></th>
+                          <th class="componentB"></th>
+                          <th class="ipaddrB"></th>
+                          <th class="equipmentB"></th>
+                          <th class="portB"></th>
+                          <th class="usability"></th>
+                          <th class="pattern"></th>
+                          <th class="zonebit"></th>
+                      </thead>
+                      <tbody></tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+      <div id="interface-definition">
+          <div class="server">
+              <div class="title">服务接口</div>
+              <div class="body">
+                  <div class="body-content grey-scrollbar">
+                      <div class="server-group">
+                          <div class="group-title">
+                              <div class="line">
+                                  <span class="group-name">服务接口-01</span>
+                                  <input type="text" class="hide" name="group-name"/>
+                                  <span class="spd-icon spd-icon-trash delete right"></span>
+                                  <span class="spd-icon spd-icon-rename rename right"></span>
+                              </div>
+                          </div>
+                          <div class="group-body">
+                              <table>
+                                  <tbody>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                      <div class="add-new grey-button"></div>
+                  </div>
+              </div>
+          </div>
+          <div class="sessions">
+              <div class="title">会话摘要表</div>
+              <div class="body"></div>
+          </div>
+          <div class="client">
+              <div class="title">客户接口</div>
+              <div class="body">
+                  <div class="body-title"></div>
+                  <div class="body-content grey-scrollbar">
+                      <table>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="text-edit">
+    <div class="hideblock">
+      <span class="hidetxt"></span>
+    </div>
+    <div class="edit">
+      <input type="text" name="nodename" class="nodename readonly"/>
+    </div>
+
+    <div class="icon">
+      <div class="name-convert-icon"></div>
+      <div class="name-edit-icon"></div>
+      <div class="name-save-icon"></div>
+    </div>
+    <div class="msg"></div>
+  </div>
+
+  <div id="autocombing_popup" class="popup-modal hide" tabindex="-1">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>导入</h3>
+    </div>
+    <form target="_blank" class="download-form" enctype="multipart/form-data" method="POST" action="../../autocombing/download/">
+      <div style="display:none"><input type="hidden" name="csrfmiddlewaretoken" value=""></div>
+    </form>
+    <form target="_blank" class="upload-form" enctype="multipart/form-data" method="POST" action="../../autocombing/upload/">
+      <div style="display:none"><input type="hidden" name="csrfmiddlewaretoken" value=""></div>
+
+        <input type="file" name="upload_data" style="height:0px;width:0px;"/>
+    </form>
+    <div class="step-1">
+        <div class="modal-body">
+            <div class="info">请上传组件、IP地址对应关系表，网路侦测将自动根据该表内容对数据进行处理。</div>
+            <!-- <div class="viewpic"></div> -->
+            <div class="combining-interpret">  必填字段：序号、地址A  </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary grey-button-long left download">下载CSV样本</button>
+            <button class="btn btn-primary upload blue-button upload ctl-button">上传</button>
+            <button class="btn btn-second grey-button cancel ctl-button">取消</button>
+        </div>
+    </div>
+
+    <div class="step-2">
+        <div class="modal-body">
+            <div>对应关系表:</div>
+            <div class="ip-component-table">
+                <table class="head">
+                    <thead>
+                        <th class="seq">序号</th>
+                        <th class="component"><span>节点A</span></th>
+                        <th class="ipaddr"><span>地址A</span></th>
+                        <th class="equipment"><span>设备A</span></th>
+                        <th class="port"><span>端口A</span></th>
+                        <th class="componentB"><span>节点B</span></th>
+                        <th class="ipaddrB"><span>地址B</span></th>
+                        <th class="equipmentB"><span>设备B</span></th>
+                        <th class="portB"><span>端口B</span></th>
+                        <th class="atob"><span>A-B字节</span></th>
+                        <th class="btoa"><span>B-A字节</span></th>
+                        <th class="allb"><span>总字节</span></th>
+                        <th class="usability"><span>可用性</span></th>
+                        <th class="pattern"><span>模式</span></th>
+                        <th class="zonebit"><span>标志位</span></th>
+                        <th class="proto"><span>协议</span></th>
+                    </thead>
+                </table>
+                <div class="body grey-scrollbar">
+                    <table>
+                        <thead>
+                                <th class="seq"></th>
+                                <th class="component"></th>
+                                <th class="ipaddr"></th>
+                                <th class="equipment"></th>
+                                <th class="port"></th>
+                                <th class="componentB"></th>
+                                <th class="ipaddrB"></th>
+                                <th class="equipmentB"></th>
+                                <th class="portB"></th>
+                                <th class="atob"></th>
+                                <th class="btoa"></th>
+                                <th class="allb"></th>
+                                <th class="usability"></th>
+                                <th class="pattern"></th>
+                                <th class="zonebit"></th>
+                                <th class="proto"></th>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary blue-button-long start ctl-button">启动梳理</button>
+            <button class="btn btn-second grey-button cancel ctl-button">取消</button>
+        </div>
+    
+    </div>
+  </div>
+  <div id="before_autocombing_popup" class="popup-modal hide" tabindex="-1">
+    <div class="modal-header">
+        <h3></h3>
+    </div>
+    <div class="modal-body">
+        <div class="icon info"></div>
+        <div class="info">
+            <div class="line prompt desc" style="">您确认要执行自动梳理吗？</div>
+            <div class="line prompt" style="">自动梳理将覆盖当前所有的组件节点</div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-primary ctl-button blue-button confirm">确定</button>
+        <button class="btn btn-second ctl-button grey-button cancel" data-dismiss="modal" aria-hidden="true">取消</button>
+    </div>
+  </div>
+  <div id="reset_popup" class="popup-modal hide" tabindex="-1">
+    <div class="modal-header">
+        <h3>&nbsp;</h3>
+    </div>
+    <div class="modal-body">
+        <div class="icon info"></div>
+        <div class="info">
+            <div class="line prompt desc" style="">您确认要执行重置吗？</div>
+            <div class="line prompt" style="">重置将把所有组件恢复为IP节点</div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-primary ctl-button blue-button confirm">确定</button>
+        <button class="btn btn-second ctl-button grey-button cancel" data-dismiss="modal" aria-hidden="true">取消</button>
+    </div>
+  </div>
+  <div id="autocombing_error_popup" class="popup-modal hide" tabindex="-1">
+    <div class="modal-header">
+        <h3>&nbsp;</h3>
+    </div>
+
+    <div class="modal-body">
+
+        <div class="icon info"></div>
+        <div class="info">
+            <div class="line"></div>
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-primary blue-button ctl-button">确定</button>
+    </div>
+
+  </div>
+</div>
+<script type="text/javascript"> 
+  $(document).ready(function () {
+    var mapNameCH = window.localStorage.getItem('mapNameCH');
+    $(".program-name").text(mapNameCH);
+    var downloadForm = $(".download-form"),
+          uploadForm = $(".upload-form"),
+          sysToken = '';
+    sysToken = $.cookie('csrftoken');
+    downloadForm.find('div').find('input').val(sysToken);
+    uploadForm.find('div').find('input').val(sysToken);
+      var clients = $('#interface-definition .client .body-content');
+      clients.mCustomScrollbar();
+
+      var servers = $('#interface-definition .server .body-content');
+      servers.mCustomScrollbar({
+          'callbacks':{
+              'onScroll': function(){
+                  $('#interface-definition input.error').each(function(){$(this).messagepop('updatePos');});
+              },
+              'whileScrolling': function(){
+                  $('#interface-definition input.error').each(function(){$(this).messagepop('updatePos');});
+              }
+          }
+      });
+      {% comment %} CBMSFLOW.environment('map_name', "{{map_name}}"); {% endcomment %}
+      var block_height = 103;
+      var temp_title_height = 37;
+      var temp_value_height = 75;
+      var temp_foot_height = 22;
+
+      var $intfConfig = $('#interface-definition');
+      var sessionHeadHeight = 64;
+      var $sessionTable = $intfConfig.find('.sessions');
+      var $sessionBody = $sessionTable.find('.body-content');
+
+      var $clientTable = $intfConfig.find('.client');
+      var $clientBody = $clientTable.find('.body-content');
+
+      var $serverTable = $intfConfig.find('.server');
+      var $serverBody = $serverTable.find('.body');
+      var $serverContent = $serverTable.find('.body-content');
+      var nodeDefinition = $('.node-definition-value-container');
+
+      //table resize
+      $('#flow-table-block').resizable({
+          handles: "n",
+          minHeight: 0,
+          start: function (e, ui) {
+              var max_height = $('#spd-body').height() - 5;
+              $('#flow-table-block').resizable("option", "maxHeight", max_height);
+          },
+          resize: function (e, ui) {
+              $(this).css('top', '0px');
+              var height = $('#flow-table-block').height();
+              var height = ui.size.height;
+              var foot_height = 21;
+              var value_height = 42;
+              var title_height = 37;
+              var viewport_height = 37;
+
+              //node table
+              if (height <= 0) {
+                  $('.node-table-title-container').height(0);
+                  $('.node-table-foot-container').height(0);
+                  $('.node-table-value-container').height(0);
+                  return false;
+              } else if (height <= title_height) {
+                  $('.node-table-title-container').height(height - title_height);
+                  $('.node-table-foot-container').height(0);
+                  $('.node-table-value-container').height(0);
+              } else if (height <= title_height + foot_height) {
+                  $('.node-table-title-container').height(title_height);
+                  $('.node-table-foot-container').height(height - title_height);
+                  $('.node-table-value-container').height(0);
+              } else if (height > title_height + foot_height) {
+                  $('.node-table-title-container').height(title_height);
+                  $('.node-table-foot-container').height(foot_height);
+                  $('.node-table-value-container').height(height - title_height - foot_height);
+              }
+              //flow table
+              if (height <= 0) {
+                  $('#flow-table').css('top', 0);
+                  $('.flow-table-foot-container').height(0);
+                  $('.flow-table-value-container').height(0);
+                  return false;
+              } else if (height <= foot_height) {
+                  $('.flow-table-foot-container').height(height - foot_height);
+                  $('.flow-table-value-container').height(0);
+                  $('.flow-table-value-container .slick-viewport').height(0);
+              } else if (height <= (foot_height + viewport_height)) {
+                  $('.flow-table-foot-container').height(foot_height);
+                  $('.flow-table-value-container').height(height - foot_height);
+                  $('.flow-table-value-container .slick-viewport').height(0);
+              } else if (height > (foot_height + viewport_height)) {
+                  $('.flow-table-foot-container').height(foot_height);
+                  $('.flow-table-value-container').height(height - foot_height - 5);
+                  $('.flow-table-value-container .slick-viewport').height(height - foot_height -
+                      viewport_height - 5);
+
+                  $('#combing-table .combing-table-content').height(height - foot_height -
+                      viewport_height - 5);
+
+              }
+              $('.flow-table-value-container').trigger('resize');
+
+              $sessionBody.height(height - sessionHeadHeight);
+              $sessionBody.mCustomScrollbar('update');
+
+              $clientBody.height(height - sessionHeadHeight);
+              $clientBody.mCustomScrollbar('update');
+
+              $serverContent.height(height - 30);
+              $serverContent.mCustomScrollbar('update');
+
+              nodeDefinition.height(height - 36);
+              nodeDefinition.mCustomScrollbar('update');
+          },
+          stop: function (e, ui) {
+              var height = $('#flow-table-block').height();
+              if (height <= 5) {
+                  $('#flow-table-block').height(2);
+                  $('#flow-table').css('top', 0);
+                  $('.flow-table-title-container').height(0);
+                  $('.flow-table-foot-container').height(0);
+                  $('.flow-table-value-container').height(0);
+                  $('.node-table-title-container').height(0);
+                  $('.node-table-foot-container').height(0);
+                  $('.node-table-value-container').height(0);
+                  height = 2;
+              }
+              if (height > 2) {
+                  $('#flow-table-block .resizable-span').removeClass('min');
+              } else {
+                  $('#flow-table-block .resizable-span').addClass('min');
+              }
+              $('#topovmap-edit').trigger("resize");
+          }
+      });
+      //$('#flow-table-block .ui-resizable-handle').append('<span class="resizable-span"></span>');
+      var adj_left = ($(window).width() - 90) / 2;
+      $('#flow-table-block .resizable-span').css('left', adj_left);
+
+      $('#flow-table-block .resizable-span').bind('mousedown', function (e) {
+          $(this).parent().addClass('noactive');
+      });
+      $('#flow-table-block .resizable-span').bind('mouseup', function (e) {
+          $(this).parent().removeClass('noactive');
+      });
+
+      /*$('.ui-resizable-handle').on('click', function () {
+          $(document).on("mousemove",function(){
+              return
+          });
+          var self = $(this);
+          if (self.hasClass('min')) {
+              self.removeClass('min');
+
+              $('#flow-table-block').height(block_height);
+              $('.flow-table-title-container').height(temp_title_height);
+              $('.flow-table-foot-container').height(temp_foot_height);
+              $('.flow-table-value-container').height(temp_value_height);
+              $('.flow-table-value-container').trigger('resize');
+
+              $('.node-table-title-container').height(temp_title_height);
+              $('.node-table-value-container').height(temp_value_height);
+              $('.node-definition-value-container').height(temp_value_height);
+              $('.node-table-foot-container').height(temp_foot_height);
+          } else {
+              self.addClass('min')
+
+              temp_foot_height = $('.flow-table-foot-container').height();
+              temp_value_height = $('.flow-table-value-container').height();
+              temp_title_height = $('.flow-table-title-container').height();
+              block_height = $('#flow-table-block').height();
+
+              $('#flow-table-block').height(12);
+              $('#flow-table').css('top', 0);
+              $('.flow-table-title-container').height(0);
+              $('.flow-table-foot-container').height(0);
+              $('.flow-table-value-container').height(0);
+              $('.node-table-foot-container').height(0);
+              $('.node-table-title-container').height(0);
+              $('.node-table-value-container').height(0);
+          }
+          $('#topovmap-edit').trigger("resize");
+      });*/
+      $('#flow-table-block .resizable-span').hover(
+          function () {
+              //IN
+              $('#flow-table-block').resizable("option", "disabled", true);
+          },
+          function () {
+              //OUT
+              $('#flow-table-block').resizable("option", "disabled", false);
+          }
+      );
+      var flowTableNavs = $('.flow-table-nav li');
+      flowTableNavs.click(function () {
+          var target = $('#' + $(this).attr('target'));
+          target.show().siblings(':not(.flow-table-nav,.ui-resizable-handle)').hide();
+          $(this).addClass('active').siblings().removeClass('active');
+          $.each(target.find('.mCustomScrollBox').parent(), function (i, item) {
+              $(item).mCustomScrollbar('update');
+          });
+
+          $('.flow-table-value-container').trigger('resize');
+
+      });
+
+      $.each(['node-table', 'interface-definition', 'node-definition'], function (i, item) {
+          $('#flow-table-block .flow-table-nav li[target=' + item + ']').hide();
+      });
+      var flowTable = $('#flow-table');
+      var adjWidth = flowTable.position().left;
+      flowTable.width($(window).width() - adjWidth);
+      $('#node-table').width($(window).width() - adjWidth);
+      $('#node-definition').width($(window).width() - adjWidth);
+      var resizeTimeOut = null;
+      window.addEventListener("resize", function () {
+          clearTimeout(resizeTimeOut);
+          resizeTimeOut = setTimeout(function () {
+              var body = document.getElementsByTagName("body")[0];
+              var scroll = body.scrollHeight - body.clientHeight;
+              var d = 0;
+              // if (scroll != 0) d = 20;
+              flowTable.width($(window).width() - adjWidth - d);
+              $('#node-table').width($(window).width() - adjWidth - d);
+              $('#node-definition').width($(window).width() - adjWidth - d);
+
+              var adj_left = ($(window).width() - 90) / 2;
+              $('#flow-table-block .resizable-span').css('left', adj_left);
+
+              $('.flow-table-value-container').trigger('resize');
+
+          }, 50);
+      });
+  });
+  $(function() {
+    var map_data = window.getCombingData;
+    var datasource_name = CBMSFLOW.environment('datasource_name');
+    var request_data = {'map_data': JSON.stringify(map_data)};
+    var nowMap = window.localStorage.getItem("mapName");
+    if(datasource_name) request_data['datasource'] = datasource_name;
+    var urlName = '/zh-cn/spd/'+nowMap+'/overview/mapdata/';
+    $.ajax({
+        url: CBMSFLOW.util.format_i18n_url('/spd/'+nowMap+'/overviewdata/'),
+        type: 'get',
+        success: function(results) {
+            if (results.code === 0) {
+              $.ajax({ // 获取权限
+                  type:"POST",
+                  url:"/zh-cn/accounts/currentuser/",
+                  data:{"csrfmiddlewaretoken":csrf_token},
+                  dataType:"json",
+                  success:function(result) {
+                      if(result.code === 0){
+                          var permissionData = result.data.permission;
+                          CBMSFLOW.environment('permissionData', permissionData);
+                          var permissionData = CBMSFLOW.environment('permissionData');
+                          var ifRelationExport = permissionData.spd_session_relation_export, // 导出网路侦测会话关系表
+                              ifRelationImport = permissionData.spd_session_relation_import, //导入网路侦测会话关系表
+                              ifsnapDetail = permissionData.spd_snapshoot_detail, // 查看网路侦测快照
+                              ifContrast = permissionData.spd_contrast, // 网路侦测对比功能
+                              ifSessionImport = permissionData.spd_session_relation_import,
+                              ifPathDiagramEdit =  permissionData.spd_path_diagram_edit, // 编辑网路侦测服务路径图
+                              menuSnapshot = $('#menu-snapshot'),
+                              spdmapToolbar = $('#spdmap-toolbar'),
+                              mapHideBox = $('#map-hide-box'),
+                              zoomCtrl = $('.zoom-ctrl'),
+                              exportCsv = $('.exportcsv');
+                          compareD = $('#compareD').parent();
+                          if(ifRelationExport) exportCsv.show();
+                          else exportCsv.hide();
+                          if(ifsnapDetail) menuSnapshot.show();
+                          else menuSnapshot.hide();
+                          if(ifContrast) compareD.show();
+                          else compareD.hide();
+                          if(ifPathDiagramEdit) {
+                            mapHideBox.show();
+                            spdmapToolbar.show();
+                            zoomCtrl.show();
+                          } else {
+                            zoomCtrl.hide();
+                            spdmapToolbar.hide();
+                            mapHideBox.hide();
+                          }
+                          if(!ifSessionImport) $('#spdmap-toolbar').find('button[name="combing"]').css('background-color','#2c4864');
+                      }
+                  },
+                  error:function(){
+                      console.log("获取当前用户信息失败！");
+                  }
+              });
+              var ip_device_map = results.data.ip_device_map;
+              CBMSFLOW.environment('ipDeviceMap', ip_device_map || {});
+            }
+            /*else if (result.error=='hasdesc'){
+                $('#create_map_input').messagepop('show', "名称重复");
+                $('#create_map_input').addClass('error');
+            }*/
+            else {
+                alert(result.msg);
+            }
+        }
+    });
+    $.ajax({
+          url: urlName,
+          type: 'POST',
+          dataType: "json",
+          data: request_data,
+          success:function(res){
+    /*$( "#sortable" ).sortable({
+        connectWith: ".connectedSortable"
+      }).disableSelection();*/
+              var breadcrumbs = $("#spd-header-breadcrumbs"),
+                  liseg = $("<li></li>").attr({class : "breadcrumbs-segment"}).html(">"),
+                  liname = $("<li></li>").attr({class : "breadcrumbs-name"}).html("数据源手动梳理");
+                if(!breadcrumbs.hasClass("hasCrumbs")) {
+                  breadcrumbs.append(liseg);
+                  breadcrumbs.append(liname);
+                  breadcrumbs.addClass("hasCrumbs");
+                } else {
+                    $(".breadcrumbs-name").html("数据源手动梳理");
+                }
+                breadcrumbs.css({ display : "block"});
+                var oldFlowListProxy = CBMSFLOW.environment('flowlistProxy');
+                var flows = res.data.flows;
+                var datasource = new SpdMap.LocalDataSource(flows);
+                if(oldFlowListProxy){
+                    oldFlowListProxy.clear();
+                    oldFlowListProxy.reset(datasource)
+                }
+                else{
+                  CBMSFLOW.environment('flowlistProxy', new SpdMap.FlowListProxy(datasource));
+                }
+                var topov_map = res.data.topov_map;
+
+                var nodes = topov_map['nodes'];
+                var edges = topov_map['links'];
+                var box = topov_map['hidebox'];
+                
+                // fixWindowSize should before new spdmap
+                SpdMap.Blender.fixWindowSize($('#topovmap-edit'));
+              if(nodes.length === 0){
+                $('#spdmap-toolbar button[name="combing"]').addClass('disabled');
+                noDataShow({
+                  description: "该数据包无拓扑关系",
+                  box: $('#topovmap-edit')
+                });
+              } else {
+                $('#spdmap-toolbar button[name="combing"]').removeClass('disabled');
+                noDataShow().remove();
+              }
+              var resizeTimeOut = null;
+                window.addEventListener("resize", function () {
+                  clearTimeout(resizeTimeOut);
+                  resizeTimeOut = setTimeout(function () {
+                    SpdMap.Blender.fixWindowSize($('#topovmap-edit'));
+                  },600);
+                  
+                  var tableHeight = document.body.clientHeight - $('div#flow-table-block').outerHeight() - 44 - 43 - 50;
+
+                  $('#compare-result').css('height', tableHeight + 'px');
+
+                  $('#compare-result .compare-result-table').css('height', (tableHeight - 35 - 27 -10) + 'px');
+
+                });
+                var blender = new SpdMap.Blender();
+          if (!CBMSFLOW.environment('compareMode')) {
+
+            var map = new SpdMap.Map($('#topovmap-edit'), nodes, edges, box);
+            blender.blend(map);
+
+            $('#compare-result').hide();
+
+            CBMSFLOW.environment('topovmap', map);
+          } else {
+            //修改：
+            var compared =  CBMSFLOW.environment('compared'),
+                comparedLen = compared.length,
+                datasource = [],
+                snapshot = [];
+            for(var i=0;i<comparedLen;i++){
+              if(compared[i].type === "datasource") datasource.push(compared[i].desc);
+              else snapshot.push(compared[i].desc);
+            }
+            var postdata = {
+              'datasource':JSON.stringify(datasource),
+              'snapshot': JSON.stringify(snapshot),
+            };
+            $.ajax({
+              url:'/zh-cn/spd/' + CBMSFLOW.environment('map_name')  +'/overview/contrastmapdata/',
+              type: 'POST',
+              dataType: "json",
+              data: postdata,
+              success:function(data){
+                if($("#loading-wrapper")) $("#loading-wrapper").remove();
+                window.onpopstate = function (event) {
+                  var nowPatnName = window.location.hash;
+                  if (event.state == null && nowPatnName !== "#map" && nowPatnName !== "#preview" ) {
+                    window.location.reload();
+                  }
+                }
+                var allNameArr = [],
+                    compareList = [],
+                    optionsAll = $("<option></option>").html("所有节点");
+                    $("#select-com").append(optionsAll);
+                $.each(compared,function(index,item){
+                  compareList.push(item.name);
+                });
+                setTimeout(function(){upClear()},2000);
+                $("#compareD").parent().css({display : "none"});
+                $(".breadcrumbs-name").html("对比");
+                $("#spdmap-toolbar").css({display : "none"});
+                $("#show-select").css({display : "block"});
+                $('#spdmap-toolbar button[name="combing"]').removeClass('disabled');
+                noDataShow().remove();
+                if($("#comp-pupop")) $("#comp-pupop").remove();
+                console.log('compare result:', data);
+                var nodes = data.data.map_data.nodes,
+                    links = data.data.map_data.links,
+                    //source = data.data.ip_data.source,
+                    source = compareList.reverse(),
+                    sourceLen = source.length,
+                    ip_source = data.data.ip_data.ip_source,
+                    ip_sort = data.data.ip_data.ip_sort,
+                    source_data = data.data.source_data,
+                    box = [];
+                /*for(var i=0;i<nodes.length;i++){
+                  nodes[i].selected = true;
+                }*/
+                var map = new SpdMap.Map($('#topovmap-edit'), nodes, links, box),
+                    oldFlowListProxy = CBMSFLOW.environment('flowlistProxy');
+                    datasource = new SpdMap.LocalDataSource(data.data.flows);
+                for(var i=0;i<sourceLen;i++){
+                  var preCheck = $("<input type='checkbox' />").attr({class:"precheck haschecked"}),
+                      preSourceName = $("<div></div>").attr({class:"pre-sourse-name"}).html(source[i]),
+                      preSource = $("<div></div>").attr({class:"pre-sourse"}),
+                      options = $("<option></option>").html(source[i]);
+                  preSource.append(preCheck);
+                  preSource.append(preSourceName);
+                  $(".compare-index").after(preSource);
+                  $("#select-com").append(options);
+                  allNameArr.push(source[i]);
+                };
+                //下拉框事件
+                $("#select-com").change(function(){
+                  $(".has-line").attr({"opacity":"0.2"});
+                  $("circle").removeAttr("style");
+                  $(".has-line").attr({stroke : "#ffffff"});
+                  $("circle").attr({"opacity":"0.2"});
+                  $("circle").attr({"stroke-dasharray": 0});
+                  var opt = $("#select-com").val();
+                  $.each(source_data,function(key, value){
+                    if(opt === key){
+                      var nodeValue = value,
+                          nodeValueLen =  nodeValue.length;
+                      for(var i = 0;i < nodeValueLen;i++){
+                        var allC = $("circle");
+                        for(var t=0;t<allC.length;t++){
+                          if(nodeValue[i] === (allC[t].id)*1){
+                            allC.eq(t).prev().removeAttr("style");
+                            allC.eq(t).prev().attr({opacity : "1"});
+                            allC.eq(t).prev().attr({stroke : "#0af6e2"});
+                            allC.eq(t).prev().attr({class: "has-line"});
+                          }
+                        }
+                      }
+                    }
+                  });
+                });
+                //快照预览
+                $("#com-snop").css({display:"block"});
+                $("#com-snop").on("click",function(){
+                  var FrameDispatchInstance = CBMSFLOW.environment('frameDispatch', FrameDispatchInstance);
+                  FrameDispatchInstance.toggle('preview');
+                });
+                //复选框
+                $(".precheck").on("click",function(){
+                  var nowprecheckLen = 0;
+                  if($(this).hasClass("noCheck")) return;
+                  $.each($(".precheck"),function(index){
+                    if($(".precheck").eq(index).hasClass("haschecked")) nowprecheckLen++;
+                  });
+                  if($(this).hasClass("haschecked") && nowprecheckLen>1) {
+                    $(this).removeClass("haschecked");
+                    if(nowprecheckLen === 2){
+                      $(".haschecked").addClass("noCheck");
+                    } else $(".haschecked").removeClass("noCheck");
+                  } 
+                  else {
+                    if(nowprecheckLen === 1){
+                      $(".haschecked").removeClass("noCheck");
+                    }
+                    $(this).addClass("haschecked");
+                  } 
+                  createLi(false);
+                });
+                //显示项目内比较的数据信息名字
+                $("#show-all-name").html(allNameArr.join("、"));
+                if(oldFlowListProxy){
+                    oldFlowListProxy.clear();
+                    oldFlowListProxy.reset(datasource);
+                }
+                else{
+                  CBMSFLOW.environment('flowlistProxy', new SpdMap.FlowListProxy(datasource));
+                }
+                blender.blend(map);
+                CBMSFLOW.environment('topovmap', map);
+                var nodesInLinks = [];
+                $('.compare-result-table ul').empty();
+                var svgHeight = $('svg').height();
+                var tableHeight = (svgHeight - 50 + 5);
+                $('#compare-result').css('height', tableHeight + 'px');
+                $('#compare-result .compare-result-table').css('height', (tableHeight - 35 - 27 -10) + 'px');
+                var compareResultWidth = sourceLen * 120 + 60;
+                $("#compare-result").css({width : compareResultWidth + "px"});
+                $("#topovmap-edit svg").css({left: "-200px"});
+                //var viewBoxX = $("#topovmap-edit svg")[0].viewBox.baseVal.x;
+                //setTimeout(function(){$("#topovmap-edit svg")[0].viewBox.baseVal.x = viewBoxX + 200}, 300)
+                $("#show-all-name").css({right:compareResultWidth + "px"});
+                //绘制表格
+                createLi(true);
+                function createLi(first){
+                  if($('.pre-li')) $('.pre-li').remove();
+                  var index = 1;
+                  $.each(ip_sort, function(key, value) {
+                    var hasSource = ip_source[value];
+                    var comLi = $('<li></li>').attr({class:"pre-li"}),
+                        indexN = $("<div></div>").html(index);
+                    for(var i=0;i<sourceLen;i++){
+                      comLi.prepend($("<div></div>").attr({class:"show-data","data-name":source[i]}).html(""));
+                    }
+                    var allDiv = comLi.find(".show-data"),  
+                        allDivLen = allDiv.length; 
+                    for(var k=0;k<allDivLen;k++){
+                      var dataName = allDiv[k].attributes[1].nodeValue;
+                      for(var j=0;j<hasSource.length;j++){
+                        if(dataName === hasSource[j]){
+                          if(!first){
+                            //判断是否为独有数据
+                            var ifCheck = $(".precheck");
+                            for(var n=0;n<ifCheck.length;n++){
+                              if(hasSource[j] === ifCheck[n].nextSibling.innerText){
+                                if(!ifCheck.eq(n).hasClass("haschecked") && hasSource.length === 1){
+                                  break;
+                                }
+                                else allDiv.eq(k).text(value);         
+                              }
+                            }
+                          }
+                          else allDiv.eq(k).text(value);
+                        }
+                      }
+                    }
+                    //判断是否为独有数据
+                    comLi.prepend(indexN);
+                    var numI = 0;
+                    for(var m=0;m<allDivLen;m++){
+                      if(allDiv[m].innerText === ""){
+                        numI++;
+                      }
+                    }
+                    if(numI < sourceLen){
+                      if(first) $('.compare-result-table ul').append(comLi);
+                      else $('#topovmap-edit .mCSB_container').append(comLi);
+                      //$('#compare-result ul').append(comLi);
+                      index++;
+                    }
+                  });
+                  //点击列表
+                  $(".pre-li").on("click",function(e,vueIp){
+                    if($(".search-comp-summary").length !== 0) $(".search-comp-summary").remove();
+                    var showData = $(".show-data"),
+                        showDataLen = showData.length,
+                        flag = false;
+                    $(".pre-li").removeClass("has-click-compare");
+                    if(vueIp){
+                      for(var t=0;t<showDataLen;t++){
+                        if(showData[t].innerText === vueIp) {
+                          flag = true;
+                          showData.eq(t).parent().addClass("has-click-compare"); 
+                        }
+                      }
+                      if(!flag) {
+                        $(".has-dash").attr({"stroke-dasharray" : 0,"opacity" : "0.5"});
+                        var Artspan = '<span class="search-comp-summary" style="display: inline-block; top:6px;left:-183px;position:absolute;">'+
+                                      '<span class="search-comp-desc">没有找到符合条件的结果。</span>'+
+                                      '<a href="javascript:void(0);" class="search-comp-clear icon-close"></a>'+
+                                    '</span>';
+                        if($(".search-comp-summary").length === 0){
+                          $("#compare-result").append(Artspan);
+                          $(".search-comp-clear").on("click",function(event){
+                            if($(".search-comp-summary").length !== 0) $(".search-comp-summary").remove();
+                          });
+                        }
+                        flag = true;
+                      } else {
+                        if($(".search-comp-summary").length !== 0) $(".search-comp-summary").remove();
+                      }
+                    }
+                    else $(this).addClass("has-click-compare");
+                    var allShowDa = $(this).find(".show-data");
+                    if(vueIp){
+                      for(var i=0;i<nodes.length;i++){
+                        for(var j=0;j<nodes[i].ip_ports[0].length;j++){
+                          if(vueIp === nodes[i].ip_ports[0][j]){
+                            var allCirCles = $("circle");
+                            for(var t=0;t<allCirCles.length;t++){
+                              if(nodes[i].id === (allCirCles[t].id)*1){
+                                $(".has-dash").attr({"stroke-dasharray" : 0,"opacity":"0.5"});
+                                allCirCles.eq(t).prev().removeAttr("style");
+                                if( allCirCles.eq(t).prev()[0].attributes[4].value === "none") allCirCles.eq(t).prev().attr({"stroke-dasharray" : 4,"opacity" : "1","stroke":"rgb(28, 137, 201)","stroke-width":"2px"});
+                                else allCirCles.eq(t).prev().attr({"stroke-dasharray" : 4,"opacity" : "1"});
+                                allCirCles.eq(t).prev().attr({class: "has-dash"});
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                    else{
+                      for(var q = 0;q<allShowDa.length;q++){
+                        if(allShowDa[q].innerText !== ""){
+                          for(var i=0;i<nodes.length;i++){
+                            for(var j=0;j<nodes[i].ip_ports[0].length;j++){
+                              if(allShowDa[q].innerText === nodes[i].ip_ports[0][j]){
+                                var allCirCles = $("circle");
+                                for(var t=0;t<allCirCles.length;t++){
+                                  if(nodes[i].id === (allCirCles[t].id)*1){
+                                    $(".has-dash").attr({"stroke-dasharray" : 0,"opacity":"0.5"});
+                                    allCirCles.eq(t).prev().removeAttr("style");
+                                    if( allCirCles.eq(t).prev()[0].attributes[4].value === "none") allCirCles.eq(t).prev().attr({"stroke-dasharray" : 4,"opacity" : "1","stroke":"rgb(28, 137, 201)","stroke-width":"2px"});
+                                    else allCirCles.eq(t).prev().attr({"stroke-dasharray" : 4,"opacity" : "1"});
+                                    allCirCles.eq(t).prev().attr({class: "has-dash"});
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  });
+                }
+                
+
+
+                $('#compare-result').show();
+                $("#compare-result ul").mCustomScrollbar({
+                    theme: "minimal"
+                });
+                $('div#map-hide-box').hide();
+                $(".compare-out-in").on("click",function(event){
+                  if($(".search-comp-summary").length !== 0) $(".search-comp-summary").remove();
+                  $(".has-in").css({display:"block"});
+                  $(this).parent().css({right:-(compareResultWidth+30)});
+                  $("#topovmap-edit svg").css({left:0});
+                  $("#show-all-name").css({right: 0 });
+                });
+                $(".has-in").on("click",function(){
+                  $(this).css({display:"none"});
+                  $("#compare-result").css({right:0});
+                  var compareResultWidth = sourceLen * 120 + 60;
+                  $("#compare-result").css({width : compareResultWidth + "px"});
+                  $("#topovmap-edit svg").css({left: "-200px"});
+                  //var viewBoxX = $("#topovmap-edit svg")[0].viewBox.baseVal.x;
+                  //setTimeout(function(){$("#topovmap-edit svg")[0].viewBox.baseVal.x = viewBoxX + 200}, 300)
+                  $("#show-all-name").css({right:compareResultWidth + "px"});
+                }); 
+
+                $("#topovmap-edit svg").on("mouseup",function(){
+                  $(this).on("mousemove",function(e){
+                    if(e.target.nodeName === "circle") return;
+                  });
+                });
+
+                $("#topovmap-edit svg").on("mousedown",function(e){
+                  if(e.target.nodeName === "circle") return;
+                  $("#topovmap-edit svg").trigger("click");
+                });
+
+                {% comment %} $("#topovmap-edit svg circle").on("mouseout",function(){
+                  $("#topovmap-edit svg").trigger("click");
+                }); {% endcomment %}
+
+                $("#topovmap-edit svg").on("mousewheel",function(){
+                    $("#topovmap-edit svg").trigger("click");
+                });
+                $('circle').draggable({
+                  start: function(event, ui) {
+                    if($('.data-show-pupop')) $('.data-show-pupop').remove();
+                  },
+                  drag: function(){    //拖拽的时候，执行的方法, 比如添加css或是别的。 
+                    if($('.data-show-pupop')) $('.data-show-pupop').remove();
+                  },
+                  stop: function(event, ui) {
+                  }
+                });
+                //ip对应obj
+                function returnAllIP() {
+                  var nodeDArr = [],
+                      nodeLen = nodes.length;
+                  for(var i=0;i<nodeLen;i++){
+                    nodeDArr.push(nodes[i].ip_source);
+                  }
+                  return nodeDArr;
+                }
+                //节点点击
+                $("circle").on("mousedown",function(e,ip){
+                  window.e = e || event;
+                  setTimeout(function(e){
+                    var e = window.e
+                    var nodeD = window.clickIp === undefined ? [] : window.clickIp,
+                        nodeDLen = nodeD.length,
+                        nodeDArr = [];
+                    for(var i=0;i<nodeDLen;i++){
+                      nodeDArr.push(nodeD[i][0])
+                    } 
+                    var newArray = Array.from(new Set(nodeDArr)),
+                        TArr = returnAllIP(),
+                        newArrayLen = newArray.length,
+                        TArrLen = TArr.length;
+                    if($('.data-show-pupop')) $('.data-show-pupop').remove();
+                    var e = e || window.event;
+                    var dataShowLeft = e.pageX - 240,
+                        dataShowTop = e.pageY - 240;
+                    var dataShowPupop = $("<div></div>").attr({class:"data-show-pupop"});
+                    $("#topovmap-edit").append(dataShowPupop);
+                    var stacking = 
+                        '<div id="diff-data">'+
+                          '<span>差异:</span>'+
+                          '<div class="diff-pre"></div>'+
+                        '</div>'+
+                        '<div id="stacking-data">'+
+                          '<span>重叠:</span>'+
+                          '<div class="stacking-pre"></div>'+
+                        '</div>';
+                      dataShowPupop.prepend(stacking);
+                    $("#map-container .data-show-pupop").on("mousewheel",function(){
+                        $("#topovmap-edit svg").trigger("click");
+                    });
+                    for(var i=0;i<newArrayLen;i++){
+                      for(var aq=0;aq<TArrLen;aq++){
+                        $.each(TArr[aq], function(key, value) {
+                          if(newArray[i] === key){
+                            var sourceIp = value.source,
+                                sourceIpLen = sourceIp.length;
+                            if(value.count !== 0){
+                              $("#diff-data").css({display:"block"});
+                              for(var j=0;j<sourceIpLen;j++){
+                                $("<div class='pre-diff-data'><div class='diff-ip-name'>"+sourceIp[j]+"</div><div class='diff-ip'>"+key+"</div></div>").appendTo(".diff-pre")
+                              }
+                            }
+                            else {
+                              $("#stacking-data").css({display:"block"});
+                              for(var j=0;j<sourceIpLen;j++){
+                                $("<div class='pre-cource-data'><div class='cource-ip-name'>"+source[j]+"</div><div class='cource-ip'>"+key+"</div></div>").appendTo(".stacking-pre");
+                              }
+                            }
+                          }
+                        });
+                      }
+                    }
+                    dataShowPupop.css({left:dataShowLeft,top:dataShowTop,display:"block"});
+                  },200);
+                });
+                $(document).click(function(e){
+                  var _con = $('.data-show-pupop');   // 设置目标区域
+                  if(!_con.is(e.target) && _con.has(e.target).length === 0){
+                      $('.data-show-pupop').remove();
+                  }
+                });
+                //搜索按钮：
+                $("#compare-ip-bnt").on("click",function(){
+                  var valueIp = $("#compare-ip").val(),
+                      reg = new RegExp("^[A-Za-z0-9\u4e00-\u9fa5.]+$");
+                  if(!reg.test(valueIp)){
+                      return
+                    }    
+                  $(".pre-li").trigger("click",valueIp);
+                });
+              },
+              error:function(error){
+                CBMSFLOW.debug('error in frame change', error);
+              }
+            });
+            function upClear(){
+              $(document).on("mouseup",function(){
+                var allText = $("svg text.contrast-text"),
+                    allCir = $("svg circle"),
+                    allTextLen = allText.length,
+                    allCirLen = allCir.length,
+                    iflag = false,
+                    num = null;
+                if(allText.length !== 0){
+                  for(var a=0;a<allTextLen;a++){
+                      var poX = allText[a].x.animVal[0].value,
+                          iflag = true;
+                      for(var i=0;i<allCirLen;i++){
+                          if(poX === allCir[i].cx.animVal.value) {
+                            iflag = false;
+                            num = a;
+                          } 
+                      }
+                  }
+                }
+                var time = setTimeout(function(){
+                  clearTimeout(time);
+                  var lastLen = $("svg circle").length;
+                  if (!iflag && allCirLen !== lastLen ) allText.eq(num).hide();
+                },500);
+              })
+            }
+          }
+        }
+    });
+  });
+  function noDataShow(options) {
+    var noDataDiv;
+    if(arguments.length === 0){
+      noDataDiv = document.getElementsByClassName("no-data")[0];
+    }
+    else {
+      var description = options.description;
+      var box;
+      if (options.box.datum) {
+        box = options.box[0][0];
+      }
+      else if (options.box.jquery) {
+        box = options.box[0];
+      }
+      else {
+        box = options.box;
+      }
+      noDataDiv = document.createElement("div");
+      noDataDiv.setAttribute("class", "no-data");
+      noDataDiv.style =
+              "position: absolute;"+
+              "border: 1px solid #1A4E5C;"+
+              "background: #051522;"+
+              "font-size: 26px;"+
+              "color: rgb(238, 238, 238);"+
+              "text-align: center;"+
+              "width: 350px;"+
+              "height: 100px;"+
+              "line-height: 100px;"+
+              "left: calc(50% - 175px);"+
+              "top: calc(50% - 150px);"+
+              "border-radius: 15px;"
+      ;
+      noDataDiv.innerHTML = description;
+      box.appendChild(noDataDiv);
+    }
+    return {
+      remove: function () {
+        if(noDataDiv){
+          var parent = noDataDiv.parentNode;
+          parent.removeChild(noDataDiv);
+        }
+      }
+    };
+  }
+</script>

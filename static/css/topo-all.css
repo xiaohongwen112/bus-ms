@@ -1,0 +1,1358 @@
+/** DISABLE TEXT SELECTION (SET ON BODY WHEN DRAGGING IS OCCURRING) **/
+._jsPlumb_drag_select * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    user-select: none
+}
+body {
+    padding:0;
+    margin:0;
+    /*font-family:'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;    */
+    background-color:#2D2F42;
+}
+ #topoRegion {  
+      position: relative;
+      font-size: 80%;
+      margin:0 auto 0;
+}
+
+#topoRegion_2 .node {
+    text-align:center;
+    z-index:24;
+	cursor:pointer;
+	/*box-shadow: 2px 2px 19px #aaa;*/
+   /*-o-box-shadow: 2px 2px 19px #aaa;*/
+   /*-webkit-box-shadow: 2px 2px 19px #aaa;*/
+   /*-moz-box-shadow: 2px 2px 19px #aaa;*/
+    
+}
+path, ._jsPlumb_endpoint { cursor:pointer; }
+.label {
+  font-size:13px; 
+  padding:8px;
+}
+
+.node {
+	border:1px solid #346789;
+    /*box-shadow: 2px 2px 19px #7b949d;*/
+    /*-o-box-shadow: 2px 2px 19px #7b949d;*/
+    /*-webkit-box-shadow: 2px 2px 19px #7b949d;*/
+    /*-moz-box-shadow: 2px 2px 19px #7b949d;*/
+    /*-moz-border-radius:0.5em;*/
+    /*border-radius:0.5em;*/
+    opacity:0.8;
+    filter:alpha(opacity=80);
+    background: rgba(59, 73, 177, 0.43);
+    line-height: 1.5em;
+    text-align:center;
+    z-index:9;
+    color:white;
+    font-family:helvetica;
+    font-size:0.9em;
+
+    /****************************************************************************/
+    position:absolute;
+    /*width: 400px;*/
+    /*height: 300px;*/
+    height: 200px;
+    width: 280px;
+    margin-bottom: 80px;
+    /* float: left; */
+    margin-left: 80px;
+    /*****************************************************************************/
+}
+#topoRegion .node{
+    margin-left: 0;
+}
+.view_node{
+    width:300px;
+    height: 190px;
+    cursor: default;
+}
+.view_client_node{
+    width: 160px;
+    height: 190px;
+}
+.node-client{
+    width:180px;
+}
+.topo-client-area{
+    height: 160px;
+    width: 160px;
+    padding: 10px;
+    border-radius: 3px;
+    margin: 0 auto;
+    background: url(../img/cbms-img/gray-5.png);
+}
+#topo_title_name{
+    font-size: 20px;
+    font-weight: 400;
+    margin-right: 5px;
+}
+.dragActive {
+    border:2px dotted orange;
+}
+.dropHover { border:1px dotted red; }
+.node:hover {
+    box-shadow: 2px 2px 19px #AFD3E0;
+    -o-box-shadow: 2px 2px 19px #AFD3E0;
+    -webkit-box-shadow: 2px 2px 19px #AFD3E0;
+    -moz-box-shadow: 2px 2px 19px #AFD3E0;
+   opacity:1;
+   filter:alpha(opacity=100);
+}
+/** Z-INDEX **/
+._jsPlumb_connector { z-index:18; }
+._jsPlumb_endpoint { z-index:19; }
+._jsPlumb_overlay { z-index:20; }
+._jsPlumb_connector._jsPlumb_hover {
+    z-index:21 !important;
+}
+._jsPlumb_endpoint._jsPlumb_hover {
+    z-index:22 !important;
+}
+._jsPlumb_overlay._jsPlumb_hover {
+    z-index:23 !important;
+}
+.active {
+    border:1px dotted green;
+}
+/*.hover {*/
+    /*border:1px dotted red;*/
+/*}*/
+._jsPlumb_connector { z-index:4; }
+._jsPlumb_endpoint, .endpointTargetLabel, .endpointSourceLabel{ z-index:21;cursor:pointer; }
+.hl { border:3px solid red; }
+._jsPlumb_dragging { z-index:4000; }
+/*
+.aLabel {
+ 	background-color:white;
+	padding:0.4em;
+	font:12px sans-serif;
+	color:#444;
+	z-index:21;
+	border:1px dotted gray;
+	opacity:0.8;
+	filter:alpha(opacity=80);
+	cursor: pointer;
+}
+*/
+.aLabel._jsPlumb_hover {
+    background-color:#5C96BC;
+    color:white;
+    border:1px solid white;
+}
+
+/*topo manage ��*/
+
+/*modefied by LiYinHuan on 2015-11-24��*/
+.topo-manage-box{
+    /*margin-left: 16%;*/
+    /*left: 2px;*/
+}
+
+.topo-manage-list{
+    background: url("../img/cbms-img/gray-2.png") repeat;
+}
+.topo-manage-list thead tr th{
+    border: none;
+    padding: 0 0 0 2%;
+    vertical-align: middle;
+}
+
+.topo-manage-list tbody tr td{
+    padding: 0 0 0 2.1%;
+    /*padding: 0;*/
+    position: absolute;
+    height: 100px;
+    width:100%;
+    vertical-align: middle;
+}
+
+.topo-text-head,.topo-text{
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    float: left;
+    padding-left: 1%;
+    /*margin-left:1%;*/
+    border-right: 1px solid #232D3C;
+    text-overflow: ellipsis;
+    white-space: nowrap;overflow: hidden;
+}
+.topo-text-head{
+    height: 36px;
+    line-height: 36px;
+}
+.topo-text{
+    height: 96px;
+    padding: 5px 11px 5px 5px;
+}
+.topo-text:last-child{
+    line-height: 80px;
+}
+.topo-text-head:nth-child(1),.topo-text:nth-child(1){
+    width: 20%;
+}
+.topo-text-head:nth-child(2),.topo-text:nth-child(2){
+    width: 30%;
+}
+.topo-text-head:nth-child(3),.topo-text:nth-child(3){
+    width: 110px;
+}
+.topo-text-head:nth-child(4),.topo-text:nth-child(4){
+    width: 30%;
+    padding-left: 30px;
+}
+.topo-text:nth-child(3){
+    padding: 0 0 0 15px;
+    line-height: 96px;
+}
+.topo-manage-icon-box{
+    display: none;
+    position: absolute;
+    top:200px;
+    width: 308px;
+    height: 330px;
+    right:23%;
+    background: #2D3846;
+    border-radius: 2px;
+    overflow: hidden;
+    z-index: 20;
+}
+#manage_app_img {
+    margin: 2px 0 0 2px;
+    width: 306px;
+    height: 328px;
+}
+#manage_app_img li{
+    width: 100px;
+}
+.selected-icon {
+    display: inline-block;
+    width: 80px;
+    height: 60px;
+    line-height: 60px;
+}
+
+.topo-text-head:nth-child(4),.topo-text:nth-child(4){
+    /*width: 35%;*/
+}
+.topo-text-head:last-child,.topo-text:last-child{
+    border-right: none;
+}
+
+/* cr */
+/*.topo-text:nth-child(1) {
+    width: 25.4%;
+}*/
+/*.topo-text:nth-child(2) {*/
+    /*width: 39.9%;*/
+/*}*/
+
+.topo-manage-list tbody tr:nth-child(even) td{
+    background: url("../img/cbms-img/gray-2.png") repeat;
+}
+.topo-manage-list tbody tr:nth-child(odd) td{
+    background: url("../img/cbms-img/gray-1.png") repeat;
+}
+.topo-manage-list .btn{
+    height: 25px;
+    line-height: 10px;
+}
+.topo-manage-list .btn:nth-child(2),.topo-manage-list .btn:nth-child(3){
+    margin-left: 3%;
+}
+@media screen and (max-width: 926px){
+    .topo-manage-list .btn{
+        display: block;
+        margin-top: 5px;
+    }
+    .topo-text:last-child{
+        padding: 0 30px 5px 30px;
+    }
+    .topo-manage-list .btn:nth-child(2),.topo-manage-list .btn:nth-child(3){
+        margin-left: 0;
+    }
+}
+.creat-btn {
+    right: 150px;
+    margin-top: 14px;
+}
+.creat-btn:hover{
+    background: #337AB7;
+}
+
+
+/*modefied by LiYinHuan no 2015-11-24 ��*/
+
+.tm-list,.td-list{
+    bottom: 0;
+}
+
+/*.topo-manage-list thead tr th:nth-child(1),.topo-manage-list tbody tr td:nth-child(1){*/
+    /*width: 20%;*/
+/*}*/
+/*.topo-manage-list thead tr th:nth-child(3),.topo-manage-list tbody tr td:nth-child(3){*/
+    /*width: 20%;*/
+/*}*/
+.topo-manage-list tbody tr{
+    height: 100px;
+    text-align: center;
+}
+
+.topo-manage-list>tbody>tr.topo-tr{
+    height: 40px;
+}
+.topo-manage-list textarea{
+    width: 100%;
+    height:100%;
+    background: none;
+    border: none;
+    text-indent: 1.5em;
+    resize: none;
+    /*padding: 15px;*/
+}
+/*topo manage ��*/
+
+/*topo design ��*/
+#submit_topo_data img{
+    width: 40px;
+}
+.monitor_ip .btn#admin{
+    background: linear-gradient(#91cce4, #53a4cc);
+    float: left;
+}
+.popup_bottom_btn_content{
+    position: absolute;
+    bottom: 15px;
+    border-radius: 2px;
+    background: rgba(230,230,230,1);
+}
+.popup_bottom_btn{
+    height: 30px;
+    width: 100px;
+    margin: 2px;
+    padding: 0;
+    border: 1px solid rgba(109,143,171,1);
+    background: linear-gradient(#91cce4, #53a4cc);
+    border-radius: 2px;
+    color: rgb(230,230,230);
+    text-align: center;
+}
+.stacked_bottom_btn_groups,.tradeAgreement_bottom_btn_groups,.collections_bottom_btn_groups{
+    margin-left: 35%;
+}
+.collector_bottom_btn_groups {
+     margin-left: 35%;
+ }
+/*#collector_bottom_btn_content_next{*/
+    /*margin-left: 200px;*/
+/*}*/
+#collector_bottom_btn_content_finish{
+    margin-left: 200px;
+}
+#stacked_bottom_btn_content_next,#tradeAgreement_bottom_btn_content_next,#collections_bottom_btn_content_next{
+    margin-left: 200px;
+}
+#sour_bottom_btn_content{
+    margin-left: 40%;
+}
+#target_bottom_btn_content{
+    margin-left: 40%;
+    position: relative;
+     bottom: 0;
+    top: 20px;
+     background: none;
+    margin-bottom: 10px;
+}
+.td-left{
+    width: 180px;
+    /*min-width: 260px;*/
+}
+.manage_img_li {
+    height: 80px !important;
+    line-height: 60px !important;
+}
+.td-list .row-block{
+    /*width: 100%;*/
+    height: 80px !important;
+}
+.td-list .row-block img{
+    width: 35px;
+}
+.td-list .row-block:nth-child(6n+1),.tm-list .row-block:nth-child(6n+1){
+    background: url(../img/cbms-img/gray-2.png);
+}
+.td-list .row-block:nth-child(6n+2),.tm-list .row-block:nth-child(6n+2){
+    background: url(../img/cbms-img/gray-2.png);
+}
+.td-list .row-block:nth-child(6n+3),.tm-list .row-block:nth-child(6n+3){
+    background: url(../img/cbms-img/gray-2.png);
+}
+
+.topo-design-box{
+    width: 100%;
+    margin: 0;
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+.topo-view-box{
+    zoom: 1;
+}
+.topo-edit-box{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 2px;
+    overflow: auto;
+}
+.topo-service-area{
+    /*height: 240px;*/
+    /*width: 400px;*/
+    height: 160px;
+    width: 280px;
+    padding: 10px;
+    /*box-shadow: 1px solid #ffffff;*/
+    border-radius: 3px;
+    margin: 0 auto;
+    background: url(../img/cbms-img/gray-5.png);
+}
+.view-topo-service{
+    width:300px;
+}
+.view-topo-client{
+    width: 160px;
+}
+
+.client-component{
+    /*height: 220px;*/
+    float: left;
+    /*width: 130px;*/
+    cursor:move;
+    height: 130px;
+    width: 110px;
+    border: 2px solid #4A6C7B;
+    text-align: center;
+    overflow: hidden;
+    background: url(../img/cbms-img/gray-2.png);
+}
+.view-server-component{
+    width: 205px;
+    float: right;
+}
+.view-client-component{
+    width: 135px;
+    float: none;
+}
+.analysis-component{
+    height: 130px;
+    float: left;
+    width: 150px;
+    border-top: 2px solid #4A6C7B;
+    border-right: 2px solid #4A6C7B;
+    border-bottom: 2px solid #4A6C7B;
+    text-align: center;
+}
+.view-analesis-component{
+    width: 75px;
+    float: right;
+    border-right: none;
+    border-left: 2px solid #4A6C7B;
+}
+.node-client .client-component{
+    float:none;
+    margin: 0 auto;
+}
+
+.collect-component{
+    height: 100px;
+    width: 120px;
+    float: left;
+    text-align: center;
+    overflow-x: hidden;
+    margin: 14px;
+}
+.view-collect-component{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+.node input[type="text"]{
+    text-align: center;
+    margin-top: 10px;
+}
+.node-client input[type="text"]{
+    width: 100px;
+}
+.node span{
+    position:relative;
+    /*top: -5px;*/
+}
+.disp_name{
+    /*padding-top: 5px;*/
+    cursor: pointer;
+    /*height: 30px;*/
+    background: #3E436C;
+    height: 32px;
+    line-height: 32px;
+}
+.view_client_node {
+    background: url(../img/cbms-img/gray-4.png);
+}
+/*.view_client_node .disp_name{*/
+    /*background: rgba(71, 79, 138, 0.43);*/
+    /*height: 32px;*/
+/*}*/
+.disp_name:hover{
+    background:#337ab7
+}
+.topo-view-container{
+    overflow: auto;
+    bottom: 124px;
+    top: 124px;
+}
+.client-title{
+    margin: 5px 0;
+    text-align: center;
+    color: #ddd;
+    font-size: 14px;
+}
+.client-title2{
+    text-align: right;
+    color: #ace6f7;
+    margin: 0 10px 5px 0;
+    font-size: 16px;
+}
+.client-component img,.view-analesis-component img{
+    margin: 0 auto;
+    padding: 0;
+    width: 70px;
+    padding-top: 5px;
+}
+.collect-component li{
+    height: 4em;
+    width: 100%;
+    color: #ffffff;
+    float: left;
+    border: 2px solid #4A6C7B;
+    background: url(../img/cbms-img/gray-4.png);
+    /* padding: 3px; */
+    line-height: 4em;
+    margin-top: 25px;
+    border-radius: 8px;
+}
+.view-analesis-component li{
+    width: 100%;
+    height: 126px;
+    line-height: 126px;
+    margin: 0;
+    border: none;
+    background: url(../img/cbms-img/gray-4.png)
+}
+.collect-component li:hover{
+    background: #486bff;
+}
+.client-component span{
+    color: #ffffff;
+    display: table-cell;
+    float: left;
+}
+#contextmenu {
+    border: 1px solid #aaa;
+    border-bottom: 0;
+    background: #eee;
+    position: absolute;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: none;
+}
+#contextmenu li a {
+    display: block;
+    padding: 10px;
+    border-bottom: 1px solid #aaa;
+    cursor: pointer;
+}
+#contextmenu li a:hover {
+    background: #fff;
+}
+#linkmenu {
+    border: 1px solid #aaa;
+    border-bottom: 0;
+    background: #eee;
+    position: absolute;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: none;
+}
+#linkmenu li a {
+    display: block;
+    padding: 10px;
+    border-bottom: 1px solid #aaa;
+    cursor: pointer;
+}
+#linkmenu li a:hover {
+    background: #fff;
+}
+.main-icon{
+    height: 120px;
+}
+.main-icon .row-block{
+    height: auto;
+    float: left;
+    width: 48%;
+    text-align: center;
+    /*line-height: 120px;*/
+}
+.design-title{
+    height:30px;
+    margin-bottom:2px
+}
+.dtitle-text {
+    text-align: center;
+    color: #61788C;
+    line-height: 30px;
+    font-size: 14px;
+}
+.topo-highlight{
+    background: url(../img/cbms-img/topo-icon/border-h.gif) no-repeat;
+    border: 2px solid #fff;
+    background-position: center 83%;
+}
+.topo-active{
+    background: url(../img/cbms-img/topo-icon/border-a.gif) no-repeat;
+    background-position: center 83%;
+}
+/*topo design ��*/
+
+/*custom topo-view ��*/
+.custom-view-container{
+    margin: 0 34px 0 34px;
+    position: absolute;
+    bottom: 110px;
+}
+.monitor_div{
+    margin: 0;
+    padding: 0 34px 0 34px;
+    position: absolute;
+    overflow-y: auto;
+    bottom: 125px;
+    overflow-x: hidden;
+}
+.custom-view-container .client-title{
+    color: #DDDDDD;
+}
+.alert-pot,.breakdown-pot{
+    position: absolute;
+    width: 22px;
+    margin-top: -10px;
+    height: 22px;
+    line-height: 20px;
+    border-radius: 50%;
+    color: #ffffff;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.breakdown-pot{
+    margin-left: 35px;
+}
+
+
+.cust-client-title{
+    margin: 10px 0 0 0;
+    text-align: center;
+    color: #ddd;
+    font-size: 16px;
+}
+.cust-client-subtitle{
+    text-align: right;
+    color: #ace6f7;
+    margin: 0 10px 5px 0;
+    font-size: 16px;
+}
+.cust-client-component img{
+    margin: 10px auto 0;
+    padding: 0;
+}
+.monitor_div{
+    margin: 0;
+    padding: 0 34px 0 34px;
+    position: absolute;
+    overflow-y: auto;
+    bottom: 125px;
+    overflow-x: hidden;
+}
+.custom-view-container .cust-client-title{
+    color: #DDDDDD;
+}
+.alert-pot,.breakdown-pot{
+    position: absolute;
+    width: 22px;
+    margin-top: -10px;
+    height: 22px;
+    line-height: 20px;
+    border-radius: 50%;
+    color: #ffffff;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.breakdown-pot{
+    margin-left: 35px;
+}
+
+
+.custom-group {
+    width: 220px;
+    float: left;
+    margin: 20px;
+}
+.monitor_ul li{
+    text-align: left;
+    margin: 0 auto 0 ;
+    padding:0 5px;
+    line-height: 24px;
+    height: 24px;
+    border: 1px solid #3A4C63;
+}
+.monitor_ul li:hover{
+    background:#337ab7
+}
+.monitor_ul li:last-child{
+    margin-bottom: 10px;
+}
+.monitor_ul li:first-child{
+    margin-top: 10px;
+}
+.monitor_span{
+    display: inline-block;
+    text-align: right;
+    width: 52%;
+}
+.view-server-component ul{
+    position: relative;
+    top: 5px;
+}
+.custom-view-container .topo-service-area{
+    height: auto;
+    padding: 10px;
+    /*box-shadow: 1px solid #ffffff;*/
+    border-radius: 3px;
+    background: url(../img/cbms-img/gray-2.png);
+}
+.custom-view-container .client-component{
+    height: auto;
+    float: left;
+    width: 200px;
+    border: 2px solid #4A6C7B;
+    text-align: center;
+    overflow: hidden;
+    background: url(../img/cbms-img/gray-2.png);
+}
+/*custom topo-view ��*/
+
+/*modefied by LiYinHuan on 2012-12-12��*/
+
+/*����ͱ���Ķ�̬��ʽ��*/
+.warn_0{
+    background: rgba(0,0,0,0);
+    border: 2px solid #6ACCF7;
+    color: #DDDDDD;
+}
+.warn_1{
+    background: #EC971F;
+    border: none;
+}
+.error_1{
+    background: #E7141A;
+    border: none;
+}
+/*����ͱ���Ķ�̬��ʽ��*/
+.mouseover{
+    background: rgba(85, 171, 212, .6);
+    box-shadow: 0 0 20px #ffffff inset;
+}
+a.cbms-icon-s{
+    text-align: center;
+    line-height: 50px;
+}
+a.cbms-icon-s:hover{
+    background: url("../img/cbms-img/gray-5.png") repeat;
+}
+.dashboard-nav-ls-list>.row-block{
+    text-align: center;
+    line-height: 24px;
+    padding-top:0;
+}
+.topo-title-icon img{
+    width: 35px;
+    padding: 5px 10px 5px 10px;
+    cursor: move;
+    max-width: 60px;
+    box-sizing: content-box;
+    max-height: 60px;
+    background: #0B121A;
+    transition: all .2s ease-out,color .2s ease-in;
+    -webkit-transition: all .2s ease-out,color .2s ease-in;
+    -moz-transition: all .2s ease-out,color .2s ease-in;
+    -o-transition: all .2s ease-out,color .2s ease-in;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.topo-title-icon img:hover{
+    max-width: 120px;
+    max-height: 90px;
+    padding: 5px;
+    background: rgba(131, 173, 235, 0.54);
+    border-radius: 5px;
+}
+.endpointStyle{
+    color: #ff0000;
+}
+.save_level{
+	position: absolute;
+    right: 6px;
+    bottom: 6px;
+    border-radius: 2px;
+    background: #ac2925;
+}
+.delete_level{
+    position:absolute;
+    left: 6px;
+    bottom: 6px;
+    border-radius: 2px;
+}
+.error_thing{
+    background-color:#CF4646;
+}
+
+/*modefied by LiYinHuan on 2012-12-10��*/
+
+
+/* customview modified by ZD ↓↓*/
+#import-app {
+    right:60px;
+}
+.cus_sea_div {
+    color: #fff;
+    height: 60px;
+    line-height: 60px;
+    margin-right: 120px;
+}
+.null_high {
+    box-shadow: 0 0 4px #429FDD;
+}
+.cus_search {
+    /*border: 2px solid #429FDD;*/
+    border: 2px solid #556D82;
+
+    height: 28px;
+    line-height: 28px;
+    width: 130px;
+}
+#cus_search_btn{
+    background: #556D82 ;
+    width: 60px;
+    height: 28px;
+    line-height: 24px;
+    border-radius: 3px;
+}
+.custom-group_new {
+    width: 270px;
+    height:200px;
+    color: #fff;
+    padding: 2px;
+    /*border-radius: 3px;*/
+    background: url(../img/cbms-img/gray-1.png);
+    margin: 25px;
+}
+.custom-group_new a:hover{
+    color: #4D6A90;
+}
+.client-component_new {
+    padding: 10px 15px;
+    float: left;
+    width: 266px;
+    height: 196px;
+    border-radius: 5px;
+    /*border: 2px solid #4A6C7B;*/
+    overflow: hidden;
+    background: url(../img/cbms-img/gray-4.png);
+}
+.topo_cli_tit {
+    font-size: 18px;
+    text-align: center;
+}
+.cus_tit {
+    display: inline-block;
+    padding: 0 10px;
+    border-radius: 3px;
+}
+.cus_tit:hover{
+    background:#222;
+}
+.big_tit {
+    color:#FFF;
+}
+.small_tit {
+    margin-left: 10px;
+    font-size: 14px;
+    color:#CAF4FF;
+}
+.client-component_new hr{
+    /*margin-top: 3px;*/
+    /*margin-bottom: 17px;*/
+    margin: 10px 0;
+    border-top:1px solid #2A3A52;
+}
+.topo_cli_img {
+    border: 2px solid #4A6C7B;
+    border-radius: 5px;
+    display: inline-block;
+    width: 50px;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    margin-top: 5px;
+}
+.topo_cli_img img{
+    width: 40px;
+    margin-right: 0;
+}
+.cli_table_bg {
+    float: right;
+    width: 180px;
+    height: 90px;
+    padding: 5px;
+    display: inline-block;
+    overflow-y: hidden;
+    background: url(../img/cbms-img/gray-2.png);
+    border-radius: 5px;
+    font-size: 12px;
+}
+.cli_table_bg td{
+    display:table-cell;
+    white-space: nowrap;
+    overflow: hidden;
+    list-style: none;
+    text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    -moz-binding: url("ellipsis.xml#ellipsis");
+}
+.topo_cli_table {
+    width: 170px;
+}
+.topo_cli_table td:nth-child(2){
+    text-align: right;
+}
+.topo_cli_info {
+    display: inline-block;
+    width: 100%;
+    margin-top: 10px;
+}
+.topo_cli_info a{
+    color: #fff;
+    display: inline-block;
+    width: 59px;
+}
+.alert_count{
+    margin-right: 6px;
+}
+.alert_count_bg {
+    background-color: orangered;
+}
+.bug_pos_bg {
+    background-color: darkred;
+}
+.bug_pos{
+    color: #fff;
+    display: inline-block;
+    width: 59px;
+    text-align: center;
+}
+
+
+#custo_content{
+    padding:0 40px;
+    overflow-y: scroll;
+}
+/* customview modified by ZD  ↑↑ */
+.moni_suc_info {
+    top: 40%;
+    left: 50%;
+    background: #406398;
+}
+.moni_suc_div,div.moni_close_win {
+    background: #283D5D;
+}
+
+.monitor_info_btn {
+    height: 28px;
+    line-height: 12px;
+}
+.topo-design-icon-box .dashboard-nav-ls-list .topo-title-icon{
+    height: 80px !important;
+    margin: 5px 15px 0 15px;
+    background: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.topo-design-icon-box .dashboard-nav-ls-list .topo-title-icon span{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    display: block;
+    position: relative;
+    /*top: -35px;*/
+    font-size: 12px;
+    color: #ffffff;
+    pointer-events: none;
+}
+/*创建拓扑图节点样式 ↓*/
+#topoRegion_2 .node {
+    border: 1px solid #346789;
+    /*box-shadow: 2px 2px 19px #7b949d;*/
+    /*-o-box-shadow: 2px 2px 19px #7b949d;*/
+    /*-webkit-box-shadow: 2px 2px 19px #7b949d;*/
+    /*-moz-box-shadow: 2px 2px 19px #7b949d;*/
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    background: #101419;
+    line-height: 1.5em;
+    text-align: center;
+    z-index: 9;
+    color: white;
+    font-family: helvetica;
+    font-size: 0.9em;
+    position: absolute;
+    height: 120px;
+    width: 260px;
+    margin-bottom: 40px;
+    margin-left: 60px;
+}
+#topoRegion_2 .topo-service-area {
+    height: 80px;
+    width: 258px;
+    padding: 0;
+    border-radius: 3px;
+    margin: 0 auto;
+    background: #212d3b;
+}
+#topoRegion_2 .client-component {
+    float: left;
+    cursor: move;
+    height: 80px;
+    width: 89px;
+    border: 1px solid #4A6C7B;
+    text-align: center;
+    overflow: hidden;
+    background: none;
+}
+#topoRegion_2 .analysis-component {
+    height: 80px;
+    float: left;
+    width: 169px;
+    border-top: 1px solid #4A6C7B;
+    border-right: 1px solid #4A6C7B;
+    border-bottom: 1px solid #4A6C7B;
+    text-align: center;
+}
+#topoRegion_2 .analysis-component:hover {
+    /*background: #49699b;*/
+}
+#topoRegion_2 .collect-component {
+    width: 140px;
+    float: left;
+    text-align: center;
+    overflow-x: hidden;
+    margin: 14px;
+}
+#topoRegion_2 .collect-component li {
+    height: 3em;
+    width: 100%;
+    color: #ffffff;
+    float: left;
+    background: #2f4464;
+    border-bottom: 1px solid #93B0BD;
+    border-right: 1px solid #93B0BD;
+    line-height: 3em;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+#topoRegion_2 .collect-component li:hover {
+    background: #49699b;
+}
+#topoRegion_2 .topo-client-area .client-component {
+    /*float: left;*/
+    cursor: move;
+    height: 70px;
+    width: 220px;
+    margin: 5px 20px;
+    text-align: center;
+    border-radius: 2px;
+    background: #2f4464;
+    border-bottom: 1px solid #93B0BD;
+    border-right: 1px solid #93B0BD;
+    overflow: hidden;
+}
+#topoRegion_2 .topo-client-area .client-component img{
+    padding-top: 0;
+}
+.topo-client-area {
+    height: 80px;
+    width: 258px;
+    padding: 0;
+    border-radius: 3px;
+    border-bottom: 1px solid #4A6C7B;
+    margin: 0 auto;
+    background: #212d3b;
+}
+#topoRegion_2 .collect-component {
+    height: 50px;
+}
+.topo-highlight{
+    background: url(../img/cbms-img/topo-icon/75-border-h.gif) no-repeat !important;
+    background-position: center 83% !important;
+}
+.topo-active{
+    background: url(../img/cbms-img/topo-icon/75-border-a.gif) no-repeat !important;
+    background-position: center 83% !important;
+}
+/*创建拓扑图节点样式 ↑*/
+/*拓扑图展示节点样式 ↓*/
+#topoRegion .node {
+    border: 1px solid #346789;
+    /*box-shadow: 2px 2px 19px #7b949d;*/
+    /*-o-box-shadow: 2px 2px 19px #7b949d;*/
+    /*-webkit-box-shadow: 2px 2px 19px #7b949d;*/
+    /*-moz-box-shadow: 2px 2px 19px #7b949d;*/
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    /*background: rgba(71, 79, 138, 0.43);*/
+    line-height: 1.5em;
+    text-align: center;
+    z-index: 9;
+    color: white;
+    font-family: helvetica;
+    font-size: 0.9em;
+    position: absolute;
+    height: 160px;
+    width: 260px;
+    margin-bottom: 80px;
+    /*margin-left: 80px;*/
+}
+#topoRegion .topo-service-area {
+    height: 126px;
+    width: 260px;
+    padding: 0;
+    border-radius: 3px;
+    /*background-image: url(../img/cbms-img/gray-5.png);*/
+    line-height: 126px;
+}
+.view_client_node .topo-service-area{
+    background-image: none ;
+}
+#topoRegion .client-component {
+    float: right;
+    cursor: move;
+    height: 126px;
+    width: 205px;
+    text-align: center;
+    border: 0;
+    overflow: hidden;
+    background: url(../img/cbms-img/gray-2.png);
+}
+#topoRegion .view-client-component{
+    height: 70%;
+    width: 75%;
+    border: 0;
+    overflow: hidden;
+    line-height: 90px;
+    margin: auto;
+    background-color: #363C5E;
+    position: relative;
+    top: 15px;
+
+}
+#topoRegion .analysis-component {
+    height: 130px;
+    float:  right;
+    width: 55px;
+    border: 0;
+    text-align: center;
+}
+#topoRegion .collect-component {
+
+}
+#topoRegion .collect-component li {
+
+}
+#topoRegion .topo-client-area .client-component {
+
+}
+#topoRegion .analysis-component img{
+    margin: 0 auto;
+    padding: 0;
+    width: 45px;
+    padding-top: 5px;
+}
+.topo-client-area {
+
+}
+#topoRegion .collect-component {
+
+}
+/*拓扑图展示节点样式 ↑*/
+
+/*单台服务器视图功能↓*/
+.one_server_box{
+    position: absolute;
+    top: 122px;
+    bottom: 122px;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background-color: #333549;
+}
+.top_div{
+    position: absolute;
+    right: 52px;
+    left: 0;
+    top: 2px;
+    height: 50px;
+    color: #BFE7F1;
+    font-size: 18px;
+    padding-left: 30px;
+    line-height: 50px;
+    background-color: #1F252F;
+}
+#one_server_body{
+    position: absolute;
+    top: 54px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #202B3B;
+    overflow-y: auto;
+    text-align: center;
+}
+.top_close{
+    position: absolute;
+    top: 2px;
+    right: 0;
+    background-color: #1F252F;
+    cursor: pointer;
+}
+.list_ip{
+    height: 60px;
+    overflow-y: auto;
+    border: 1px solid rgba(0,0,0,0);
+    padding:2px 0 2px ;
+    background: #35395A;
+}
+.list_ip div{
+    width: 150px;
+    overflow: hidden;
+    text-align: center;
+    margin: auto;
+}
+.ip_title{
+    display: inline-block;
+    width: 50px;
+    float: left;
+    text-align: right;
+}
+.ip_value{
+    text-align: left;
+    width: 80px;
+    float: left;
+    display: inline-block;
+}
+
+#one_server_body .node {
+    border: none;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    background: rgba(71, 79, 138, 0.43);
+    line-height: 1.5em;
+    text-align: center;
+    z-index: 9;
+    color: white;
+    font-family: helvetica;
+    font-size: 0.9em;
+    position: relative;
+    float: left;
+    height: 155px;
+    width: 260px;
+    margin:20px 30px;
+}
+
+#one_server_body .node:hover{
+    box-shadow: none;
+    -o-box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}
+#one_server_body .topo-service-area {
+    height: 110px;
+    width: 260px;
+    padding: 0;
+    border-radius: 3px;
+    background: url(../img/cbms-img/gray-5.png);
+}
+#one_server_body .view-analesis-component li{
+    height:110px;
+    line-height: 110px;
+}
+#one_server_body .client-component {
+    float: right;
+    cursor: move;
+    height: 110px;
+    width: 205px;
+    text-align: center;
+    border: 0;
+    overflow: hidden;
+    background: url(../img/cbms-img/gray-2.png);
+}
+#one_server_body .analysis-component {
+    height: 110px;
+    float:  right;
+    width: 55px;
+    border: 0;
+    text-align: center;
+}
+#one_server_body .analysis-component img{
+    margin: 0 auto;
+    padding: 5px 0 0 ;
+    width: 45px;
+}
+#one_server_content{
+    /*border: 1px solid #ff0000;*/
+    display: block;
+    overflow: hidden;
+    width: auto;
+    margin: 0 40px;
+    /*margin-top: 70px;*/
+}
+
+/*单台服务器视图功能↑*/
+.indexBtnList img{
+    margin-right: 0 !important;
+}
+.indexBtnList a{
+    width: 100% !important;
+}
+.indexMore img{
+    margin-top:0 !important;
+}

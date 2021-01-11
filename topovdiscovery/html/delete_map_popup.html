@@ -1,0 +1,115 @@
+{% load i18n %}
+<div id="delete_map_popup" class="popup-modal hide" tabindex="-1">
+    <div class="modal-header">
+        <h3>&nbsp;</h3>
+    </div>
+
+    <div class="modal-body">
+
+        <div class="icon info"></div>
+        <div class="info">
+            {% with tip='<div class="desc text-ellipsis text-tip" text_tip="parent" style="max-width:200px;display:inline-block;"></div>'%}
+            <div class="line prompt">{% blocktrans %} 您确定要删除{{tip}}吗? {% endblocktrans %}</div>
+			{% endwith %}
+            <div class="line prompt">{% trans "服务路径图删除后不可恢复" %}</div>
+            <div class="line working">{% trans "正在删除中" %}...</div>
+            <div class="line success">{% trans "删除成功" %}</div>
+            <div class="line fail">{% trans "删除失败" %}</div>
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-primary blue-button ctl-button">{% trans "确定" %}</button>
+        <button class="btn btn-second close grey-button ctl-button" data-dismiss="modal" aria-hidden="true">{% trans "取消" %}</button>
+        <button class="btn btn-primary close blue-button ctl-button">{% trans "确定" %}</button>
+    </div>
+
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    $(function() {
+        var deleteMapPopup = $('#delete_map_popup');
+        var icon = deleteMapPopup.find('.icon');
+        var mapName = CBMSFLOW.environment('map_name');
+        var prompt = deleteMapPopup.find('.prompt');
+        var working = deleteMapPopup.find('.working');
+        var success = deleteMapPopup.find('.success');
+        var fail = deleteMapPopup.find('.fail');
+        var confirmBtn = deleteMapPopup.find('.btn-primary');
+        var cancelBtn = deleteMapPopup.find('.btn-second');
+        var closeBtn = deleteMapPopup.find('.btn-primary.close');
+
+        var setPrompt = function() {
+            icon.addClass('info').removeClass('fail success handling');
+            prompt.show();
+            confirmBtn.show();
+            cancelBtn.show();
+
+            working.hide();
+            success.hide();
+            fail.hide();
+            closeBtn.hide();
+        };
+
+        var setWorking = function() {
+            icon.addClass('handling');
+            working.show();
+            prompt.hide();
+            success.hide();
+            fail.hide();
+            confirmBtn.hide();
+            cancelBtn.hide();
+        };
+
+        var setSuccess = function() {
+            icon.addClass('success');
+            success.show();
+            prompt.hide();
+            working.hide();
+            fail.hide();
+            confirmBtn.hide();
+            cancelBtn.hide();
+            closeBtn.show();
+        };
+
+        var setFail = function() {
+            icon.addClass('fail');
+            fail.show();
+            prompt.hide();
+            working.hide();
+            success.hide();
+            confirmBtn.hide();
+            cancelBtn.hide();
+
+            closeBtn.show();
+        };
+
+        $('#delete_map_popup').bind('setDefault', function(e, desc) {
+            setPrompt();
+            $(".info .desc", deleteMapPopup).html(desc);
+            return $(this);
+        });
+
+        closeBtn.click(function() {
+            deleteMapPopup.modal('hide');
+            window.location.reload();
+        });
+
+        confirmBtn.click(function() {
+            setWorking();
+            var map_name = deleteMapPopup.attr('map');
+            $.ajax({
+                url: '/spd/' + map_name + '/delete/',
+                type: 'POST',
+                success: function(result) {
+                    if (result.state == 'ok') {
+                        setSuccess();
+                    } else {
+                        setFail();
+                    }
+                }
+            });
+        });
+    });
+</script>

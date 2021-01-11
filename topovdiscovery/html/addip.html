@@ -1,0 +1,228 @@
+{% extends "topovdiscovery/base.html" %}
+{% load i18n %}
+{% load pymod %}
+{% load i18n adminmedia %}
+{% block title %} {% trans "主页" %} {% endblock %}
+{% block main_content %}
+
+    <div id="spd-header">
+      <div class="spd-header-left">
+          <a href="{% if HOST_URL %} {{HOST_URL}} {% else %} {% url spd-index %} {% endif %}"><img src="{% url spd-static 'img/logo.png' %}"></img></a>
+      </div>
+      
+      <div class="spd-light-1"></div>
+      <div class="spd-light-2">
+      </div>
+    </div>
+
+    <div style="border-bottom: 2px solid #1C89C9"></div>
+    <div style="position:absolute;left:10%">
+    <span >
+      <a  style=" text-decoration: none; color: inherit" href="{% url map-index %}">{% trans "数据流向地图" %}</a> &nbsp;&gt;&nbsp;{% trans "自定义ip" %}</a>
+    </span>
+    </div>
+	<script type="text/javascript" charset="utf-8" src="{% url spd-static 'js/address.js' %}"></script>
+<script type="text/javascript">
+        function delete_ip(v){
+            re_data = {'ip': v}
+            $.ajax({
+                url : '{% url delete-ip %}',
+                data: re_data,
+                type: 'POST',
+                dataType: 'json',
+                success: function(result) {
+                    var result = result['result'];
+                    if (result == 1){
+                        alert('删除成功');
+                        window.location.reload();
+                    }
+                    else{
+                        alert('删除失败');
+                    }
+                }
+            });
+
+        }
+</script>
+<div class="box-space" style="height:450px;">
+    <h2 class="custip-title">自定义ip</h2>
+    <hr class="nhr">
+    <div id="setting-menu" class="bg-blue">
+        <form action="" method="post" class="ipaddbox" id="add-form">{% csrf_token %}
+            <div class="cityform">
+                <div>
+                    {{form.ip.label_tag}}{{form.ip}}{{form.ip.errors}}
+                </div>
+                <div style="display: none">
+                    {{form.addr.label_tag}}{{form.addr}}{{form.addr.errors}}
+                </div>
+                <div>
+                    {{form.name.label_tag}}{{form.name}}{{form.name.errors}}
+                </div>
+                <div>
+
+                    <div>
+                        <div class="form-group">
+                            <label for="">地址</label>
+                            <select id="id_province" name="dim_trans_type"></select>&nbsp;&nbsp;
+                        </div>
+                        <div class="form-group">
+                            <select id="id_city" name="dim_sub_trans_type"></select>&nbsp;&nbsp;
+                        </div>
+                        <div class="form-group">
+                            <select id="id_area" name="dim_subsub_trans_type"></select>&nbsp;&nbsp;
+                        </div>
+                        <script type="text/javascript">
+                            addressInit("id_province","id_city","id_area");
+                        </script>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+
+        <div class='button-group'>
+                <button value='{% trans "增加" %}' id='btnSubmit' >保存</button>
+                <button value='{% trans "重置" %}' id='btnCancel' >重置</button>
+            </div>
+    </div>  
+      
+
+
+    <script type="text/javascript">
+        var ips = [];
+        function has_same_ip(event){
+            $('#add-form #id_ip').next('.alert').remove();
+            if (ips.indexOf(event.target.value) != -1){
+                $('#id_ip').after('<p class="alert">正在修改已存在的ip</p>');
+            }
+        }
+        $(document).ready(function(){ 
+            document.getElementById('id_ip').placeholder = '0.0.0.0';
+            $('#add-form #id_ip').attr('oninput', "has_same_ip(event)");
+            {% for key,value in info.items %}
+                ips.push('{{key}}');
+            {% endfor %}
+        }); 
+       window.onload=function(){ 
+       function add_ip(){
+            var cmbProvince = document.getElementById('id_province');
+            var cmbCity = document.getElementById('id_city');
+            var cmbArea = document.getElementById('id_area');
+            var cmbPca = document.getElementById('id_addr')
+            var post_url = $('#add-form').attr("action");
+            var cmbIp = $('#add-form #id_ip');
+            cmbPca.value  = cmbProvince.options[cmbProvince.selectedIndex].value + cmbCity.options[cmbCity.selectedIndex].value + cmbArea.options[cmbArea.selectedIndex].value
+            $.ajax({
+                type: "POST",
+                url: post_url,
+                data: $('#add-form').serialize(),
+                success: function(data) {
+                    var result = data['result'];
+                    if (result == 1) { 
+                        $('#btnCancel').click();
+                        alert('添加新ip成功');
+                        window.location.reload();
+                    } 
+                    else if(result == 2) {
+                        alert('修改成功');
+                        $('#btnCancel').click();
+                        window.location.reload();
+                    }
+                    else if(result== -4){ 
+                        var errors = data['errors'];
+                        for (e in errors) {
+                            if (e == 'addr'){
+                                $('#id_province').next('.errorlist').remove();
+                            }else{
+                                $('#add-form #id_'+e).next('.errorlist').remove();
+                            }
+                            
+                            if (errors[e] != null) {
+                                if (e == 'addr'){
+                                    $('#id_province').after($(errors[e]));
+                                }else{
+                                    $('#add-form #id_' + e).after($(errors[e]));
+                                }
+                                    
+                               
+                            }
+                        }
+                    }else {
+                        alert('保存失败');
+                        }
+                }
+            });
+       }
+       $('#btnSubmit').click(function(){
+                add_ip();
+            });
+        
+        $('#btnCancel').click(function(){
+                var cmbP = document.getElementById('id_ip')
+                var cmbN = document.getElementById('id_name')
+                var cmbA = document.getElementById('id_addr')
+                var cmbProvince = document.getElementById('id_province');
+                var cmbCity = document.getElementById('id_city');
+                var cmbArea = document.getElementById('id_area');
+                cmbP.value = ''
+                cmbA.value = ''
+                cmbN.value = ''
+                $('#add-form #id_ip').next('.errorlist').remove();
+                $('#add-form #id_ip').next('.alert').remove();
+                $('#add-form #id_name').next('.errorlist').remove();
+                $('#add-form #id_province').next('.errorlist').remove();
+                cmbProvince.options[0].selected = true
+                addressInit("id_province","id_city","id_area");
+            });
+        } 
+        function edit_ip(ip, name, prov, city, sub_city) {
+            $('#add-form #id_ip').attr("value", ip);
+            $('#add-form #id_ip').focus();
+            $('#add-form #id_name').attr("value", name);
+            $('#add-form #id_ip').next('.errorlist').remove();
+            $('#add-form #id_name').next('.errorlist').remove();
+            $('#add-form #id_province').next('.errorlist').remove();
+            $('#add-form #id_ip').next('.alert').remove();
+            $('#add-form #id_ip').after('<p class="alert">正在修改已存在的ip</p>');
+            addressInit("id_province","id_city","id_area", prov, city, sub_city);
+        }
+        
+        
+    </script>
+
+<div class="box-space" style="height:600px;">
+    <table class="iplist" id='custiplist'>
+        <thead>
+            <tr class="list-header">
+              <td style='width:15%'>ip</td>
+              <td style='width:20%;'>名称</td>
+              <td style='width:15%'>地址</td>
+              <td style='width:10%'>操作</td>
+            </tr>
+        </thead>
+        <tbody id="list-body">
+            {% for key,value in info.items %}
+            <tr class="list-record" >
+                <td> {{key}} </td>
+                <td> {{value.name}}</td>
+                <td> {{value.addr}}</td>
+                <td><label  id='{{key}}' onclick="delete_ip('{{key}}')">删除</label><span> | </span><label  id='{{key}}' onclick="edit_ip('{{key}}', '{{value.name}}', '{{value.other.prove}}', '{{value.other.city}}', '{{value.other.sub_city}}')">修改</label></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+
+</script>
+</div>
+
+
+
+
+
+
+
+{% endblock %}

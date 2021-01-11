@@ -1,0 +1,313 @@
+/** ����ʱ�� **/
+.timeWorkDiv{
+    position: absolute;
+    /*border: 1px solid #14cff5;*/
+    top: 0px;
+    z-index: 1;
+    padding: 20px 30px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background: #071c2a;
+}
+.show-schedule-div {
+    position: absolute;
+    top: 148px;
+    border: 1px solid #0c3755;
+    left: 30px;
+    right: 30px;
+    bottom: 20px;
+    background: #061521;
+    overflow: auto;
+}
+.disable-hidden-div{
+    position: absolute;
+    top: 148px;
+    border: 1px solid #0c3755;
+    left: 30px;
+    right: 30px;
+    bottom: 0;
+    background: rgba(6, 21, 33, 0.45);
+    overflow: auto;
+    pointer-events: none;
+    visibility: hidden;
+}
+.beauty {
+    margin-right: 6px;
+    width: 10px;
+    /* background: url(../img/cbms-img/rule-icon/beautyL.svg) no-repeat; */
+    height: 12px;
+    display: inline-block;
+}
+.logic-name {
+    margin-right: 10px;
+    font-size: 18px;
+}
+.workOn{
+    height: 52px;
+    line-height: 52px;
+    padding: 0 5%;
+}
+.weekBtnBan{
+    pointer-events: none;
+    color: grey !important;
+}
+.off{
+    border-radius:0 5px 5px 0;
+    padding:0 10px 0 8px;
+}
+.on{
+    border-radius:5px 0 0 5px;
+    border-right: none;
+    padding:0 8px 0 10px;
+}
+.on-off-btn {
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    border: 1px solid #1a9394;
+    background: #071c2a;
+    color: #e7eff4;
+    font-size: 16px;
+    text-align: center;
+}
+.on-off-btn:hover {
+    color: #e7eff4;
+}
+.on-off-btn.turn{
+    background: deepskyblue;
+    text-decoration: none
+}
+.edit-schedule-div {
+    border: 1px solid #0c3755;
+    height: 56px;
+    line-height: 56px;
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.edit-schedule-div input[type='text'], .edit-schedule-div input[type='date'], .base-select {
+    border: 1px solid #192d40;
+    color: #1ecdb5;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 3px;
+    background: none;
+    font-size: 16px;
+    padding-left: 4px;
+    width: calc(100% - 134px);
+}
+.week-btn-group a:first-child {
+    border-radius: 5px 0 0 5px;
+    border-left: 1px solid #192d40;
+}
+.week-btn-group a:last-child {
+    border-radius: 0 5px 5px 0;
+}
+.week-btn-group a {
+    display: inline-block;
+    border: 1px solid #192d40;
+    border-left: none;
+    color: #38bab3;
+    width: 12.5%;
+    height: 28px;
+    line-height: 28px;
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+    text-decoration: none;
+}
+.week-btn-group a.click-week{
+    background: #3AB8B4;
+    color: #192d40;
+}
+.add-btn {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background: #1ecdb5;
+    color: #192d40;
+    font-size: 24px;
+    text-align: center;
+    border-radius: 3px;
+    margin: 0 10%;
+    white-space: pre;
+}
+.add-btn:focus{
+    outline: none;
+    text-decoration: none;
+}
+.clear-btn {
+    display: none;
+}
+.clear-btn{
+    outline: none;
+}
+.per-schedule {
+    height: 124px;
+    line-height: 84px;
+    color: #efefef;
+    padding: 20px 5% 0;
+    margin: 5px;
+    position: relative;
+}
+.per-schedule-tit {
+    height: 34px;
+    line-height: 34px;
+    /*margin-bottom: 10px;*/
+    font-size: 16px;
+}
+.per-schedule-tit span {
+    display: inline-block;
+    /* margin: 0 20px; */
+}
+.logic-name {
+    margin-right: 10px;
+    font-size: 18px;
+}
+.schedule-note {
+    color: #38bab3;
+    font-size: 20px;
+}
+.schedule-repeat {
+    font-size: 16px;
+    margin: 0 30px 0 20px;
+}
+.schedule-tit-btn {
+    font-style: italic;
+    color: #38bab3;
+    margin-right: 16px;
+}
+.per-schedule-time {
+    position: absolute;
+    /* top: 0; */
+    left: 5%;
+    right: 5%;
+    height: 70px;
+    bottom: 0;
+    line-height: 40px;
+}
+.per-time-name {
+    font-size: 14px;
+    color: #efefef;
+}
+.time-div {
+    position: absolute;
+    top: -10px;
+    left: 80px;
+    right: 0;
+    height: 70px;
+    line-height: 70px;
+    font-size: 16px;
+    pointer-events: none;
+    /* border: 1px solid red; */
+    /* background: url(../img/cbms-img/user-icon/bg.svg) no-repeat; */
+}
+.edit {
+    background: #15334a;
+    border-radius: 3px;
+    box-shadow: 0 0 15px #43fbd5;
+    /*margin: 5px;*/
+}
+.edit .add-btn:first-child {
+    margin-right: 10px;
+}
+.edit .add-btn, .edit .clear-btn {
+    font-size: 16px;
+    width: auto;
+    padding: 0 10px;
+}
+.edit .clear-btn {
+    display: inline-block;
+}
+.edit .time-div {
+    pointer-events: auto;
+}
+
+
+.foreignObjectInput,.timeTips{
+    border: none;
+    font-size: 12px;
+    color: #eee;
+    background: #2b7fb8;
+    border-radius: 10px;
+    height: 18px;
+    line-height: 18px;
+    padding: 0 7px;
+    width: 45px;
+    /*display: none;*/
+}
+.hideInput{
+    display: none;
+}
+.foreignObject{
+    cursor: pointer;
+    line-height: 0;
+}
+.timeError{
+    border: 1px solid red!important;
+}
+.rightWorkDiv{
+    width: 130px;
+    display: flex;
+}
+.leftWorkDiv{
+    width: 40%;
+    min-width: 140px;
+    margin-right: 5px;
+}
+.centerWorkDiv{
+    width: 288px;
+}
+/*当非输入状态时的样式*/
+.invalited .off.turn{
+    background: #5b5f5f;
+}
+.invalited .on-off-btn{
+    border-color: #5b5f5f;
+}
+.invalited .logic-name{
+    color: #5b5f5f;
+}
+.invalited .app-logic-name{
+    color: #5b5f5f;
+    pointer-events: none;
+}
+.invalited .week-btn{
+    color: #5b5f5f;
+    pointer-events: none;
+}
+.invalited .add-btn,.invalited .clear-btn{
+    background: #aaa;
+    color: white;
+    pointer-events: none;
+}
+.invalited .schedule-tit-btn{
+    color: #5b5f5f;
+    pointer-events: none;
+}
+.invalited .logic-week{
+    color: #5b5f5f;
+}
+.active-content .invalited .disable-hidden-div{
+    pointer-events: all;
+    visibility: visible;
+}
+.invalited .on-off-btn:focus{
+    color:#e7eff4
+}
+.invalited .workOn .logic-name{
+    color: #FFF;
+}
+.invalited .edit-schedule-div input[type='text'].app-logic-name{
+    color: #5b5f5f;
+}
+.invalited .per-time-name{
+    color: #5b5f5f;
+}
+.invisibility .invalited .disable-hidden-div {
+    visibility: hidden;
+    pointer-events: none;
+}

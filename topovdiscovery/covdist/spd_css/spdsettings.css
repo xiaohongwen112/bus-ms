@@ -1,0 +1,454 @@
+
+#spd-settings-frame {
+    color:#ccc;
+    font-size: 13px;
+}
+
+#spd-settings-frame .title {
+    font-size: 14px;
+    color: #fff;
+}
+
+#spd-settings-frame::-webkit-scrollbar {
+    width: 5px;/*竖向滚动条的宽度*/
+    height: 5px;/*横向滚动条的高度*/
+}
+/*滚动条轨道的样式*/
+#spd-settings-framee::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+/*滚动条轨道内滑块的样式*/
+#spd-settings-frame::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #85cfdc;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+/*当焦点不在当前区域滑块的状态（具体为什么要加这句有点忘了，记得是跟刷新时有关）*/
+#spd-settings-frame::-webkit-scrollbar-thumb:window-inactive {
+    background: #85cfdc;
+}
+
+#spd-settings-frame .spliter {
+    border-bottom: 1px solid #252E37;
+    margin: 0 15px;
+}
+
+.spd-action-tip {
+    text-align:center;
+    width: 100%;
+}
+.spd-action-tip-inner{
+    background-color:#7b7b7b;
+    display:inline-block;
+    height:24px;
+    line-height:24px;
+    font-size:13px;
+    color:#ffffff;
+    padding:0 10px;
+}
+
+#spd-settings-topipflow {
+    margin: 0 30px;
+    margin-top: 42px;
+}
+
+#spd-settings-iptools {
+    margin: 0 30px;
+}
+
+#spd-settings-iptools .upload-field {
+    font-size: 14px;
+    color: #fff;
+}
+
+#spd-settings-actions {
+    margin: 0 30px;
+    margin-top: 25px;
+}
+
+#spd-settings-topipflow input {
+    width: 80px;
+    outline: none;
+    height: 24px;
+    background-color: #24272c;
+    border: 1px solid #546464;
+    padding: 1px 5px 1px 5px;
+    margin: 0px;
+    color: #d0d1d1;
+}
+
+#spd-settings-topipflow input:focus {
+    border: 1px solid #1c89c9;
+    color: #D0D1D1;
+    padding: 1px 5px 1px 5px;
+}
+
+#spd-settings-topipflow input.error {
+    border:1px solid #c60001;
+}
+
+
+button.spdbutton {
+    display: inline-block;
+    border-radius: 0px;
+    border:0px;
+    padding: 0px;
+    margin:0px;
+    cursor: pointer;
+    height: 24px;
+    width: 45px;
+    line-height:2px;
+    font-family: Microsoft YaHei;
+}
+
+button.spdbutton.btn-primary {
+    background-color: #1c89c9;
+    border: 1px solid #1178b4;
+    color: #d0d1d1;
+}
+
+button.spdbutton.btn-primary.disabled {
+    opacity: 0.5;
+}
+
+button.spdbutton.btn-primary:hover {
+    background-color: #1781bf;
+    color: #fff;
+}
+
+button.spdbutton.btn-primary:active {
+    background-color: #0f72ab;
+    border: 1px solid #066196;
+    color: #fff;
+}
+
+button.spdbutton.btn-second {
+    background-color: #efefef;
+    border: 1px solid #dcdcdc;
+    margin-left: 15px;
+}
+
+button.spdbutton.btn-second:hover {
+    background-color: #e6e6e6;
+    border: 1px solid #c9c9c9;
+}
+
+
+/* ============== spd settings ip list =========== */
+#spd-settings-iplist {
+    margin: 15px 30px 0px 30px;
+    height: auto;
+    overflow: hidden;
+    position:relative;
+    color:#E4E3E4;
+    display: flex;
+}
+
+#spd-settings-iplist .list-block {
+    display:inline-block;
+    width: 394px;
+    height: 354px; /* 38 + 313 + 1+1+1*/
+    border: 1px solid #333D46;
+    float: left;
+    background-color: #363F48;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+/*#spd-settings-iplist .list-block:nth-child(2),*/
+/*#spd-settings-iplist .list-block:nth-child(3) {*/
+    /*margin-left: 7px;*/
+/*}*/
+
+#spd-settings-iplist .list-block .info {
+    width: 100%;
+    height: 38px;
+    text-align: center;
+    background-color: #58626B;
+    border-bottom: 1px solid #656F78;
+}
+
+#spd-settings-iplist .list-block .info .info-text {
+    line-height:38px;
+    height:38px;
+}
+
+#spd-settings-iplist .list-block .info .info-icon {
+    position:relative;
+    top: 6px;
+}
+
+#spd-settings-iplist .list-block .detail {
+    padding: 0px 14px 0px 14px;
+}
+
+#spd-settings-iplist .list-block .detail .table-header {
+    width:99%;
+    border-bottom: 1px solid #44505A;
+}
+
+#spd-settings-iplist .list-block .detail.with-scrollbar .table-header {
+    width:96%;
+}
+
+#spd-settings-iplist .list-block .detail .table-header thead th {
+    height: 31px;
+    font-size: 12px;
+    padding:0px 0px 0px 0px;
+    text-align:left;
+    font-weight: normal;
+    color: #DEDEDE;
+}
+
+#spd-settings-iplist .list-block .detail .table-header thead th.ip {
+    width: 40%;
+}
+
+#spd-settings-iplist .list-block .detail.with-scrollbar .table-header thead th.ip {
+    width:42%;
+}
+
+#spd-settings-iplist .list-block .detail.with-scrollbar .table-header thead th.device {
+    width:50%;
+}
+
+#spd-settings-iplist .list-block .detail .table-body {
+    min-height:20px;
+}
+#spd-settings-iplist .list-block .detail .table-body * {
+    font-size: 12px;
+    color: #D0D1D1;
+}
+
+#spd-settings-iplist .list-block .detail .table-body {
+    max-height: 278px;
+}
+
+#spd-settings-iplist .list-block .detail .table-body table {
+    border-collapse:collapse;
+    width:99%;
+}
+
+
+#spd-settings-iplist .list-block .detail.with-scrollbar .table-body table {
+    width:96%;
+}
+#spd-settings-iplist .list-block .detail .table-body table.device-ip-table {
+    width: 99%;
+}
+#spd-settings-iplist .list-block .detail.with-scrollbar .table-body table.device-ip-table {
+    width: 96%;
+}
+
+#spd-settings-iplist .list-block .detail .table-body table.device-ip-table thead {
+    display:none;
+}
+
+
+#spd-settings-iplist .list-block .detail .table-body .ip {
+    width: 40%;
+    padding:0px 0px 0px 0px;
+}
+#spd-settings-iplist .list-block .detail.with-scrollbar .table-body .ip {
+    width: 42%;
+}
+
+#spd-settings-iplist .list-block .detail .table-body .device {
+    width: 60%;
+    padding: 0px 0px 0px 0px;
+}
+
+#spd-settings-iplist .list-block .detail.with-scrollbar .table-body .device {
+    width: 50%;
+}
+
+
+
+#spd-settings-iplist .list-block .detail .table-body .unvisible {
+    display:none;
+}
+#spd-settings-iplist .list-block .detail .table-body tbody tr span:first-child.unvisible {
+    display:none;
+}
+
+#spd-settings-iplist .list-block .detail .table-body td:not(.table-inner-btn) {
+    height: 26px;
+}
+
+#spd-settings-iplist .list-block .detail .table-body tbody tr td span:first-child.unvisible {
+    display:none;
+}
+
+#spd-settings-iplist .list-block .detail .table-body tbody tr span:first-child {
+    height:24px;
+    line-height:24px;
+    display:inline-block;
+}
+
+#spd-settings-iplist .list-block .detail .table-body .spd-icon-rename,
+#spd-settings-iplist .list-block .detail .table-body .spd-icon-trash {
+    float:right;
+    margin: 4px 10px 0px 0px;
+    display:none;
+}
+
+#spd-settings-iplist .list-block .detail .table-body tbody tr:hover .spd-icon-rename,
+#spd-settings-iplist .list-block .detail .table-body tbody tr:hover .spd-icon-trash {
+    display:inline-block;
+}
+
+#spd-settings-iplist .list-block .detail .table-body .spd-icon-rename:hover,
+#spd-settings-iplist .list-block .detail .table-body .spd-icon-trash:hover {
+    cursor: pointer;
+}
+
+#spd-settings-iplist .list-block .detail .table-body input {
+    outline:none;
+    border: 1px solid #74777A;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    height: 23px;
+    background: #363F48;
+}
+#spd-settings-iplist .list-block .detail .table-body input:focus {
+    border: 1px solid #1c89c9;
+}
+#spd-settings-iplist .list-block .detail .table-body input.error {
+    border: 1px solid #c60001;
+}
+
+#spd-settings-iplist .list-block .detail .table-body td.ip input {
+    width: 100px;
+}
+#spd-settings-iplist .list-block .detail .table-body td.device input {
+    width: 95px;
+}
+
+#spd-settings-iplist .list-block .detail .table-body input[disabled=disabled] {
+    color: #D0D1D1;
+    border: 0px;
+}
+
+#spd-settings-iplist .list-block .detail .table-body tr.dragging {
+    border:1px dashed #999999; 
+    height:25px;
+}
+#spd-settings-iplist .list-block .detail .table-body tr.dragging td{
+    border-top:none;
+}
+
+#spd-settings-iplist .list-block .detail .table-body tr.dragging td *{
+    display:none !important;
+}
+
+#spd-settings-iplist .list-block .detail .table-body tr.dragging + tr td {
+    border-top:none;
+}
+
+
+#spd-settings-iplist .drag-helper * {
+    font-size:12px;
+}
+#spd-settings-iplist .drag-helper {
+    width:366px;
+}
+#spd-settings-iplist .drag-helper table{
+    width:366px;
+}
+#spd-settings-iplist .drag-helper tr {
+    width:366px;
+    height:26px;
+    background-color: #e6e6e6;
+}
+#spd-settings-iplist .drag-helper td {
+    background-color: #e6e6e6;
+}
+#spd-settings-iplist .drag-helper tr td.ip{
+    width: 40%;
+}
+#spd-settings-iplist .drag-helper tr td.device{
+    width: 60%;
+}
+#spd-settings-iplist .drag-helper input{
+    display:none;
+}
+#spd-settings-iplist .drag-helper span{
+    display:inline-block;
+}
+#spd-settings-iplist .drag-helper span.spd-icon{
+    display:none;
+}
+
+#spd-settings-iplist .list-block .detail .add-new {
+    width: 99%;
+    background-color: #4D5A65;
+    border: 1px solid rgba(0,0,0,0);
+    color: #555;
+    height: 26px;
+    position:relative;
+    margin-top: 25px;
+}
+
+#spd-settings-iplist .list-block .detail.with-scrollbar .add-new {
+    width: 95%;
+}
+
+#spd-settings-iplist .list-block .detail .add-new .spd-icon-add-new {
+    position:absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -5px;
+    margin-top: -5px;
+}
+
+#spd-settings-iplist .list-block .detail .add-new:hover {
+    background-color: rgb(118, 129, 141);
+    border: 1px solid rgba(0,0,0,0);
+    cursor: pointer;
+}
+
+#spd-settings-iplist .list-block .detail .add-new.disabled{
+    opacity: 0.5;
+}
+
+#spd-settings-iplist .mCSB_scrollTools .mCSB_draggerRail{
+  width:100%;
+  background: transparent;
+}
+#spd-settings-iplist .mCSB_scrollTools .mCSB_dragger{
+  height:0px;
+}
+#spd-settings-iplist .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
+  width:100%;
+  background: #e3e3e3;
+}
+#spd-settings-iplist .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar:hover {
+  background-color:#cfcfcf;
+}
+#spd-settings-iplist .mCSB_draggerContainer{
+  background: #f2f2f2;
+}
+#spd-settings-iplist .mCSB_draggerContainer:hover {
+  background: #e7e7e7;
+}
+#spd-settings-iplist .mCSB_draggerContainer:hover .mCSB_dragger_bar {
+    background-color: #cfcfcf;
+}
+#spd-settings-iplist .mCSB_draggerContainer:active {
+  background: #e7e7e7;
+}
+#spd-settings-iplist .mCSB_scrollTools{
+  width:10px;
+}
+
+#settings-download-ip,
+#spd-settings-cancle {
+    margin-left: 15px;
+}
+
+#settings-upload-ip {
+    margin-left:91px;
+}

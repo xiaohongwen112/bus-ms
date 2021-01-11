@@ -1,0 +1,745 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/jquery-ui-1.10.0.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/jquery.event.drag-2.2.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/jquery.mousewheel.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/jquery.mCustomScrollbar.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/jquery.tablesorter.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/jquery.cookie.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/jquery.csrf.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/jquery.form.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/raphael-min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/raphael.pan-zoom.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/d3.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/bootstrap.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/cbmsflow.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/cbmsflow.math.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/cbmsflow.plugin.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/cbmsflow.jquery.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/cbmsflow.spd.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/underscore-min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/store.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/moment.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/uuid.js"></script>        
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/datetime.input.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/handlebars-1.0.rc.1.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/handlebar.helper.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spdmap/canvg.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spdmap/rgbcolor.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/jquery.qtip2.min.js"></script>
+
+
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/dropdownlist.js"></script>
+
+        <!-- base -->
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spdmap/base.js"></script>
+        <!-- message popup -->
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/messagepop.js"></script>
+        <!-- datasource --> 
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spdmap/flowlist.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spdmap/datasource.js"></script>
+        <!-- map -->
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spdmap/protocol.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spdmap/map.js"></script>
+        <!-- node -->
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spdmap/node.js"></script>
+        <!-- edge --> 
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spdmap/edge.js"></script>
+        <!-- box --> 
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spdmap/box.js"></script>
+        <!-- group --> 
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spdmap/group.js"></script>
+        <!-- utils --> 
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spdmap/utils.js"></script>
+        <!-- popup --> 
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spdmap/popup.js"></script>
+        <!-- search --> 
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spdmap/search.js"></script>
+        <!-- spliter --> 
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spdmap/spliter.js"></script>
+        <!-- zoomctrl --> 
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spdmap/zoom.js"></script>
+        <!-- widget --> 
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spdmap/widget.js"></script>
+        <!-- toolbar --> 
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spdmap/toolbar.js"></script>
+        <!-- spd node name editor --> 
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spdmap/nameditor.js"></script>
+        <!-- node definition -->
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spdmap/node_definition.js"></script>        
+        <!-- interface definition -->
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spd/interface-definition.js"></script>        
+        <!-- blender --> 
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spdmap/blender.js"></script>
+        <!-- spdflowtable --> 
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spdflowtable/flowtable.js"></script>
+        <!-- spddatasource popup -->
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/datasource/datasource.popup.js"></script>
+        <!-- menu -->
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spd/menu.js"></script>
+        <!-- dispatch -->
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spd/dispatch.js"></script>
+        <!-- datasource -->
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spd/datasource.js"></script> 
+        <!-- settings -->
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spd/settings.js"></script>        
+        <!-- auto combing -->
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spd/autocombing_pop.js"></script>        
+        <!-- export pcap -->
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/spdmap/export_pcap.js"></script>
+
+        <!-- slickgrid -->
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/slickgrid/slick.core.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/slickgrid/slick.formatters.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/slickgrid/slick.grid.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/slickgrid/slick.dataview.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/utils.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../static/spd_js/compare.js"></script>
+
+        <!-- <script type="text/javascript" charset="utf-8" src="../../static/spd_js/d3_datepicker.js"></script> -->
+
+        <link rel="stylesheet" type="text/css" href="../../static/spd_css/jquery.mCustomScrollbar.css"/>
+        <link rel="stylesheet" type="text/css" href="../../static/spd_css/jquery.qtip2.min.css"/>
+        <link rel="stylesheet" type="text/css" href="../../static/spd_css/jquery-ui.css"/>
+        <link rel="stylesheet" type="text/css" href="../../static/spd_css/calendar.css"/>
+        <link rel="stylesheet" type="text/css" href="../../static/spd_css/progressbar.css"/>
+        <link rel="stylesheet" type="text/css" href="../../static/spd_css/messagepop.css"/>
+        <link rel="stylesheet" type="text/css" href="../../static/spd_css/popup.css"/>
+        <link rel="stylesheet" type="text/css" href="../../static/spd_css/spd-base.css"/>
+        <link rel="stylesheet" type="text/css" href="../../static/spd_css/spd.css"/>
+        <link rel="stylesheet" type="text/css" href="../../static/spd_css/topovmap.css"/>
+        <link rel="stylesheet" type="text/css" href="../../static/spd_css/spdflowtable.css"/>
+        <link rel="stylesheet" type="text/css" href="../../static/spd_css/snapshot.css"/>
+        <link rel="stylesheet" type="text/css" href="../../static/spd_css/topovdatasource.css"/>
+        <link rel="stylesheet" type="text/css" href="../../static/spd_css/spdsettings.css"/>
+        <link rel="stylesheet" type="text/css" href="../../static/spd_css/dropdownlist.css"/>
+        <link rel="stylesheet" type="text/css" href="../../static/spd_css/slick.grid.css"/>
+        <link rel="stylesheet" type="text/css" href="../../static/spd_css/newfunc.css"/>
+        <link rel="stylesheet" type="text/css" href="../../static/spd_css/compare.css"/>
+        <!-- <link rel="stylesheet" type="text/css" href="../../static/spd_css/d3_datePicker.css"/> -->
+
+        <title>网路侦测</title>
+    </head>
+    <body onselectstart="return false">
+        <div id="tit_div" class="main-tit">
+            <div class="tit-name">网路侦测</div>
+            <div class="status-div">
+                <!--<div class="mongos-status" id="mongos">主服务器rr正常</div>-->
+                <div class="sys-time" id="sys_time">2016-11-03 21:17:38</div>
+            </div>
+            <div class="titBtnGroup">
+            </div>
+            </div>
+            <div id="spd-header">
+            <div id="spd-body-menu-container">
+            <ul id="spd-header-breadcrumbs" class="hasCrumbs" style="display: block;">
+                <li><a href="/zh-cn/">首页</a></li>
+                <li class="breadcrumbs-segment">&gt;</li>
+                <li><a href="/zh-cn/spd/spdindex/">网路侦测</a></li>
+                <li class="breadcrumbs-segment">&gt;</li>
+                <li class="program-name">项目-1</li>
+                <li class="breadcrumbs-segment">&gt;</li>
+                <li class="breadcrumbs-name">数据源手动梳理</li>
+            </ul>
+                <!--<div class="breadcrumb">
+                <a class="nav-prev nav-a" href="/zh-cn/">首页</a>
+                <span class="nav-next nav-prev">&gt;</span>
+                <a class="nav-now nav-a" href="#">网路侦测</a>
+                </div>-->
+                <ul id="spd-body-menu">
+                <li name="snapshot" id="menu-snapshot"><a href="#snapshot">快照</a></li>
+                <li><span id="compareD">对比</span></li>
+                <li name="settings" style="position:relative;display:none;">
+                    <a href="javascript:void(0);">设置</a>
+                    <a href="javascript:void(0);" class="spd-tab-close black" style="position:absolute;top:2px;right:10px;display:inline-block;width:7px;height:7px;"></a>
+                </li>
+                </ul> 
+            </div>
+            </div>
+            <div id="spd-body">
+                <div id="spd-frame-dispatch">
+                    <div id="spd-body-content">
+                        <div class="spd-message hide"><div class="spd-message-inner"></div></div>
+                        <div class="spd-body-content-frame" name="map"></div>
+                        <div class="spd-body-content-frame" name="preview"></div>
+                        <div class="spd-body-content-frame" name="snapshot"></div>
+                        <div class="spd-body-content-frame" name="datasource"></div>
+                        <div class="spd-body-content-frame" name="settings"></div>
+                    </div>
+                </div>
+            <div>
+            <div id="create_map_popup" class="popup-modal hide short-edit-popup" tabindex="-1">
+                <div class="modal-header">
+                    <h3>提示</h3>
+                </div>
+
+                <div class="modal-body">
+                    <div class="message-pop message-pop-manual" id="datasource_desc" style="display: none;">
+                        <span class="map-msg-icon"></span>
+                        <div class="map-msg-content"></div>
+                    </div>
+                    <span class="modal_tips">新建项目</span><input name="desc" id="getNewMapName" style=" width:125px;margin: 0 0 0 28px;" type="text"/>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-primary create blue-button ctl-button">创建</button>
+                    <button class="btn btn-second cancel grey-button ctl-button" data-dismiss="modal" aria-hidden="true">取消</button>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" charset="utf-8" src="../../static/spd_js/compare.js"></script>
+    <script type="text/javascript">
+         CBMSFLOW.environment("map_name","map1");
+        CBMSFLOW.environment("LANGUAGE_CODE","zh-cn");
+        CBMSFLOW.SPD.env({
+            "static_url": "/spd/static/",
+            "root_url": "/spd/",
+            "debug": 'false',
+            "pcap_export": 'true',
+            "enable_protocol": 'true'
+        });
+        var STATIC_URL = "/zh-cn/spd/static/";  
+        var STATIC_URL_2 = "/static/";
+
+        var LANGUAGE_CODE = 'zh-cn';
+        var csrf_token = $.cookie('csrftoken');
+        var alert_path = window.location.pathname.split("/")[2];
+        (function(){
+            warnGet();
+//                indexBtnList();
+        })();
+
+        /**
+        * 系统告警的数据对接
+        * */
+        function warnGet(){
+            d3.json("/zh-cn/alert/screenalert/getdata/?csrfmiddlewaretoken=" + csrf_token)
+                    .header("Content-Type", "application/x-www-form-urlencoded")
+                    .get(jsonTod3string({
+                        "csrfmiddlewaretoken" : csrf_token
+                    }), function (e,data) {
+                        if(!e) {
+                            if (data.data.config.status === "on" || data.data.config.status === "true") {
+                                d3.json("/zh-cn/alertrealtime/")
+                                        .header("Content-Type", "application/x-www-form-urlencoded")
+                                        .post(jsonTod3string({
+                                            "csrfmiddlewaretoken": csrf_token
+                                        }), function (e, data) {
+                                            if (!e) {
+                                                var warn_tips = data.data;
+                                                if(warn_tips === undefined) return
+                                                var sd = false;
+                                                for (var i = 0, j = warn_tips.length; i < j; i++) {
+                                                    var sumd = warn_tips[i].danger_score;
+                                                    if (sumd == 100) {
+                                                        sd = true
+                                                    }
+                                                }
+                                                if (sd == true) {
+                                                    fullScreen();
+                                                }
+                                            }
+                                        });
+                            }else{
+                                closeAlert();
+                            }
+                            if(alert_path == "alert"){
+                                if (data.config.status == "off" || data.config.status == "false" ) {
+                                    d3.select(".javafile-off").text("");
+                                    d3.select(".javafile-on").text("开");
+                                } else {
+                                    d3.select(".javafile-on").text("");
+                                    d3.select(".javafile-off").text("关");
+                                }
+                                javaFileSlide(true);
+                            }
+                        }
+                    });
+        }
+
+        /**
+        * 生成定位告警框
+        */
+        function fullScreen(){
+            closeAlert();
+
+            d3.select("body")
+                    .append("div")
+                    .attr("class","warn-back");
+
+            var warn_box = d3.select("body")
+                    .append("div")
+                    .attr("class","warn-box");
+            warn_box.append("div")
+                    .attr("class","warn-circle-in");
+            warn_box.append("div")
+                    .attr("class","warn-circle-out")
+                    .append("a")
+                    .attr({
+                        "href":"/zh-cn/alert/"
+                    })
+                    .text("故障定位");
+
+            warn_box.append("div")
+                    .attr("class","warn-close warn-icon")
+                    .append("img")
+                    .attr({
+                        "src":STATIC_URL+"spd_img/warn-close.svg"
+                    });
+            warn_box.append("div")
+                    .attr("class","warn-set warn-icon")
+                    .append("img")
+                    .attr({
+                        "src":STATIC_URL+"spd_img/warn-set.svg"
+                    });
+
+            d3.select(".warn-box")
+                    .on("mouseout",function(){
+                        d3.selectAll(".warn-icon")
+                                .style({"display":"none"});
+                    })
+                    .on("mousemove",function(){
+                        d3.selectAll(".warn-icon")
+                                .style({"display":"inline-block"});
+                    });
+
+            d3.select(".warn-close")
+                    .on("click",function(){
+                        closeAlert();
+                    });
+
+            d3.select(".warn-set")
+                    .on("click",function(){
+                        if(d3.select(".warn-menu").empty()){
+                            initWarnMenu();
+                        }else{
+                            d3.select(".warn-menu").remove();
+                        }
+                    })
+        }
+
+        /**
+        * 关闭全屏告警的前端样式
+        * flag -- 当为true，添加样式，当为false时，去掉前端样式
+        * */
+        function closeAlert(){
+            d3.select(".warn-box").remove();
+            d3.select(".warn-back").remove();
+        }
+
+        /**
+        * 生成操作列表
+        */
+        function initWarnMenu(){
+            d3.select(".warn-menu").remove();
+            var warn_menu = d3.select(".warn-box")
+                    .append("div")
+                    .attr("class","warn-menu");
+            var menu_list = ["1小时内不显示","1日内不显示","1周内不显示","1月内不显示"];
+            var menu_hour = [1,24,168,720];
+            var warn_ul = warn_menu.append("ul")
+                    .attr("class","full-warn-ul");
+            menu_list.forEach(function(value,index){
+                warn_ul.append("li")
+                        .append("a")
+                        .attr({
+                            "class":"warn-menu-a",
+                            "name":menu_hour[index]
+                        })
+                        .text(value);
+            });
+            document.onclick = function(){
+                d3.select(".warn-menu")
+                        .style("display","none");
+            };
+            d3.select(".warn-box")
+                    .on("click",function(e){
+                        cancel_bubble(d3.event);
+                    });
+            d3.selectAll(".warn-menu-a").on("click",function(e){
+                setAlert(this);
+            })
+        }
+
+        /**
+        * 设置全屏告警隐藏的时间段
+        */
+        function setAlert(this_){
+            var ts_hold = parseInt(d3.select(this_).attr("name"));
+            d3.json("/zh-cn/alert/screenalert/update/?csrfmiddlewaretoken=" + csrf_token +"&ts_hold=" + ts_hold)
+                    .header("Content-Type", "application/x-www-form-urlencoded")
+                    .get(function(e,data){
+                        if(!e){
+                            if(data.status == 0){
+                                alertWindow("全屏告警设置失败！",false);
+                            }else{
+                                if(alert_path == "alert"){
+                                    javaFileSlide(true);
+                                }
+                                closeAlert();
+                            }
+                            d3.select(".warn-menu")
+                                    .style("display","none");
+                        }
+                    })
+        }
+        /**
+        * 将json转化为key=value并用&连接的字符串
+        * @param json_data
+        * @returns {string}
+        */
+        function jsonTod3string(json_data){
+            var string = '';
+            for(var key in json_data){
+                string += key + '=' + encodeURIComponent(json_data[key]);
+                string += '&';
+            }
+            return string.substring(0,string.length-1);
+        }
+
+        /**
+        * 取消冒泡事件
+        * @param event
+        */
+        function cancel_bubble(){
+            var e = d3.event || window.event;
+            if (e.stopPropagation)
+                e.stopPropagation();
+            else e.cancelBubble = true;
+        }
+
+        /****/
+        function indexBtnList(indexList,nameBnt){
+            var indexBtnList = d3.select('#tit_div').append('ul').attr('class','indexBtnList '+nameBnt+'ul indexInputHide');
+            for(var i = 0,len = indexList.length;i < len;i++ ) {
+                var li = indexBtnList.append('li').append('a').attr('href', '/' + LANGUAGE_CODE + indexList[i].href);
+                li.append('span').html(indexList[i].name);
+            }
+            var startWidth = 35;
+            var endWidth = 65;
+            var indexMore = d3.select('.'+nameBnt);
+            var group =  d3.select(indexMore[0][0].parentNode);
+            if(nameBnt === 'indexMore') startWidth = 26;
+            indexMore[0][0].addEventListener('click',function(){
+                indexBtnList.classed('indexInputHide',!indexBtnList.classed('indexInputHide'));
+                group.classed('titBtnGroupClick',!group.classed('titBtnGroupClick'));
+                cancel_bubble();
+                indexBtnList[0][0].addEventListener('click',function(){cancel_bubble();});
+                document.onclick = function() {
+                    indexMore.transition().duration(endWidth).ease('linear').style('width',startWidth + 'px');
+                    indexBtnList.classed('indexInputHide',true);
+                    group.classed('titBtnGroupClick',false);
+                };
+            });
+            indexMore[0][0].addEventListener('mouseout',function(){
+                !group.classed('titBtnGroupClick') && indexMore.transition().duration(endWidth).ease('linear').style('width',startWidth + 'px');
+            });
+            indexMore[0][0].addEventListener('mouseenter',function(){
+                d3.selectAll('.indexBtnList ').classed('indexInputHide',true);
+            });
+        }
+
+        /**
+        * * 导航栏按钮
+        */
+        function createNavBtn(container,url,img,title,startWidth,isOut){
+            startWidth = startWidth || 45;
+            var a_href = url == '#' ? 'javascript:void(0);' : '/' + LANGUAGE_CODE + '/' + url ;
+            var groupA = container.append('a').attr('href',a_href).attr('class','baseTitGroupA');
+            groupA.append('div').style({width : startWidth + 'px'}).append('img').attr('src',STATIC_URL_2 + 'spd_img/cbms-img/nav-icon/' + img + '.svg');
+            groupA.append('span').attr('class','btnTips').html(title);
+            var width = groupA[0][0].clientWidth;
+            groupA.style('width',startWidth + 'px');
+            groupA[0][0].addEventListener('mouseover',function(){groupA.transition().duration(width).ease('linear').style('width',width + 'px');});
+            !isOut && groupA[0][0].addEventListener('mouseout',function(){groupA.transition().duration(width).ease('linear').style('width',startWidth + 'px');});
+
+            return groupA;
+        }
+        $(function() {
+            $("#spd-header-breadcrumbs li:nth-child(3) a").on("click",function(e){
+                e.preventDefault(); 
+            });
+            $("#spd-header-breadcrumbs").find("li").eq(2).on("click",function(e){
+                var mapMap = window.localStorage.getItem("mapName");
+                if(mapMap === null) mapMap = "map1";
+                window.location.href="/zh-cn/spd/"+mapMap+"/overview/#datasource";
+            });
+                var get_baseinfo_count = 0;
+                var temp_time = 0;
+                var event_source = new EventSource('/basisinfo/');
+                event_source.addEventListener('sysstatus', function(e) {
+                var data = JSON.parse(e.data);
+            //      var html_mongos = '';
+            //
+            //      d3.select("#mongos").html(html_mongos);
+                    if(data.mongos[0].status == 'not_running'){
+                        window.location.href = '/' + LANGUAGE_CODE + '/manager/database/info/';
+                    }
+                if(get_baseinfo_count %60 == 0){
+                    get_baseinfo_count++;
+                    var date = new Date();
+                    var sys_time = data.time;
+                    var now_time = date.getTime()/1000;
+                    temp_time = now_time - sys_time;
+                }else if(get_baseinfo_count > 60){
+                    get_baseinfo_count = 1;
+                }else{
+                    get_baseinfo_count++;
+                }
+
+                }, false);
+                var sys_time = d3.select("#sys_time");
+                setInterval(function(){
+                var date = new Date();
+                var html_time = ts2str(date.getTime()/1000 - temp_time);
+                sys_time.html(html_time);
+                },1000);
+
+            var titBtnGroup = d3.select('.titBtnGroup');
+            createNavBtn(titBtnGroup, '','home','首页');
+            createNavBtn(titBtnGroup, '#','app-wall','业务墙').classed('app-wall',true);
+            createNavBtn(titBtnGroup, '#','alert','告警').classed('alert',true);
+            createNavBtn(titBtnGroup, 'report/index','report','报表');
+            createNavBtn(titBtnGroup, '#','base-config','基础配置').classed('base-config',true);
+            createNavBtn(titBtnGroup, '#','indexMore','更多',26,true).classed('indexMore',true);
+            var indexList = [
+                {name:'系统设置',href:'/accounts/accountindex/'},
+                {name:'用户管理',href:'/accounts/authmanage/'},
+                {name:'网路侦测',href:'/spd/spdindex/'},
+                {name:'注销',href:'/accounts/logout/'}];
+            var baseList = [
+                {name:'告警设置',href:'/alertmanage/'},
+                {name:'协议配置',href:'/protocol/'},
+                {name:'指标管理',href:'/indicatormanage/'}];
+            var alertList = [
+                {name:'告警详情',href:'/alert/'},
+                {name:'运维效率',href:'/alert/alert_recovery/'}];
+            var wallList = [
+                {name:'业务系统',href:'/center/manageapp/'},
+                {name:'交易总览',href:'/trade/indexcustomview/'}];
+            indexBtnList(indexList,'indexMore');
+            indexBtnList(baseList,'base-config');
+            indexBtnList(alertList,'alert');
+            indexBtnList(wallList, 'app-wall');
+            $("#compareD").on("click",function(){
+                var compares = new compare();
+            })
+            function createNavBtn(container,url,img,title,startWidth,isOut){
+                startWidth = startWidth || 45;
+                var a_href = url == '#' ? 'javascript:void(0);' : '/' + LANGUAGE_CODE + '/' + url ;
+                var groupA = container.append('a').attr('href',a_href).attr('class','baseTitGroupA');
+                var img_div = groupA.append('div').style({width : startWidth + 'px'}).append('img').attr('src',STATIC_URL_2 + 'spd_img/cbms-img/nav-icon/' + img + '.svg');
+                if(img === 'report' || img === 'base-config') {
+                    startWidth = 35;
+                    img_div.style({width : startWidth + 'px'});
+                } 
+                else img_div;
+                groupA.append('span').attr('class','btnTips').html(title);
+                var width = groupA[0][0].clientWidth;
+                groupA.style({'width':startWidth + 'px',margin: '0 5px'});
+                groupA[0][0].addEventListener('mouseover',function(){groupA.transition().duration(width).ease('linear').style('width',width + 'px');});
+                !isOut && groupA[0][0].addEventListener('mouseout',function(){groupA.transition().duration(width).ease('linear').style('width',startWidth + 'px');});
+
+                return groupA;
+            }
+        });
+        $(function(){
+            var patnName = window.location.pathname;
+            var nowPatnName = patnName.match(/(map\d+)/g);
+            window.localStorage.setItem("mapName",nowPatnName[0]);
+            var active_datasource = window.localStorage.getItem("spdName");
+            var nowMapLoc = window.localStorage.getItem("mapName");
+            var nowMap = nowMapLoc === null ? 'map1' : nowMapLoc;
+            var mapNames = CBMSFLOW.environment('map_name');
+            CBMSFLOW.environment('datasource_name', active_datasource);
+            var FrameDispatch = CBMSFLOW.module("spd.Dispatch.FrameDispatch");
+            var FrameDispatchInstance = new FrameDispatch($("#spd-frame-dispatch"),{
+                "map": {
+                    "url": "/zh-cn/spd/"+nowMap+"/overview/map/",
+                    "query": function(){
+                        query = {}
+                        var datasourceName = CBMSFLOW.environment('datasource_name');
+                        if(datasourceName){
+                            query["datasource"] = datasourceName;
+                        }
+                        var topovmap = CBMSFLOW.environment('topovmap');
+                        if(topovmap){
+                            // query["map_data"] = JSON.stringify(topovmap.getSaveData('load'));
+                            query["map_data"] = {};
+                        }
+                        return query;
+                    },
+                    "type": "POST"
+                },
+                "preview": {
+                    "url": "/zh-cn/spd/"+nowMap+"/overview/preview/",
+                    "frameClose": function(){
+                        var preview_topovmap = CBMSFLOW.environment('topovmap_preview');
+                        if(preview_topovmap){
+                            preview_topovmap.clear();
+                            preview_topovmap = null;
+                            CBMSFLOW.environment('topovmap_preview', null);
+                        }
+                    },
+                    "frameOpen": function(container){
+                        var topovmap = CBMSFLOW.environment('topovmap');
+                        var preview_topovmap = CBMSFLOW.environment('topovmap_preview');
+                        if(topovmap && preview_topovmap){
+                            var map_data = topovmap.getSaveData('preview');
+                            preview_topovmap.load(map_data);
+                            var zoom_data = topovmap.getZoomData(false);
+                            preview_topovmap.setZoom(zoom_data.zoom, zoom_data.pos, false);
+                            //preview_topovmap.setZoom(0, {x:0,y:0}, true);
+                        }
+                    },
+                    "frameCache":false
+                },
+                "snapshot": {
+                    "url": "/zh-cn/spd/"+nowMap+"/overview/snapshot/",
+                    "frameCache":false
+                },
+                "datasource": {"url": "/zh-cn/spd/"+nowPatnName[0]+"/overview/datasource/"},
+                "settings": {
+                    "url": "/zh-cn/spd/map1/overview/settings/",
+                    "frameOpen": function(container){
+                        $('#spd-settings-saved-tip').hide();
+                    }
+                }
+            });
+            var hashTag = CBMSFLOW.util.get_hashtag();
+            if (hashTag && !_.contains(['settings','preview'], hashTag)) {
+                FrameDispatchInstance.toggle(hashTag);
+            } else {
+                FrameDispatchInstance.toggle("datasource");//点击网络侦测进入数据源界面
+            }
+
+            CBMSFLOW.environment('frameDispatch', FrameDispatchInstance);
+
+            $('#spd-body-menu li[name="settings"]').find('.spd-tab-close').click(function(e){
+                var actionsManager = CBMSFLOW.environment('spdSettingsActionsManager');
+                if(actionsManager.isValueChanged()){
+                    FrameDispatchInstance.toggle("settings");
+                    actionsManager.leave();
+                }else{
+                    actionsManager.close();
+                }
+                e.stopPropagation();
+            });
+        });
+        $(function(){
+            var popupMassage = $("#datasource_desc");
+            var msgContent = $("#datasource_desc .map-msg-content");
+            var createMappopup = $('#create_map_popup');
+            var descInput = createMappopup.find('input[name=desc]');
+            var saveBtn = createMappopup.find('.btn-primary.create');
+            var closeBtn = createMappopup.find('.btn-second.cancel');
+            var max_id = null;
+            var name_prefix = "服务路径图-";
+            function getName(){
+                if(max_id == null){
+                    max_id = 0;
+                    $("#spd-maps .minimap").each(function(){
+                        var desc = $(this).attr("desc") || "";
+                        if(desc.indexOf(name_prefix) == 0){
+                            var n_id = parseInt(desc.replace(name_prefix,""), 10);
+                            if(!isNaN(n_id) && n_id > max_id){
+                                max_id = n_id;
+                            }
+                        }
+                    });
+                }
+                var new_id = ++ max_id;
+                return name_prefix + (new_id > 9 ? new_id : '0' + new_id);
+            }
+
+            createMappopup.bind('setDefault', function() {
+                descInput.val(getName()).textSelect();
+            });
+
+            saveBtn.click(function() {
+                var desc = $("#getNewMapName").val(),
+                    descInput = $("#getNewMapName"),
+                    reg = new RegExp("^[A-Za-z0-9\u4e00-\u9fa5-]+$");
+                if(!$.trim(desc)){
+                    popupMassage.css({display:"block"})
+                    msgContent.text("名称不能为空");
+                    descInput.addClass('error');
+                    return false;
+                } else if(desc.length > 12){
+                    popupMassage.css({display:"block"})
+                    msgContent.text("名称不能超过12字符");
+                    descInput.addClass('error');
+                    return false;
+                } else if(!reg.test(desc)){
+                    popupMassage.css({display:"block"})
+                    msgContent.text("名称不能出现除-以外的特殊字符");
+                    descInput.addClass('error');
+                    return false;
+                }
+                $.ajax({
+                    url: CBMSFLOW.util.format_i18n_url('/spd/createmap/'),
+                    type: 'post',
+                    data: {'desc': desc},
+                    success: function(result) {
+                        if (result.code === 0) {
+                            createMappopup.modal('hide');
+                            var mapName = result.data.map_name;
+                            location.replace('/zh-cn/spd/'+mapName+'/overview/#datasource');
+                            window.localStorage.setItem("mapName",mapName);
+                        }
+                        /*else if (result.error=='hasdesc'){
+                            $('#create_map_input').messagepop('show', "名称重复");
+                            $('#create_map_input').addClass('error');
+                        }*/
+                        else {
+                            alertPopup(result.msg);
+                            closeBtn.trigger('click');
+                        }
+                    }
+                });
+            });
+
+            //弹框效果
+            function alertPopup(msg,delete_map_id){
+                if($("#alert-popup")) $("#alert-popup").remove();
+                var alert = 
+                '<div id="alert-popup">'+
+                        '<div class="alert-popup-main">'+
+                            '<div class="alert-popup-title">'+
+                                '<h3>提示</h3>'+
+                                '<div class="alert-popup-close"></div>'+
+                            '</div>'+
+                            '<span>'+ msg +'</span>'+
+                        '</div>'+
+                    '</div>';
+                    $("body").append(alert);
+                    $(".alert-popup-close").on("click",function(){
+                        $("#alert-popup").remove();
+                    });
+                    if(delete_map_id) {
+                        var opar = 
+                            '<div class="alert-footer">'+
+                                '<div id="sure-bnt">确定</div>'+
+                                '<div id="cancle-bnt">取消</div>'+
+                            '</div>';
+                        $(".alert-popup-main").append(opar);
+                        $("#cancle-bnt").on("click",function(){
+                            $("#alert-popup").remove();
+                        });
+                        $("#sure-bnt").on("click",function(){
+                            deleteMap(delete_map_id);
+                        });
+                    }
+                }
+
+            closeBtn.click(function() {
+                popupMassage.css({display:"none"});
+                $('#getNewMapName').removeClass('error');
+            });
+            $('#create_map_input').messagepop({'trigger': 'manual', 'zindex': null});
+        });
+    </script>
+</html>

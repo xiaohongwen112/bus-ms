@@ -1,0 +1,308 @@
+@import '../../../assets/css/iconbms.css';
+
+.charts-main {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #08141b;
+
+  .report-content-div {
+    height: calc(100% - 95px);
+
+    .totop {
+      position: absolute;
+      top: 50%;
+      left: 110%;
+      opacity: 0;
+      width: 35px;
+      height: 35px;
+      border-radius: 5px;
+      background-color: #fff;
+      z-index: 9;
+      text-align: center;
+      padding-top: 10px;
+      box-sizing: border-box;
+      cursor: pointer;
+
+      &.show {
+        opacity: 1;
+        left: calc(100% - 55px);
+        transition: all .5s;
+      }
+
+      &.hide {
+        opacity: 0;
+        left: 110%;
+        transition: all .5s;
+      }
+
+      .icon-bms-totop {
+        font-size: 16px;
+        font-weight: 600;
+        color: #000;
+      }
+    }
+
+    .config-box {
+      width: 312px;
+      position: absolute;
+      top: 55px;
+      right: 40px;
+      z-index: 9;
+      text-align: right;
+
+      .cm-btn {
+        margin-left: 30px;
+      }
+
+      .icon-bms-reset {
+        font-size: 16px;
+        color: #11cec8;
+        cursor: pointer;
+        border: 1px solid #11cec8;
+        padding: 5px 6px;
+        border-radius: 16px;
+        vertical-align: middle;
+      }
+
+      .normal-btn,
+      .disabled-btn {
+        vertical-align: middle;
+        margin-left: 30px;
+      }
+
+      .disabled-btn {
+        border: 1px solid #2e4c61;
+        color: #2e4c61;
+        background: #0A283B;
+      }
+    }
+
+    .scroll-area {
+      position: relative;
+      width: 100%;
+      height: calc(100% - 70px);
+      margin-top: 70px;
+      // position: absolute;
+      // top: 70px;
+      // bottom: 0;
+    }
+
+    .report-title-div {
+      position: absolute;
+      top: 94px;
+      left: 0;
+      right: 0;
+      height: 70px;
+      text-align: center;
+      background: #050d12;
+      z-index: 8;
+
+      .title-wrap {
+        display: inline-block;
+        width: calc(100% - 110px);
+      }
+
+      i {
+        font-size: 50px;
+        color: white;
+        cursor: pointer;
+      }
+
+      .main-title {
+        font-size: 32px;
+        color: white;
+        line-height: 70px;
+      }
+
+      .no-export {
+        line-height: 35px;
+      }
+
+      .sub-title {
+        font-size: 20px;
+        color: red;
+      }
+    }
+
+    .level-info-content {
+      margin: 0 3%;
+      width: 94%;
+      font-size: 0;
+    }
+
+    .sub-level-div {
+      .level-menu {
+        margin: 5px 0;
+      }
+
+      .level-info-content {
+        margin: 0;
+        width: 100%;
+      }
+    }
+
+    .main-info-content {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+
+    #alert_content,
+    #growth_content>div .sub-info-content,
+    #historyGrowth_content>div .sub-info-content {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .sub-level-menu {
+      margin: 3px 1%;
+      height: 40px;
+      line-height: 40px;
+      font-size: 18px;
+    }
+
+    .main-level-menu {
+      border-bottom: 1px solid #1f2b38;
+      margin-bottom: 5px;
+    }
+
+    .level-menu {
+      display: block;
+      height: 45px;
+      line-height: 45px;
+      padding: 0 40px;
+      font-size: 20px;
+      background: #0c161e;
+      color: #5c686f;
+      margin: 5px 2%;
+    }
+
+    .selected>.level-menu,
+    .selectedMenu {
+      background: #141c26;
+      color: #e0ebef;
+    }
+
+    .level-span {
+      clear: both;
+      float: right;
+      position: relative;
+      top: 5px;
+
+      .icon-toggle,
+      .icon-choose {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        margin-left: 15px;
+        cursor: pointer;
+      }
+
+      .toggle-close {
+        background: url(../../../assets/report/item-close.svg) no-repeat;
+      }
+
+      .toggle-open {
+        background: url(../../../assets/report/item-open.svg) no-repeat;
+      }
+
+      .icon-chosed {
+        background: url(../../../assets/report/item-selected.svg) no-repeat;
+      }
+
+      .icon-unchose {
+        background: url(../../../assets/report/item-unselected.svg) no-repeat;
+      }
+    }
+
+    .report-content {
+      position: absolute;
+      // top: 70px;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      .hideContent {
+        position: absolute;
+        z-index: -2;
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+
+    .report-table {
+      width: 100%;
+      background: #040a10;
+      text-align: center;
+      border-spacing: 0;
+      color: #fff;
+
+      thead {
+        tr {
+          height: 40px;
+          line-height: 40px;
+          font-size: 16px;
+          background: #283646;
+        }
+      }
+
+      tr {
+        height: 40px;
+        line-height: 40px;
+        font-size: 16px;
+
+        th,
+        td {
+          border: 1px solid #0f171e;
+        }
+
+        th:first-child,
+        td:first-child {
+          padding-left: 20px;
+          text-align: left;
+          width: 130px;
+        }
+      }
+    }
+
+    .report-chart {
+      width: 33%;
+      display: inline-block;
+      height: 330px;
+      background: rgba(5, 12, 17, .75);
+      box-shadow: 2px 2px 3px rgb(5, 12, 17);
+      margin-top: 10px;
+      margin-right: calc(1% / 2);
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      .report-chart-rate {
+        height: 50%;
+      }
+    }
+
+    .report-time-chart {
+      height: 560px;
+      background: rgba(5, 12, 17, .75);
+      box-shadow: 2px 2px 3px rgb(5, 12, 17);
+      margin-top: 10px;
+      margin-bottom: 31px;
+      font-size: 14px;
+
+      .legend-group {
+        li {
+          span {
+            font-size: 14px;
+            margin: 0 2px;
+          }
+        }
+      }
+    }
+  }
+}

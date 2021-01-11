@@ -1,0 +1,114 @@
+
+{% extends "topovdiscovery/base.html" %}
+{% load i18n %}
+{% load pymod %}
+
+{% block title %} {% trans "网路侦测" %} {% endblock %}
+{% block main_content %}
+    {% csrf_token %}
+    <div id="spd-header">
+      <div class="spd-header-left">
+          <a href="{% if HOST_URL %} {{HOST_URL}} {% else %} {% url spd-index %} {% endif %}"><img src="{% url spd-static 'img/logo.png' %}"></img></a>
+      </div>
+      </div>
+    </div>
+    <div style="position:absolute;left:5%">
+    <span style=" position: absolute;width: 200px;top: -40px;left: 150px;z-index: 100;">
+      <a  style=" text-decoration: none; color: inherit" href="{% url spd-index %}" >{% trans "主页" %}</a> &nbsp;&gt;&nbsp;{% trans "网路侦测" %}</a>
+    </span>
+    </div>
+    <div id="spd-body">
+        <div id="create-map-btn">
+            <span class="create-map-btn-icon"></span>
+            <span class="create-map-btn-text">{% trans "新项目" %}</span>
+        </div>
+        
+        <div id="spd-maps">
+        {% for map in maps %}
+        <div class="minimap" index="{{forloop.counter0}}" url="{% url spd-overview map_name=map.name %}" map="{{map.name}}" desc="{{map.desc}}">
+              <div class="spd-icon spd-icon-trash"></div>
+              <div class="spd-icon spd-icon-rename"></div>
+              {% if map.map_png %}
+              <div class="minimap-img-map">
+              <img src="{{map.map_png}}"/>
+              </div>
+              {% else %}
+              <div class="minimap-default-map center"></div>
+              {% endif %}
+              <div class="minimap-desc"><div class="desc text-ellipsis">{{map.desc}}</div></div>
+              <div class="minimap-desc-detail">
+                  <p class="desc text-ellipsis text-tip">{{map.desc}}</p>
+                  <p class="datetime">{{map.create_time}}</p>
+              </div>
+
+              <!--
+              <div class="minimap-front"></div>
+              -->
+
+              <div class="minimap-shadow"></div>
+              <div class="minimap-shadow-hover"></div>
+          </div>
+        {% endfor %}
+        </div>
+
+    </div>
+
+    {% include "topovdiscovery/delete_map_popup.html" %}
+    {% include "topovdiscovery/rename_map_popup.html" %}
+    {% include "topovdiscovery/create_map_popup.html" %}
+
+    <script type="text/javascript" charset="utf-8">
+        $(function() {
+            
+            var window_width = $(window).width();
+            var map_width = 298;
+            var map_gap = 30;
+            var map_container_min_padding_left = 141;
+            if(window_width - (map_width*4 + map_gap*4)>=map_container_min_padding_left*2){
+                // 4 maps in same line
+                var adj_spd_map_padding_left = (window_width - (map_width*4 + map_gap*4 + 15))/2 - 15;
+                var adj_spd_map_padding_right = (window_width - (map_width*4 + map_gap*4 + 15))/2 + 15;
+            }else{
+                // 3 maps in same line
+                var adj_spd_map_padding_left = 124;
+                var adj_spd_map_padding_right = 154;
+            }
+            $('#spd-maps').css('padding-left', adj_spd_map_padding_left);
+            $('#spd-maps').css('padding-right', adj_spd_map_padding_right);
+
+            var minimap = $('.minimap');
+            var deleteBtn = minimap.find('.spd-icon-trash');
+            var renameBtn = minimap.find('.spd-icon-rename');
+            var createBtn = $('#create-map-btn');
+            var deleteMapPopup = $('#delete_map_popup');
+            var renameMapPopup = $('#rename_map_popup');
+            var createMapPopup = $('#create_map_popup');
+
+            minimap.click(function() {
+                window.location = $(this).attr('url');
+            });
+
+            deleteBtn.click(function(e) {
+                e.stopPropagation();
+                deleteMapPopup.attr('map', $(this).parents('.minimap').attr('map'));
+                deleteMapPopup.trigger('setDefault', [$(this).parents('.minimap').attr('desc') || '']);
+                deleteMapPopup.modal({'keyboard': false, 'backdrop': 'static', 'show': true});
+                $('.modal-backdrop.in').css('opacity', 0.5);
+            });
+
+            renameBtn.click(function(e) {
+                e.stopPropagation();
+                var minimap = $(this).parents('.minimap');
+                renameMapPopup.attr('map', minimap.attr('map'));
+                renameMapPopup.modal({'keyboard': false, 'backdrop': 'static', 'show': true});
+                renameMapPopup.trigger('setDefault', [minimap.attr('desc')]);
+                $('.modal-backdrop.in').css('opacity', 0.5);
+            });
+            createBtn.click(function(e){
+                createMapPopup.modal({'keyboard': false, 'backdrop': 'static', 'show': true});
+                createMapPopup.trigger('setDefault');
+                $('.modal-backdrop.in').css('opacity', 0.5);
+            });
+        });
+    </script>
+{% endblock %}
